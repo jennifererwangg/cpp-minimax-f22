@@ -1,10 +1,10 @@
 // include game
 
+template<typename GameState>
 class MiniMax {
     public:
-        Minimax(Game game, int maxDepth) {
+        Minimax(Game<GameState> game) {
             game = game;
-            // max depth
         }
 
         void runMinimax() {
@@ -12,7 +12,6 @@ class MiniMax {
         }
 
     private:
-        int maxDepth = 1;
 
         void min() {
             // we implement

@@ -2,9 +2,7 @@
 
 class TicTacToe : Game {
     public:
-        TicTacToe() {
-    
-        }
+        TicTacToe() {}
 
     // provide functions for Game virtual functions
 }
