@@ -9,7 +9,6 @@ class Game {
              * isDone function
              * eval() function to a state (the heuristic)
              * getUserNextMove() for CLI
-             * we will implement getAINextMove() based on minimax
              * printGameState() for CLI
              */
         }
@@ -17,6 +16,6 @@ class Game {
         // make all the function definitions here
 
         void play() {
-            
+
         }
 }
