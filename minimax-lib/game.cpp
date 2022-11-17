@@ -1,21 +1,10 @@
 #include <random>
+#include "game.h"
 #include "minimax.cpp"
 
+template<typename GameState>
 class Game {
     public:
-        Game(GameState initialState) {
-            /* user provides:
-             * The initial state
-             * GetNextPossibleMoves function
-             * isDone function
-             * eval() function to a state (the heuristic)
-             * getUserNextMove() for CLI
-             * printGameState() for CLI
-             */
-        }
-
-        // make all the function definitions here
-
         void play(int maxDepth = 1) {
             int turn = startingTurn(); // 0 = user turn, 1 = minimax turn
             while (!isDone(currentState)) {
