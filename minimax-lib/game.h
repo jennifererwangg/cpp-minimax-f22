@@ -3,9 +3,7 @@
 template<typename GameState>
 class Game {
     public:
-        Game(GameState initialState) {
-            currentState = initialState;
-        };
+        Game() {};
 
         ~Game() = default;
 
@@ -13,7 +11,7 @@ class Game {
          * Defined by the user: 
          * Given a current game state, returns a vector of the possible next configurations for the game.
          */
-        virtual std::vector<GameState> getNextPossibleMoves(GameState state) = 0;
+        virtual std::vector<GameState> getNextPossibleMoves(GameState state, bool isUserMove) = 0;
 
         /**
          * Defined by the user: 
