@@ -1,6 +1,9 @@
-// include minimax-lib
+#include "../minimax-lib/game.h"
+#include "../minimax-lib/minimax.h"
 
-class TicTacToe : Game {
+using namespace std;
+
+class TicTacToe : Game<char[3][3]> {
     public:
         TicTacToe() {
             currentState = {{"_", "_", "_"}, {"_", "_", "_"}, {"_", "_", "_"}};
