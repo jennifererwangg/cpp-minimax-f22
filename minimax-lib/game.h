@@ -1,11 +1,12 @@
 #pragma once
 
+#include "minimax.h"
+#include <vector>
+
 template<typename GameState>
 class Game {
     public:
         Game() {};
-
-        ~Game() = default;
 
         /**
          * Defined by the user: 
@@ -46,8 +47,29 @@ class Game {
             * Checks if the game is done and if it is, says the winner 
             * Repeat
         */
-        void play();
+        void play(int maxDepth = 1) {
+            int turn = startingTurn(); // 0 = user turn, 1 = minimax turn
+            while (!isDone(currentState)) {
+                printGameState(currentState);
+                if (turn == 0) {
+                    currentState = getNextUserMove();
+                } else {
+                    // Minimax AIPlayer = new Minimax(*this, maxDepth);
+                    currentState = runMinimax(this, *maxDepth);
+                }
+                turn = !turn;
+            }
+        }
 
     private:
         GameState currentState;
-}
+
+        int startingTurn() {
+            return 0;
+            // using my_engine = std::default_random_engine;
+            // using my_distribution = std::uniform_int_distribution<>;
+            // my_engine re {};
+            // my_distribution generate_turn {0,1}; 
+            // return generate_turn(re);
+        }
+};
