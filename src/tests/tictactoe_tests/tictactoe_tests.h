@@ -1,0 +1,2 @@
+bool testTicTacToeGetMaxCount();
+bool testTicTacToeNextState();
