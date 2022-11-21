@@ -3,8 +3,7 @@
 #include "minimax.h"
 #include <vector>
 
-template<typename GameState>
-class Game {
+template <typename GameState> class Game {
     public:
         Game() {};
 
@@ -55,7 +54,7 @@ class Game {
                     currentState = getNextUserMove();
                 } else {
                     // Minimax AIPlayer = new Minimax(*this, maxDepth);
-                    currentState = runMinimax(this, *maxDepth);
+                    currentState = runMinimax(*this, maxDepth);
                 }
                 turn = !turn;
             }
