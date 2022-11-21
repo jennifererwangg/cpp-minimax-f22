@@ -13,11 +13,11 @@ public:
   MinimaxSolver(int max_depth);
 
   // return the best state to play for the player
-  GameState::Ptr evaluate(GameState::Ptr initial_gs);
+  std::shared_ptr<GameState> evaluate(std::shared_ptr<GameState> initial_gs);
 
-  std::pair<GameState::Ptr, int> minimize(GameState::Ptr gs, int curr_depth, int alpha, int beta);
+  std::pair<std::shared_ptr<GameState>, int> minimize(std::shared_ptr<GameState> gs, int curr_depth, int alpha, int beta);
 
-  std::pair<GameState::Ptr, int> maximize(GameState::Ptr gs,int curr_depth, int alpha, int beta);
+  std::pair<std::shared_ptr<GameState>, int> maximize(std::shared_ptr<GameState> gs,int curr_depth, int alpha, int beta);
 
 private:
   int max_depth_ = 1;

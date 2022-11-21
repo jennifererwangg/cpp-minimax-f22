@@ -5,14 +5,12 @@ set (CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # headers
 set (HEADERS
-  node.h
   games/game_state.h
   games/tictactoe.h
   solver/minimax_solver.h
 )
 
 set (SOURCES
-  node.cc
   games/game_state.cc
   games/tictactoe.cc
   solver/minimax_solver.cc

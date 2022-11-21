@@ -4,11 +4,7 @@
 namespace minimax {
 namespace core {
 
-GameState::GameState(const std::string &name) :
-  Node{name} {
-  name_ = name.size() ? name : "GameState";
-}
-
+GameState::GameState() {}
 
 bool GameState::isDone() {
   std::cout << "WARNING: base GameState() invoked.\n";
@@ -24,9 +20,9 @@ void GameState::printState() {
   std::cout << "WARNING: base GameState() invoked.\n";
 }
 
-std::vector<GameState::Ptr> GameState::getNextState() {
+std::vector<std::shared_ptr<GameState>> GameState::getNextState() {
   std::cout << "WARNING: base GameState() invoked.\n";
-  return std::vector<GameState::Ptr>();
+  return std::vector<std::shared_ptr<GameState>>();
 }
 
 }  // namespace core

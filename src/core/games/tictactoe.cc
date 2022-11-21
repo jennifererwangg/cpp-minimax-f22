@@ -8,9 +8,8 @@ namespace core {
 
 using uint = unsigned int;
 
-Tictactoe::Tictactoe(const std::string &name) :
-  GameState{name} {
-  name_ = name.size() ? name : "Tictactoe";
+Tictactoe::Tictactoe() {
+  // initialize empty board
   board_ = std::vector<std::vector<BoardEntry>>(3, std::vector<BoardEntry>(3, EMPTY));
 }
 
@@ -48,7 +47,7 @@ void Tictactoe::printState() {
   std::cout << std::endl;
 }
 
-std::vector<GameState::Ptr> Tictactoe::getNextState() {
+std::vector<std::shared_ptr<GameState>> Tictactoe::getNextState() {
   // Hardcode version for the 1st move (always put X in the center)
   if (getMarkCount(EMPTY) == 9) {
     auto next_state = std::make_shared<Tictactoe>();
@@ -57,7 +56,7 @@ std::vector<GameState::Ptr> Tictactoe::getNextState() {
         {EMPTY, X, EMPTY},
         {EMPTY, EMPTY, EMPTY}};
     next_state->setBoard(newBoard);
-    return std::vector<GameState::Ptr>{next_state};
+    return std::vector<std::shared_ptr<GameState>>{next_state};
   }
   
   if (getMarkCount(X) <= getMarkCount(O)) {
@@ -72,12 +71,12 @@ std::vector<GameState::Ptr> Tictactoe::getNextState() {
 /**
  * Tictactoe game specific functions
  */
-std::vector<GameState::Ptr> Tictactoe::putMark(BoardEntry player) {
-  std::vector<GameState::Ptr> next_states;
+std::vector<std::shared_ptr<GameState>> Tictactoe::putMark(BoardEntry player) {
+  std::vector<std::shared_ptr<GameState>> next_states;
   for (uint i = 0; i < board_.size(); ++i) {
     for (uint j = 0; j < board_[i].size(); ++j) {
       if (board_[i][j] == EMPTY) {
-        Tictactoe::Ptr next_state = std::make_shared<Tictactoe>();
+        std::shared_ptr<Tictactoe> next_state = std::make_shared<Tictactoe>();
         std::vector<std::vector<BoardEntry>> next_board(board_);
         next_board[i][j] = player;
         next_state->setBoard(next_board);

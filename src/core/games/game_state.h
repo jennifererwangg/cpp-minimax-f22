@@ -1,7 +1,5 @@
 #pragma once
 
-#include "core/node.h"
-
 #include <memory>
 #include <string>
 #include <vector>
@@ -10,11 +8,11 @@ namespace minimax {
 namespace core {
 
 // Base class for games
-class GameState : public Node {
+class GameState {
 public:
-  MINIMAX_NODE(GameState)
 
-  explicit GameState(const std::string &name=std::string());
+  explicit GameState();
+  virtual ~GameState() {}
 
   // return true if the game has reached a terminal state, false otherwise
   virtual bool isDone();
@@ -26,7 +24,7 @@ public:
   virtual void printState();
 
   // return a vector of all possible next states
-  virtual std::vector<GameState::Ptr> getNextState();
+  virtual std::vector<std::shared_ptr<GameState>> getNextState();
 
 protected:
 private:

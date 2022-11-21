@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include "core/node.h"
 #include "core/games/game_state.h"
 #include "core/games/tictactoe.h"
 #include "core/solver/minimax_solver.h"
@@ -20,11 +19,11 @@ int main(int /*argc*/, char **/*argv*/)
 
 void automaticTicTacToePlayer() {
   // Initialize tic tac toe game 
-  GameState::Ptr tictactoe = std::make_shared<Tictactoe>();
+  std::shared_ptr<GameState> tictactoe = std::make_shared<Tictactoe>();
 
   for (;;) {
     MinimaxSolver solver(10);
-    GameState::Ptr next_best_state = solver.evaluate(tictactoe);
+    std::shared_ptr<GameState> next_best_state = solver.evaluate(tictactoe);
     next_best_state->printState();
     tictactoe = next_best_state;
     if (tictactoe->isDone()) {

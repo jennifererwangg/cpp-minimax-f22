@@ -1,5 +1,4 @@
 #include <iostream>
-#include "core/node.h"
 #include "core/solver/minimax_solver.h"
 #include "core/games/tictactoe.h"
 #include "tests/tictactoe_tests/tictactoe_tests.h"
@@ -13,7 +12,7 @@ using namespace minimax::core;
  ********************************************************
  */
 bool testTicTacToeGetMaxCount() {
-  Tictactoe::Ptr tictactoe = std::make_shared<Tictactoe>();
+  std::shared_ptr<Tictactoe> tictactoe = std::make_shared<Tictactoe>();
   
   // BoardEntry Configuration 1 (horizontal)
   std::vector<std::vector<BoardEntry>> board = {
@@ -67,7 +66,7 @@ bool testTicTacToeGetMaxCount() {
 }
 
 bool testTicTacToeNextState() {
-  Tictactoe::Ptr tictactoe = std::make_shared<Tictactoe>();
+  std::shared_ptr<Tictactoe> tictactoe = std::make_shared<Tictactoe>();
   
   // BoardEntry Configuration 1 (O's turn)
   std::vector<std::vector<BoardEntry>> board = {
@@ -76,7 +75,7 @@ bool testTicTacToeNextState() {
       {EMPTY, EMPTY, EMPTY}};
   tictactoe->setBoard(board);
   // tictactoe->printState();
-  std::vector<GameState::Ptr> nextStates = tictactoe->getNextState();
+  std::vector<std::shared_ptr<GameState>> nextStates = tictactoe->getNextState();
   // UNCOMMENT TO SEE NEXT STATES
   // for (auto &state : nextStates) {
   //   state->printState();

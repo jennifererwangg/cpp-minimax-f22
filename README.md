@@ -27,22 +27,25 @@ There are 2 main components to the MiniMax library.
 2. Everything related to the game is located in the `core/games` folder.
 
 **Hierarchical design**: Game Inheritance example for tictactoe (node is there to help with pointer management)
-Node -> GameState -> Tictactoe
+GameState -> Tictactoe
 
 Minimax Algorithm strictly uses `GameState`. It does not know anything about `Tictactoe`.
+
+TODO: make a class/folder called "players" that contains all kinds of players. This will be used by `minimax_exe/main.cc`. For example:
+* base (automatic/interactive/concurrent) player
+* tictactoe automatic player, tictactoe interactive player, tictactoe concurrent player
+* 2048 automatic player, ...
 
 **All documentation is located in the `.h` files**
 
 ## Pointer Management Tips
 
-**DO NOT USE A RAW POINTER SUCH AS `*`!** Always use **`ClassName::Ptr`** to represent a pointer, and **`std::make_shared<ClassName>()`** to initialize one. All of the memory management is handled in `src/core/node.cc`.
-
 To create a shared pointer: 
 ```cpp
-ClassName::Ptr pointer = std::make_shared<ClassName>();
+std::shared_ptr<ClassName> pointer = std::make_shared<ClassName>();
 
 // example:
-Tictactoe::Ptr tictactoe_ptr = std::make_shared<TicTacToe>();
+std::shared_ptr<Tictactoe> tictactoe_ptr = std::make_shared<TicTacToe>();
 ```
 
 ## Compilation Tips
@@ -59,8 +62,6 @@ If you add a new file/directory, make sure to update the corresponding `CMakeLis
 │   │   ├── game_state.h
 │   │   ├── tictactoe.cc
 │   │   └── tictactoe.h
-│   ├── node.cc
-│   ├── node.h
 │   └── solver
 │       ├── minimax_solver.cc
 │       └── minimax_solver.h
@@ -78,7 +79,7 @@ If you add a new file/directory, make sure to update the corresponding `CMakeLis
 
 ## TODO
 Tic tac toe
-- [ ] Implement a tic tac toe player (instead of the automated one in `minimax_exe/main.cc`)
+- [ ] Implement a tic tac toe player (instead of the automated one in `minimax_exe/main.cc`) -- see TODO in the design section for more details
 
 Others
 ...
