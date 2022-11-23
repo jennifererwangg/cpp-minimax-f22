@@ -1,7 +1,4 @@
-#include <iostream>
-#include "core/games/game_state.h"
 #include "core/games/tictactoe.h"
-
 
 namespace minimax {
 namespace core {
