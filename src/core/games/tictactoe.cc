@@ -14,6 +14,10 @@ Tictactoe::Tictactoe() {
  * GameState interface
  */
 bool Tictactoe::isDone() {
+  // check if there is a winner
+  if (getMaxCount(X) == 3 || getMaxCount(O) == 3) {
+    return true;
+  }
   for (auto &row : board_) {
     for (auto &cell : row) {
       if (cell == EMPTY) {
@@ -124,6 +128,34 @@ int Tictactoe::getMaxCount(BoardEntry player) {
     max_count = std::max(max_count, anti_diag_cnt);
   }
   return max_count;
+}
+
+bool Tictactoe::isValidMove(uint row, uint col) {
+  if (row < 0 || row >= 3 || col < 0 || col >= 3) {
+    return false;
+  }
+  return board_[row][col] == EMPTY;
+}
+
+void Tictactoe::makeMove(uint row, uint col) {
+  if (isValidMove(row, col)) {
+    board_[row][col] = X;
+  } else {
+    std::cout << "Invalid move\n";
+  }
+}
+
+BoardEntry Tictactoe::getWinner() {
+  if (getMaxCount(X) == 3) {
+    std::cout << "X wins!\n";
+    return X;
+  }
+  if (getMaxCount(O) == 3) {
+    std::cout << "O wins!\n";
+    return O;
+  }
+  std::cout << "Draw!\n";
+  return EMPTY;
 }
 
 }  // namespace core

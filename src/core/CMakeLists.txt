@@ -8,12 +8,18 @@ set (HEADERS
   games/game_state.h
   games/tictactoe.h
   solver/minimax_solver.h
+  players/base_player.h
+  players/automatic_player.h
+  players/interactive_tictactoe_player.h
 )
 
 set (SOURCES
   games/game_state.cc
   games/tictactoe.cc
   solver/minimax_solver.cc
+  players/base_player.cc
+  players/automatic_player.cc
+  players/interactive_tictactoe_player.cc
 )
 
 set (SYSTEM_INCLUDES
