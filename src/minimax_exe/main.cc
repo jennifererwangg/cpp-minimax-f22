@@ -2,6 +2,7 @@
 #include <string>
 #include "core/games/game_state.h"
 #include "core/games/tictactoe.h"
+#include "core/games/isolation.h"
 #include "core/solver/minimax_solver.h"
 #include "main.h"
 
@@ -10,23 +11,28 @@ using namespace minimax::core;
 
 int main(int /*argc*/, char **/*argv*/)
 {
-  cout << "Welcome to tic tac toe player!\n";
+  cout << "Welcome to the automatic player!\n";
 
-  automaticTicTacToePlayer();
-
+  automaticPlayer(ISOLATION);
   return 0;
 }
 
-void automaticTicTacToePlayer() {
-  // Initialize tic tac toe game 
-  std::shared_ptr<GameState> tictactoe = std::make_shared<Tictactoe>();
-
+void automaticPlayer(Game g) {
+  std::shared_ptr<GameState> game;
+  switch(g) {
+    case TICTACTOE:
+      game = std::make_shared<Tictactoe>();
+      break;
+    case ISOLATION:
+      game = std::make_shared<Isolation>();
+      break;
+  }
   for (;;) {
     MinimaxSolver solver(10);
-    std::shared_ptr<GameState> next_best_state = solver.evaluate(tictactoe);
+    std::shared_ptr<GameState> next_best_state = solver.evaluate(game);
     next_best_state->printState();
-    tictactoe = next_best_state;
-    if (tictactoe->isDone()) {
+    game = next_best_state;
+    if (game->isDone()) {
       break;
     }
   }

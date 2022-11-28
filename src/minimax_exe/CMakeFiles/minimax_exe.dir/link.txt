@@ -1,0 +1,1 @@
+/usr/bin/clang++  -O3 -DNDEBUG -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/minimax_exe.dir/main.cc.o  -o minimax_exe  ../core/libminimax_core.a 
