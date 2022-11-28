@@ -2,7 +2,6 @@
 #include <random>
 #include "core/games/isolation.h"
 
-
 namespace minimax {
 namespace core {
 
@@ -132,9 +131,9 @@ std::vector<std::shared_ptr<GameState>> Isolation::moveInDirection(uint row, uin
         std::shared_ptr<Isolation> next_state = std::make_shared<Isolation>();
         next_state->setBoard(next_board);
         if (player_ == P1) {
-          next_state->setPlayer(P2);
+          next_state->setPlayer(2);
         } else {
-          next_state->setPlayer(P1);
+          next_state->setPlayer(11);
         }
         next_states.push_back(next_state);
         row = u_new_row;
@@ -163,11 +162,88 @@ std::shared_ptr<GameState> Isolation::randomFirstMove() {
   }
   next_state->setBoard(next_board);
   if (player_ == P1) {
-    next_state->setPlayer(P2);
+    next_state->setPlayer(2);
   } else {
-    next_state->setPlayer(P1);
+    next_state->setPlayer(1);
   }
   return next_state;
+}
+
+bool Isolation::isValidMove(uint row, uint col) {
+  std::cout << row << col << std::endl;
+  if (row < 0 || row >= 3 || col < 0 || col >= 3) {
+    std::cout << "1" << std::endl;
+    return false;
+  }
+  if (board_[row][col] != FREE) {
+    std::cout << "2" << std::endl;
+    return false;
+  }
+  uint curr_row = 0, curr_col = 0;
+  bool found = false;
+  for (uint r = 0; r < board_.size(); r++) {
+    for (uint c = 0; c < board_[r].size(); c++) {
+      // std::cout << i << j << std::endl;
+      if (board_[r][c] == P1) {
+        curr_row = r;
+        curr_col = c;
+        r += board_.size();
+        found = true;
+        break;
+      }
+    }
+ }
+ if (!found) {
+   board_[row][col] = P1;
+   return true;
+ }
+ std::vector<std::vector<IBoardEntry>> next_board(board_);
+ if (curr_row == row) {
+   uint begin = (curr_col < col) ? curr_col : col;
+   uint end = (curr_col < col) ? col : curr_col;
+   for (uint i = begin; i <= end; i++) {
+     if (board_[curr_row][i] != FREE && board_[curr_row][i] != P1) {
+       std::cout << "4" << std::endl;
+       return false;
+     }
+     next_board[curr_row][i] = BLOCKED;
+   }
+ } else if (curr_col == col) {
+  uint begin = (curr_row < row) ? curr_row : row;
+   uint end = (curr_row < row) ? row : curr_row;
+   for (uint i = begin; i <= end; i++) {
+     if (board_[i][curr_col] != FREE && board_[i][curr_col] != P1) {
+       std::cout << "5" << std::endl;
+       return false;
+     }
+     next_board[i][curr_col] = BLOCKED;
+   }
+ } else if (abs(static_cast<int>(curr_row) - static_cast<int>(row)) == abs(static_cast<int>(curr_col) - static_cast<int>(col))) {
+   uint begin_r = (curr_row < row) ? curr_row : row;
+   uint end_r = (curr_row < row) ? row : curr_row;
+   uint curr_c = (curr_col < col) ? curr_col : col;
+   for (uint i = begin_r; i <= end_r; i++) {
+       if (board_[i][curr_c] != FREE && board_[i][curr_c] != P1) {
+         std::cout << "6" << std::endl;
+        return false;
+      }
+      next_board[i][curr_c] = BLOCKED;
+      curr_c++;
+   }
+ } else {
+   std::cout << "7" << std::endl;
+   return false;
+ }
+ next_board[row][col] = P1;
+ board_ = next_board;
+ return true;
+}
+
+bool Isolation::makeMove(uint row, uint col) {
+  if (!isValidMove(row, col)) {
+    return false;
+  }
+  return true;
 }
 
 }  // namespace core

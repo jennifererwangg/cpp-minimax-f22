@@ -31,9 +31,14 @@ public:
   inline void setBoard(const std::vector<std::vector<IBoardEntry>> &board) {
     board_ = board;
   }
-  inline void setPlayer(const IBoardEntry p) {
-    player_ = p;
+  inline void setPlayer(int p) {
+    if (p== 1) {
+      player_ = P1;
+    } else {
+      player_ = P2;
+    }
   }
+  bool makeMove(uint row, uint col);
   
 protected:
   
@@ -43,6 +48,7 @@ private:
   bool hasAvailableMoves(uint row, uint col);
   std::vector<std::shared_ptr<GameState>> moveInDirection(uint row, uint col, Direction dir);
   std::shared_ptr<GameState> randomFirstMove();
+  bool isValidMove(uint row, uint col);
 };
 
 }  // namespace core
