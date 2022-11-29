@@ -25,17 +25,6 @@ void InteractiveTictactoePlayer::play() {
   while (!tictactoe_game_->isDone()) {
     std::cout << "-------------------------------------" << std::endl;
     std::cout << "Your turn (X)" << std::endl;
-    // Predict next best move to help the human player
-    std::shared_ptr<Tictactoe> next_best_state = 
-      std::dynamic_pointer_cast<Tictactoe>(minimax_solver.evaluate(tictactoe_game_));
-    for (uint i = 0; i < 3; i++) {
-      for (uint j = 0; j < 3; j++) {
-        if (tictactoe_game_->getBoard()[i][j] != next_best_state->getBoard()[i][j]) {
-          std::cout << "Recommended next best move: (" << i << ", " << j << ")" << std::endl;
-          break;
-        }
-      }
-    }
     std::string x = "", y = "";
     uint x_int = 10, y_int = 10;
     while (true) {

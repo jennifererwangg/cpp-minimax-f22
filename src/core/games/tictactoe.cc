@@ -31,10 +31,17 @@ bool Tictactoe::isDone() {
 int Tictactoe::evalHeuristics() {
   int x_count = getMaxCount(X);
   int o_count = getMaxCount(O);
-  if (x_count == 3)
-    return 1;
-  if (o_count == 3)
-    return -1;
+  int x_mark_count = getMarkCount(X);
+  int o_mark_count = getMarkCount(O);
+  if (x_mark_count <= o_mark_count) {
+    // X plays next
+    if (x_count == 3) return 1;
+    if (o_count == 3) return -1;
+  } else {
+    // O plays next
+    if (x_count == 3) return -1;
+    if (o_count == 3) return 1;
+  }
   return 0; // draw
 }
 
@@ -61,10 +68,10 @@ std::vector<std::shared_ptr<GameState>> Tictactoe::getNextState() {
   }
   
   if (getMarkCount(X) <= getMarkCount(O)) {
-    // std::cout << "X's turn\n";
+    // X's turn
     return putMark(X);
   } else {
-    // std::cout << "O's turn\n";
+    // O's turn
     return putMark(O);
   }
 }
