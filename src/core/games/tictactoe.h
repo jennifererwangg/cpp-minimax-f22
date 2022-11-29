@@ -3,6 +3,8 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <iostream>
+#include "core/games/game_state.h"
 
 namespace minimax {
 namespace core {
