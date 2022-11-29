@@ -5,15 +5,6 @@
 namespace minimax {
 namespace core {
 
-void printBoard(std::vector<std::vector<BoardEntry>> board) {
-  for (uint i = 0; i < 3; i++) {
-    for (uint j = 0; j < 3; j++) {
-      std::cout << board[i][j] << " ";
-    }
-    std::cout << std::endl;
-  }
-}
-
 InteractiveTictactoePlayer::InteractiveTictactoePlayer(std::shared_ptr<Tictactoe> game, int depth)
     : BasePlayer(game, depth) {
   tictactoe_game_ = game;
