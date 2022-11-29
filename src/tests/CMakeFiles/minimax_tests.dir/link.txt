@@ -1,1 +1,0 @@
-/usr/bin/clang++  -O3 -DNDEBUG -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/minimax_tests.dir/tests.cc.o CMakeFiles/minimax_tests.dir/tictactoe_tests/tictactoe_tests.cc.o  -o minimax_tests  ../core/libminimax_core.a 

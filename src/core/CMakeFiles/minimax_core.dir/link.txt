@@ -1,2 +1,0 @@
-/usr/bin/ar qc libminimax_core.a  CMakeFiles/minimax_core.dir/games/game_state.cc.o CMakeFiles/minimax_core.dir/games/tictactoe.cc.o CMakeFiles/minimax_core.dir/games/isolation.cc.o CMakeFiles/minimax_core.dir/solver/minimax_solver.cc.o
-/usr/bin/ranlib libminimax_core.a
