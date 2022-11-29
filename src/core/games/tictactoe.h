@@ -39,6 +39,10 @@ public:
   int getMarkCount(BoardEntry player);
   // place a mark on an empty cell of the board for a given player (ex: place X at position 1,1)
   std::vector<std::shared_ptr<GameState>> putMark(BoardEntry player);
+  // return if the given move is valid
+  bool isValidMove(uint row, uint col);
+  void makeMove(uint row, uint col);
+  BoardEntry getWinner();
   
 protected:
   
