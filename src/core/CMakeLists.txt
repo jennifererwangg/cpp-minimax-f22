@@ -7,12 +7,14 @@ set (CMAKE_INCLUDE_CURRENT_DIR ON)
 set (HEADERS
   games/game_state.h
   games/tictactoe.h
+  games/checkers.h
   solver/minimax_solver.h
 )
 
 set (SOURCES
   games/game_state.cc
   games/tictactoe.cc
+  games/checkers.cc
   solver/minimax_solver.cc
 )
 

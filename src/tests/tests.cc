@@ -1,5 +1,6 @@
 #include <iostream>
 #include "tests/tictactoe_tests/tictactoe_tests.h"
+#include "tests/checkers_tests/checkers_test.h"
 
 using namespace std;
 
@@ -22,6 +23,32 @@ int main() {
   std::cout << "Done running tic tac toe tests.\n";
   // ******************************************************
 
+  /**
+   ********************************************************
+   * Checkers tests 
+   ********************************************************
+   */
+  std::cout << "Running checkers tests...\n";
+  if (!testCheckersSetup()) {
+    std::cout << "testCheckersSetup() failed!\n";
+  } else {
+    std::cout << "testCheckersSetup() succeeded!\n";
+  }
+
+  if (!testGetNextMoves()) {
+    std::cout << "testGetNextMoves() failed!\n";
+  } else {
+    std::cout << "testGetNextMoves() succeeded!\n";
+  }
+
+  if (!testJump()) {
+    std::cout << "testJump() failed!\n";
+  } else {
+    std::cout << "testJump() succeeded!\n";
+  }
+  
+  std::cout << "Done running checkers tests.\n";
+  // ******************************************************
 
   std::cout << "All tests done!\n";
 
