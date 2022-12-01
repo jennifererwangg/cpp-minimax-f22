@@ -40,7 +40,7 @@ void automaticCheckersPlayer() {
   std::shared_ptr<GameState> checkers = std::make_shared<checkers::Checkers>();
   checkers->printState();
   for (;;) {
-    MinimaxSolver solver(4);
+    MinimaxSolver solver(5);
     std::shared_ptr<GameState> next_best_state = solver.evaluate(checkers);
     next_best_state->printState();
     checkers = next_best_state;

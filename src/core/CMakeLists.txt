@@ -9,6 +9,9 @@ set (HEADERS
   games/tictactoe.h
   games/checkers.h
   solver/minimax_solver.h
+  players/base_player.h
+  players/automatic_player.h
+  players/interactive_tictactoe_player.h
 )
 
 set (SOURCES
@@ -16,6 +19,9 @@ set (SOURCES
   games/tictactoe.cc
   games/checkers.cc
   solver/minimax_solver.cc
+  players/base_player.cc
+  players/automatic_player.cc
+  players/interactive_tictactoe_player.cc
 )
 
 set (SYSTEM_INCLUDES
