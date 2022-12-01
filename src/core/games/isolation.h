@@ -39,6 +39,7 @@ public:
     }
   }
   bool makeMove(uint row, uint col);
+  IBoardEntry getWinner();
   
 protected:
   
@@ -48,6 +49,7 @@ private:
   bool hasAvailableMoves(uint row, uint col);
   std::vector<std::shared_ptr<GameState>> moveInDirection(uint row, uint col, Direction dir);
   std::shared_ptr<GameState> randomFirstMove();
+  std::pair<uint, uint> getCurrPos(IBoardEntry p);
   bool isValidMove(uint row, uint col);
 };
 

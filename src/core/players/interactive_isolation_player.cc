@@ -40,7 +40,7 @@ void InteractiveIsolationPlayer::play() {
     }
     isolation_game_->printState();
     if (isolation_game_->isDone()) {
-      std::cout << "Player 1 wins!\n";
+      isolation_game_->getWinner();
       break;
     }
     // Computer Move
@@ -51,7 +51,7 @@ void InteractiveIsolationPlayer::play() {
     isolation_game_->printState();
     isolation_game_->setPlayer(2);
     if (isolation_game_->isDone()) {
-      std::cout << "Player 2 wins!\n";
+      isolation_game_->getWinner();
       break;
     }
   }

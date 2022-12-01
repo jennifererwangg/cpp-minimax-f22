@@ -6,11 +6,13 @@ set (CMAKE_INCLUDE_CURRENT_DIR ON)
 # headers
 set (HEADERS
   tictactoe_tests/tictactoe_tests.h
+  isolation_tests/isolation_tests.h
 )
 
 set (SOURCES
   tests.cc
   tictactoe_tests/tictactoe_tests.cc
+  isolation_tests/isolation_tests.cc
 )
 
 set (SYSTEM_INCLUDES

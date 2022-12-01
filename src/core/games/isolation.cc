@@ -37,10 +37,7 @@ bool Isolation::isDone() {
 int Isolation::evalHeuristics() {
   std::vector<std::shared_ptr<GameState>> possibleNextStates = getNextState();
   int utility = (int)possibleNextStates.size();
-  if (player_ == P2) {
-    utility *= -1;
-  }
-  return utility;
+  return -1*utility;
 }
 
 void Isolation::printState() {
@@ -55,27 +52,15 @@ void Isolation::printState() {
 
 std::vector<std::shared_ptr<GameState>> Isolation::getNextState() {
   std::vector<std::shared_ptr<GameState>> next_states;
-  uint i = 0, j = 0;
-  bool found = false;
   std::vector<Direction> all_directions = {NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST};
-  for (uint r = 0; r < board_.size(); r++) {
-    for (uint c = 0; c < board_[r].size(); c++) {
-      // std::cout << i << j << std::endl;
-      if (board_[r][c] == player_) {
-        i = r;
-        j = c;
-        r += board_.size();
-        found = true;
-        break;
-      }
-    }
- }
- if (!found) {
+  std::pair<uint, uint> pos = getCurrPos(player_);
+  uint row = pos.first, col = pos.second;
+ if (row == board_.size()) {
     next_states.push_back(Isolation::randomFirstMove());
     return next_states;
  }
  for (auto dir : all_directions) {
-     auto dir_states = moveInDirection(i, j, dir);
+     auto dir_states = moveInDirection(row, col, dir);
      next_states.insert(next_states.end(), dir_states.begin(), dir_states.end());
  }
   return next_states;
@@ -169,81 +154,118 @@ std::shared_ptr<GameState> Isolation::randomFirstMove() {
   return next_state;
 }
 
-bool Isolation::isValidMove(uint row, uint col) {
-  std::cout << row << col << std::endl;
-  if (row < 0 || row >= 3 || col < 0 || col >= 3) {
-    std::cout << "1" << std::endl;
-    return false;
-  }
-  if (board_[row][col] != FREE) {
-    std::cout << "2" << std::endl;
-    return false;
-  }
-  uint curr_row = 0, curr_col = 0;
-  bool found = false;
-  for (uint r = 0; r < board_.size(); r++) {
-    for (uint c = 0; c < board_[r].size(); c++) {
-      // std::cout << i << j << std::endl;
-      if (board_[r][c] == P1) {
-        curr_row = r;
-        curr_col = c;
-        r += board_.size();
-        found = true;
-        break;
-      }
-    }
- }
- if (!found) {
-   board_[row][col] = P1;
-   return true;
- }
- std::vector<std::vector<IBoardEntry>> next_board(board_);
- if (curr_row == row) {
-   uint begin = (curr_col < col) ? curr_col : col;
-   uint end = (curr_col < col) ? col : curr_col;
-   for (uint i = begin; i <= end; i++) {
-     if (board_[curr_row][i] != FREE && board_[curr_row][i] != P1) {
-       std::cout << "4" << std::endl;
-       return false;
-     }
-     next_board[curr_row][i] = BLOCKED;
-   }
- } else if (curr_col == col) {
-  uint begin = (curr_row < row) ? curr_row : row;
-   uint end = (curr_row < row) ? row : curr_row;
-   for (uint i = begin; i <= end; i++) {
-     if (board_[i][curr_col] != FREE && board_[i][curr_col] != P1) {
-       std::cout << "5" << std::endl;
-       return false;
-     }
-     next_board[i][curr_col] = BLOCKED;
-   }
- } else if (abs(static_cast<int>(curr_row) - static_cast<int>(row)) == abs(static_cast<int>(curr_col) - static_cast<int>(col))) {
-   uint begin_r = (curr_row < row) ? curr_row : row;
-   uint end_r = (curr_row < row) ? row : curr_row;
-   uint curr_c = (curr_col < col) ? curr_col : col;
-   for (uint i = begin_r; i <= end_r; i++) {
-       if (board_[i][curr_c] != FREE && board_[i][curr_c] != P1) {
-         std::cout << "6" << std::endl;
-        return false;
-      }
-      next_board[i][curr_c] = BLOCKED;
-      curr_c++;
-   }
- } else {
-   std::cout << "7" << std::endl;
-   return false;
- }
- next_board[row][col] = P1;
- board_ = next_board;
- return true;
-}
-
 bool Isolation::makeMove(uint row, uint col) {
   if (!isValidMove(row, col)) {
     return false;
   }
+  std::pair<uint, uint> pos = getCurrPos(P1);
+  uint curr_row = pos.first, curr_col = pos.second;
+  if (curr_row == static_cast<uint>(board_.size())) {
+    board_[row][col] = P1;
+    return true;
+  }
+  std::vector<std::vector<IBoardEntry>> next_board(board_);
+  if (curr_row == row) {
+    uint begin = (curr_col < col) ? curr_col : col;
+    uint end = (curr_col < col) ? col : curr_col;
+    for (uint i = begin; i <= end; i++) {
+      if (board_[curr_row][i] != FREE && board_[curr_row][i] != P1) {
+        return false;
+     }
+     next_board[curr_row][i] = BLOCKED;
+    }
+  } else if (curr_col == col) {
+    uint begin = (curr_row < row) ? curr_row : row;
+    uint end = (curr_row < row) ? row : curr_row;
+    for (uint i = begin; i <= end; i++) {
+      if (board_[i][curr_col] != FREE && board_[i][curr_col] != P1) {
+        return false;
+      }
+      next_board[i][curr_col] = BLOCKED;
+    }
+  } else if (abs(static_cast<int>(curr_row) - static_cast<int>(row)) == abs(static_cast<int>(curr_col) - static_cast<int>(col))) {
+    auto diff = abs(static_cast<int>(curr_row) - static_cast<int>(row));
+    bool up = (curr_row > row);
+    bool left = (curr_col > col);
+    for (; diff >= 0; diff--) {
+      if (board_[curr_row][curr_col] != FREE && board_[curr_row][curr_col] != P1) {
+        return false;
+      }
+      next_board[curr_row][curr_col] = BLOCKED;
+      if (up) {
+        curr_row--;
+      } else {
+        curr_row++;
+      }
+      if (left) {
+        curr_col--;
+      } else {
+        curr_col++;
+      }
+    }
+  } else {
+    return false;
+  }
+  next_board[row][col] = P1;
+  board_ = next_board;
   return true;
+}
+
+bool Isolation::isValidMove(uint row, uint col) {
+  if (row < 0 || row >= 3 || col < 0 || col >= 3) {
+    return false;
+  }
+  if (board_[row][col] != FREE) {
+    return false;
+  }
+  return true;
+}
+
+std::pair<uint, uint> Isolation::getCurrPos(IBoardEntry p) {
+  uint r, c;
+  bool found = false;
+  for (r = 0; r < board_.size(); r++) {
+    for (c = 0; c < board_[r].size(); c++) {
+      if (board_[r][c] == p) {
+        found = true;
+        break;
+      }
+    }
+    if (found) {
+      break;
+    }
+  }
+  return std::pair<uint, uint>(r, c);
+}
+
+IBoardEntry Isolation::getWinner() {
+  // see who is blocked. If both are blocked, return the opposite of the current player. 
+  bool player1_can_move = true;
+  bool player2_can_move = true;
+  for (uint i = 0; i < board_.size(); ++i) {
+    for (uint j = 0; j < board_[i].size(); ++j) {
+      if (board_[i][j] == P1) {
+        player1_can_move = Isolation::hasAvailableMoves(i, j);
+      }
+      if (board_[i][j] == P2) {
+        player2_can_move = Isolation::hasAvailableMoves(i, j);
+      }
+    }
+  }
+  if (!player1_can_move && player2_can_move) {
+    std::cout << "Player 2 wins!" << std::endl;
+    return P2;
+  }
+  if (!player2_can_move && player1_can_move) {
+    std::cout << "Player 1 wins!" << std::endl;
+    return P1;
+  }
+  if (player_ == P2) {
+    std::cout << "Player 2 wins!" << std::endl;
+    return P1;
+  }
+  std::cout << "Player 1 wins!" << std::endl;
+  return P2;
 }
 
 }  // namespace core
