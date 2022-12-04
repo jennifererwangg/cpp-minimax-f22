@@ -11,7 +11,7 @@ namespace core {
 
 enum BoardEntry { EMPTY = '-', X = 'X', O = 'O' };
 
-using Board = std::vector<std::vector<BoardEntry>>;
+// using Board = std::vector<std::vector<BoardEntry>>;
 
 class Tictactoe : public GameState {  
 public:
