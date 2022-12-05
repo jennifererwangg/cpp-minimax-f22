@@ -1,2 +1,0 @@
-void automaticTicTacToePlayer();
-void automaticCheckersPlayer();

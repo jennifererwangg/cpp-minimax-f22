@@ -10,8 +10,10 @@ namespace core {
 using uint = unsigned int;
 
 enum BoardEntry { 
-  EMPTY = '-', X = 'X', O = 'O', // TicTacToe
-  BLOCKED = 'X', FREE = '-', P1 = '1', P2 = '2' // isolation
+  X = 'X', O = 'O', // TicTacToe
+  BLOCKED = 'X', FREE = '-', P1 = '1', P2 = '2', // isolation
+  BLACK = 'b', WHITE = 'w', BLACK_KING = 'B', WHITE_KING = 'W', // checkers
+  EMPTY = '-' // for tic tac toe and checkers
 };
 
 // Base class for games
@@ -34,7 +36,9 @@ public:
   virtual std::vector<std::shared_ptr<GameState>> getNextState();
 
   // make a move on the board (used by the player)
+  // TODO: don't like that there are 2 different args here, will have to change
   virtual bool makeMove(uint row, uint col);
+  virtual bool makeMove(std::vector<int> initialPlace, std::vector<int> newPlace);
 
   // get the winner of the game
   virtual BoardEntry getWinner();

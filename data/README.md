@@ -1,1 +1,0 @@
-A place to put data (images, text files, etc.) used in our programs

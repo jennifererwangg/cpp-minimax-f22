@@ -47,6 +47,18 @@ int main() {
   } else {
     std::cout << "testJump() succeeded!\n";
   }
+
+  if (!testNextMove()) {
+    std::cout << "testNextMove() failed!\n";
+  } else {
+    std::cout << "testNextMove() succeeded!\n";
+  }
+
+  if (!testJumpMove()) {
+    std::cout << "testJumpMove() failed!\n";
+  } else {
+    std::cout << "testJumpMove() succeeded!\n";
+  }
   
   std::cout << "Done running checkers tests.\n";
   // ******************************************************

@@ -35,12 +35,21 @@ int Checkers::evalHeuristics() {
   }
 }
 
+BoardEntry Checkers::getWinner() {
+  if (countPieces(WHITE, WHITE_KING) == 0) return WHITE;
+  if (countPieces(BLACK, BLACK_KING) == 0) return BLACK;
+
+  return EMPTY;
+}
+
 void Checkers::printState() {
   std::string turn = white_turn ?  "Black's Turn:\n" : "White's Turn:\n"; // (bc it is whoever went last)
 
   std::cout << turn;
-  std::cout << "------------------------------\n";
+  std::cout << "    0   1   2   3   4   5   6   7\n";
+  std::cout << "----------------------------------\n";
   for (int i = 0; i < 8; i++) {
+    std::cout << i << " | ";
     for (int j = 0; j < 8; j++) {
       if(board[i][j] == WHITE) {
         std::cout << "\u25EF";
@@ -56,7 +65,7 @@ void Checkers::printState() {
 
       std::cout << " | ";
     }
-    std::cout << "\n------------------------------\n";
+    std::cout << "\n----------------------------------\n";
   }
 }
 
@@ -222,6 +231,97 @@ std::tuple<bool, std::shared_ptr<Checkers>> Checkers::moveLeftAndUp(int i, int j
   return std::make_tuple(false, next_state);
 }
 
+bool Checkers::isValidMove(std::vector<int> initialPlace, std::vector<int> newPlace, std::vector<int> jump) {
+  // is it in bounds?
+  if (initialPlace[0] < 0 || initialPlace[0] > 8 || initialPlace[1] < 0 || initialPlace[1] > 8 || 
+        newPlace[0] < 0 || newPlace[0] > 8 || newPlace[1] < 0 || newPlace[1] > 8) {
+          std::cout << "not in bounds \n";
+          return false;
+  }
+
+  // does the initial place have the piece we are moving?
+  if (white_turn) {
+    if (board[initialPlace[0]][initialPlace[1]] != WHITE && board[initialPlace[0]][initialPlace[1]] != WHITE_KING) {
+      std::cout << "piece is not in the correct place W \n";
+      return false;
+    }
+  } else {
+    if (board[initialPlace[0]][initialPlace[1]] != BLACK && board[initialPlace[0]][initialPlace[1]] != BLACK_KING) {
+      std::cout << "piece is not in the correct place B \n";
+      std::cout << board[initialPlace[0]][initialPlace[1]] << "\n";
+      return false;
+    }
+  }
+
+  // is the new place empty?
+  if (board[newPlace[0]][newPlace[1]] != EMPTY) {
+    std::cout << "new place is not empty \n";
+    return false;
+  }
+
+  int x_direction = newPlace[1] - initialPlace[1];
+  int y_direction = newPlace[0] - initialPlace[0];
+
+  // right distance?
+  if(jump[0] == -1) {
+    if (abs(x_direction) != 1 || abs(y_direction) != 1) {
+      std::cout << "not the right distance \n";
+      return false;
+    }
+  } else {
+    if (abs(x_direction) != 2 || abs(y_direction) != 2) {
+      std::cout << "not the right distance \n";
+      return false;
+    }
+  }
+
+  // right direction?
+  if (board[initialPlace[0]][initialPlace[1]] == WHITE) {
+    if (y_direction <= 0) {
+      std::cout << "not the right direction W \n";
+      return false;
+    }
+  } else if(board[initialPlace[0]][initialPlace[1]] == BLACK) {
+    if (y_direction >= 0) {
+      std::cout << "not the right direction B \n";
+      return false;
+    }
+  }
+
+  // cannot move straight
+  if(initialPlace[0] == newPlace[0] || initialPlace[1] == initialPlace[1]) {
+    return false;
+  }
+
+  return true;
+}
+
+std::vector<int> Checkers::checkIfJump(std::vector<int> initialPlace, std::vector<int> newPlace) {
+  int x_direction = newPlace[0] - initialPlace[0];
+  int y_direction = newPlace[1] - initialPlace[1];
+
+  // is it a jump move (moving by 2 in each direction)
+  if (abs(x_direction) != 2 || abs(y_direction) != 2) {
+    return {-1, -1};
+  }
+
+  int middle_loc_x = initialPlace[0] + (x_direction / 2);
+  int middle_loc_y = initialPlace[1] + (y_direction / 2);
+
+  // is there a piece of the other color in the middle?
+  if(white_turn) {
+    if (board[middle_loc_x][middle_loc_y] != BLACK && board[middle_loc_x][middle_loc_y] != BLACK_KING) {
+      return {-1, -1};
+    }
+  } else {
+    if (board[middle_loc_x][middle_loc_y] != WHITE && board[middle_loc_x][middle_loc_y] != WHITE_KING) {
+      return {-1, -1};
+    }
+  }
+
+  return {middle_loc_x, middle_loc_y};
+}
+
 /**
  * Checkers game specific functions
  */
@@ -246,6 +346,21 @@ std::vector<std::vector<BoardEntry>> Checkers::movePiece(std::vector<int> initia
   }
 
   return new_board;
+}
+
+bool Checkers::makeMove(std::vector<int> initialPlace, std::vector<int> newPlace) {
+  auto jump = checkIfJump(initialPlace, newPlace);
+
+  if (!isValidMove(initialPlace, newPlace, jump)) {
+    return false;
+  }
+
+  auto new_board = movePiece(initialPlace, newPlace, jump);
+
+  board = new_board;
+  switchTurn(white_turn);
+
+  return true;
 }
 
 int Checkers::countPieces(BoardEntry color, BoardEntry color_king) {

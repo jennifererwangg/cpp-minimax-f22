@@ -10,8 +10,6 @@ namespace minimax {
 namespace core {
 namespace checkers {
 
-enum BoardEntry { EMPTY = '-', BLACK = 'b', WHITE = 'w', BLACK_KING = 'B', WHITE_KING = 'W' };
-
 using Board = std::vector<std::vector<BoardEntry>>;
 
 class Checkers : public GameState {  
@@ -24,6 +22,9 @@ public:
   int evalHeuristics() override;
   void printState() override;
   std::vector<std::shared_ptr<GameState>> getNextState() override;
+  bool makeMove(std::vector<int> initialPlace, std::vector<int> newPlace) override;
+  BoardEntry getWinner() override;
+
 
   // getters & setters
   inline std::vector<std::vector<BoardEntry>> getBoard() {
@@ -38,6 +39,9 @@ public:
   }
 
   // game-specific functions
+  bool isValidMove(std::vector<int> initialPlace, std::vector<int> newPlace, std::vector<int> jump);
+  std::vector<int> checkIfJump(std::vector<int> initialPlace, std::vector<int> newPlace);
+
   std::tuple<bool, std::shared_ptr<Checkers>> moveRightAndUp(int i, int j, BoardEntry piece1, BoardEntry piece2);
   std::tuple<bool, std::shared_ptr<Checkers>> moveLeftAndUp(int i, int j, BoardEntry piece1, BoardEntry piece2);
   std::tuple<bool, std::shared_ptr<Checkers>> moveRightAndDown(int i, int j, BoardEntry piece1, BoardEntry piece2);
