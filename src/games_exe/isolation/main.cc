@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string>
 #include "core/players/automatic_player.h"
-#include "core/players/interactive_isolation_player.h"
+#include "core/players/interactive_player.h"
+#include "core/games/isolation.h"
 
 using namespace std;
 using namespace minimax::core;
@@ -16,7 +17,7 @@ int main(int /*argc*/, char **/*argv*/) {
 
   // Interactive isolation (uncomment to play)
   std::shared_ptr<Isolation> isolation = std::make_shared<Isolation>(2); // create game
-  InteractiveIsolationPlayer interactive_isolation_player(isolation, 10); // create player
+  InteractivePlayer interactive_isolation_player(isolation, 10, "1", "2"); // create player
   interactive_isolation_player.play(); // play game
 
   return 0;
