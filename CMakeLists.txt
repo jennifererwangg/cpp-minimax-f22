@@ -21,7 +21,7 @@ if (NOT WIN32)
   endif()
 endif()
 
-set (CMAKE_CXX_STANDARD 11)
+set (CMAKE_CXX_STANDARD 20)
 
 project (minimax)
 

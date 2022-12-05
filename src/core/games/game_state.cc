@@ -30,7 +30,7 @@ bool GameState::makeMove(uint /*row*/, uint /*col*/) {
   return false;
 }
 
-bool GameState::makeMove(std::vector<int> initialPlace, std::vector<int> newPlace) {
+bool GameState::makeMove(std::vector<int> /*initialPlace*/, std::vector<int> /*newPlace*/) {
   std::cout << "WARNING: base GameState() invoked.\n";
   return false;
 }
