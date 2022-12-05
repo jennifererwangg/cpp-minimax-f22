@@ -1,20 +1,14 @@
 cmake_minimum_required(VERSION 3.1.0)
-project (minimax_tests)
+project (checkers)
 
 set (CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # headers
 set (HEADERS
-  tictactoe_tests/tictactoe_tests.h
-  checkers_tests/checkers_test.h
-  isolation_tests/isolation_tests.h
 )
 
 set (SOURCES
-  tests.cc
-  tictactoe_tests/tictactoe_tests.cc
-  checkers_tests/checkers_test.cc
-  isolation_tests/isolation_tests.cc
+  main.cc
 )
 
 set (SYSTEM_INCLUDES

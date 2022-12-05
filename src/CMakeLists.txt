@@ -14,3 +14,7 @@ add_dependencies(tictactoe minimax_core)
 # isolation executable
 add_subdirectory(games_exe/isolation)
 add_dependencies(isolation minimax_core)
+
+# checkers executable
+add_subdirectory(games_exe/checkers)
+add_dependencies(checkers minimax_core)

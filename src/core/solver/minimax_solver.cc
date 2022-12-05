@@ -12,15 +12,16 @@ std::shared_ptr<GameState> MinimaxSolver::evaluate(std::shared_ptr<GameState> in
 
 
 std::pair<std::shared_ptr<GameState>, int> MinimaxSolver::maximize(std::shared_ptr<GameState> gs, int curr_depth, int alpha, int beta) {
-  if (curr_depth == max_depth_ || gs->isDone()) {
+  int max_utility = std::numeric_limits<int>::min();
+  std::shared_ptr<GameState> max_state = nullptr;
+  auto next_states = gs->getNextState();
+  
+  if (curr_depth == max_depth_ || gs->isDone()|| next_states.size() == 0) {
     int utility = gs->evalHeuristics();
     return std::pair<std::shared_ptr<GameState>, int>(gs, utility);
   }
 
-  int max_utility = std::numeric_limits<int>::min();
-  std::shared_ptr<GameState> max_state = nullptr;
-
-  for (std::shared_ptr<GameState> next_state : gs->getNextState()) {
+  for (std::shared_ptr<GameState> next_state : next_states) {
     std::pair<std::shared_ptr<GameState>, int> curr = minimize(next_state, curr_depth + 1, alpha, beta);
     // std::shared_ptr<GameState> curr_state = curr.first;
     int curr_utility = curr.second;
@@ -41,15 +42,16 @@ std::pair<std::shared_ptr<GameState>, int> MinimaxSolver::maximize(std::shared_p
 
 
 std::pair<std::shared_ptr<GameState>, int>  MinimaxSolver::minimize(std::shared_ptr<GameState> gs, int curr_depth, int alpha, int beta) {
-  if (curr_depth == max_depth_ || gs->isDone()) {
+  int min_utility = std::numeric_limits<int>::max();
+  std::shared_ptr<GameState> min_state = nullptr;
+  auto next_states = gs->getNextState();
+  
+  if (curr_depth == max_depth_ || gs->isDone() || next_states.size() == 0) {
     int utility = gs->evalHeuristics();
     return std::pair<std::shared_ptr<GameState>, int>(gs, utility);
   }
 
-  int min_utility = std::numeric_limits<int>::max();
-  std::shared_ptr<GameState> min_state = nullptr;
-
-  for (std::shared_ptr<GameState> next_state : gs->getNextState()) {
+  for (std::shared_ptr<GameState> next_state : next_states) {
     std::pair<std::shared_ptr<GameState>, int> curr = maximize(next_state, curr_depth + 1, alpha, beta);
     // std::shared_ptr<GameState> curr_state = curr.first;
     int curr_utility = curr.second;

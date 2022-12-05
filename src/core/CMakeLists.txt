@@ -7,21 +7,25 @@ set (CMAKE_INCLUDE_CURRENT_DIR ON)
 set (HEADERS
   games/game_state.h
   games/tictactoe.h
+  games/checkers.h
   games/isolation.h
   solver/minimax_solver.h
   players/base_player.h
   players/automatic_player.h
   players/interactive_player.h
+  players/checkers_player.h
 )
 
 set (SOURCES
   games/game_state.cc
   games/tictactoe.cc
+  games/checkers.cc
   games/isolation.cc
   solver/minimax_solver.cc
   players/base_player.cc
   players/automatic_player.cc
   players/interactive_player.cc
+  players/checkers_player.cc
 )
 
 set (SYSTEM_INCLUDES
