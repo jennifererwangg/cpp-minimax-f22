@@ -25,5 +25,19 @@ std::vector<std::shared_ptr<GameState>> GameState::getNextState() {
   return std::vector<std::shared_ptr<GameState>>();
 }
 
+bool GameState::makeMove(uint /*row*/, uint /*col*/) {
+  std::cout << "WARNING: base GameState() invoked.\n";
+  return false;
+}
+
+BoardEntry GameState::getWinner() {
+  std::cout << "WARNING: base GameState() invoked.\n";
+  return EMPTY;
+}
+
+void GameState::setPlayer(int /*player*/) {
+  std::cout << "WARNING: base GameState() invoked.\n";
+}
+
 }  // namespace core
 }  // namespace minimax

@@ -3,16 +3,19 @@
 #include <memory>
 #include <string>
 #include <vector>
-#include <iostream>
-#include "core/games/game_state.h"
+#include "game_state.h"
 
 namespace minimax {
 namespace core {
 
-class Tictactoe : public GameState {  
+enum Direction {NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST};
+
+// using Board = std::vector<std::vector<BoardEntry>>;
+
+class Isolation : public GameState {  
 public:
 
-  explicit Tictactoe();
+  explicit Isolation(const int player  = 1);
 
   // GameState interface
   bool isDone() override;
@@ -30,21 +33,17 @@ public:
   inline void setBoard(const std::vector<std::vector<BoardEntry>> &board) {
     board_ = board;
   }
-
-  // game-specific functions
-  // return the number of marks in a row/column/diagonal
-  int getMaxCount(BoardEntry player);
-  // return the number of marks on the board for a given player (used to check which player plays next)
-  int getMarkCount(BoardEntry player);
-  // place a mark on an empty cell of the board for a given player (ex: place X at position 1,1)
-  std::vector<std::shared_ptr<GameState>> putMark(BoardEntry player);
-  // return if the given move is valid
-  bool isValidMove(uint row, uint col);
   
 protected:
   
 private:
   std::vector<std::vector<BoardEntry>> board_;
+  BoardEntry player_;
+  bool hasAvailableMoves(uint row, uint col);
+  std::vector<std::shared_ptr<GameState>> moveInDirection(uint row, uint col, Direction dir);
+  std::shared_ptr<GameState> randomFirstMove();
+  std::pair<uint, uint> getCurrPos(BoardEntry p);
+  bool isValidMove(uint row, uint col);
 };
 
 }  // namespace core

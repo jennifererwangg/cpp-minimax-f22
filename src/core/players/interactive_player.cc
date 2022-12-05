@@ -1,21 +1,21 @@
 #include <iostream>
 #include "core/solver/minimax_solver.h"
-#include "core/players/interactive_tictactoe_player.h"
+#include "core/players/interactive_player.h"
 
 namespace minimax {
 namespace core {
 
-InteractiveTictactoePlayer::InteractiveTictactoePlayer(std::shared_ptr<Tictactoe> game, int depth)
-    : BasePlayer(game, depth) {
-  tictactoe_game_ = game;
-}
+InteractivePlayer::InteractivePlayer(std::shared_ptr<GameState> game, int depth,
+                                     std::string player_name, std::string opponent_name)
+    : BasePlayer(game, depth), game_state_(game), player_name_(player_name),
+      opponent_name_(opponent_name) {}
 
-void InteractiveTictactoePlayer::play() {
+void InteractivePlayer::play() {
   MinimaxSolver minimax_solver(depth_);
-  tictactoe_game_->printState();
-  while (!tictactoe_game_->isDone()) {
+  game_state_->printState();
+  while (!game_state_->isDone()) {
     std::cout << "-------------------------------------" << std::endl;
-    std::cout << "Your turn (X)" << std::endl;
+    std::cout << "Your turn (" << player_name_ << ")" << std::endl;
     std::string x = "", y = "";
     uint x_int = 10, y_int = 10;
     while (true) {
@@ -33,26 +33,25 @@ void InteractiveTictactoePlayer::play() {
       }
       x_int = static_cast<uint>(std::stoi(x));
       y_int = static_cast<uint>(std::stoi(y));
-      if (tictactoe_game_->isValidMove(x_int, y_int)) {
+      if (game_state_->makeMove(x_int, y_int)) {
         break;
       }
       std::cout << "Invalid move. Try again." << std::endl;
     }
-    // make the move as indicated by player
-    tictactoe_game_->makeMove(x_int, y_int);
-    tictactoe_game_->printState();
-    if (tictactoe_game_->isDone()) {
-      tictactoe_game_->getWinner();
+    game_state_->printState();
+    if (game_state_->isDone()) {
+      game_state_->getWinner();
       break;
     }
-    // O's move (computer)
+    // Computer Move
     std::cout << "-------------------------------------" << std::endl;
-    std::cout << "\nO's turn" << std::endl;
-    std::shared_ptr<GameState> next_state = minimax_solver.evaluate(tictactoe_game_);
-    tictactoe_game_ = std::dynamic_pointer_cast<Tictactoe>(next_state);
-    tictactoe_game_->printState();
-    if (tictactoe_game_->isDone()) {
-      tictactoe_game_->getWinner();
+    std::cout << "\n" << opponent_name_ << "'s turn" << std::endl;
+    std::shared_ptr<GameState> next_state = minimax_solver.evaluate(game_state_);
+    game_state_ = next_state;
+    game_state_->printState();
+    game_state_->setPlayer(2);
+    if (game_state_->isDone()) {
+      game_state_->getWinner();
       break;
     }
   }

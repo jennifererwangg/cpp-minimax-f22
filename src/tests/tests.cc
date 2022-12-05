@@ -1,6 +1,7 @@
 #include <iostream>
 #include "tests/tictactoe_tests/tictactoe_tests.h"
 #include "tests/checkers_tests/checkers_test.h"
+#include "tests/isolation_tests/isolation_tests.h"
 
 using namespace std;
 
@@ -48,6 +49,25 @@ int main() {
   }
   
   std::cout << "Done running checkers tests.\n";
+  // ******************************************************
+
+  /**
+   ********************************************************
+   * Isolation tests 
+   ********************************************************
+   */
+  std::cout << "Running isolation tests...\n";
+  if (!testIsolationIsDone()) {
+    std::cout << "testIsolationIsDone() failed!\n";
+  }
+  if (!testIsolationNextState()) {
+    std::cout << "testIsolationNextState() failed!\n";
+  }
+  if (!testIsolationMakeMove()) { 
+    // NOTE: this test always succeeds (need to uncomment the print statements in the function)
+    std::cout << "testIsolationMakeMove() failed!\n";
+  }
+  std::cout << "Done running isolation tests.\n";
   // ******************************************************
 
   std::cout << "All tests done!\n";

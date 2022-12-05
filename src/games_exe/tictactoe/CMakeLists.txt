@@ -1,11 +1,10 @@
 cmake_minimum_required(VERSION 3.1.0)
-project (minimax_exe)
+project (tictactoe)
 
 set (CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # headers
 set (HEADERS
-  main.h
 )
 
 set (SOURCES
