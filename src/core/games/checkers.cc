@@ -289,7 +289,8 @@ bool Checkers::isValidMove(std::vector<int> initialPlace, std::vector<int> newPl
   }
 
   // cannot move straight
-  if(initialPlace[0] == newPlace[0] || initialPlace[1] == initialPlace[1]) {
+  if(initialPlace[0] == newPlace[0] || initialPlace[1] == newPlace[1]) {
+
     return false;
   }
 
