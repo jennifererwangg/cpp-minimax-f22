@@ -15,7 +15,7 @@ bool testIsolationIsDone() {
   std::shared_ptr<Isolation> isolation = std::make_shared<Isolation>();
   
   // BoardEntry Configuration 1 (One player is completely blocked)
-  std::vector<std::vector<IBoardEntry>> board = {
+  std::vector<std::vector<BoardEntry>> board = {
       {BLOCKED, BLOCKED, BLOCKED},
       {P1, BLOCKED, FREE},
       {BLOCKED, BLOCKED, P2}};
@@ -56,7 +56,7 @@ bool testIsolationNextState() {
   std::shared_ptr<Isolation> isolation = std::make_shared<Isolation>(2);
   
   // BoardEntry Configuration 1 (Restricted Movement)
-  std::vector<std::vector<IBoardEntry>> board = {
+  std::vector<std::vector<BoardEntry>> board = {
       {BLOCKED, BLOCKED, FREE},
       {P1, BLOCKED, FREE},
       {BLOCKED, FREE, P2}};
@@ -94,7 +94,7 @@ bool testIsolationMakeMove() {
   std::shared_ptr<Isolation> isolation = std::make_shared<Isolation>();
   
   // BoardEntry Configuration 1 (Allowed move)
-  std::vector<std::vector<IBoardEntry>> board = {
+  std::vector<std::vector<BoardEntry>> board = {
       {FREE, BLOCKED, FREE},
       {P1, BLOCKED, FREE},
       {BLOCKED, FREE, P2}};

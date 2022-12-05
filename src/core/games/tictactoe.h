@@ -9,10 +9,6 @@
 namespace minimax {
 namespace core {
 
-enum BoardEntry { EMPTY = '-', X = 'X', O = 'O' };
-
-// using Board = std::vector<std::vector<BoardEntry>>;
-
 class Tictactoe : public GameState {  
 public:
 
@@ -23,6 +19,9 @@ public:
   int evalHeuristics() override;
   void printState() override;
   std::vector<std::shared_ptr<GameState>> getNextState() override;
+  bool makeMove(uint row, uint col) override;
+  BoardEntry getWinner() override;
+  void setPlayer(int player) override;
 
   // getters & setters
   inline std::vector<std::vector<BoardEntry>> getBoard() {
@@ -41,8 +40,6 @@ public:
   std::vector<std::shared_ptr<GameState>> putMark(BoardEntry player);
   // return if the given move is valid
   bool isValidMove(uint row, uint col);
-  void makeMove(uint row, uint col);
-  BoardEntry getWinner();
   
 protected:
   
