@@ -23,17 +23,25 @@ public:
   explicit GameState();
   virtual ~GameState() {}
 
-  // return true if the game has reached a terminal state, false otherwise
-  virtual bool isDone();
+  /**
+   * Used by the Minimax Solver
+   */
+  // return a vector of all possible next states
+  virtual std::vector<std::shared_ptr<GameState>> getNextState();
 
   // return the heuristic value of the current state (bigger == more favorable for the player)
   virtual int evalHeuristics();
 
+  // return true if the game has reached a terminal state, false otherwise
+  virtual bool isDone();
+
+  /**
+   * Used by players
+   * 
+   */
+  
   // print the current state
   virtual void printState();
-
-  // return a vector of all possible next states
-  virtual std::vector<std::shared_ptr<GameState>> getNextState();
 
   // make a move on the board (used by the player)
   // TODO: don't like that there are 2 different args here, will have to change
