@@ -58,19 +58,47 @@ If you add a new file/directory, make sure to update the corresponding `CMakeLis
 ├── core
 │   ├── CMakeLists.txt
 │   ├── games
+│   │   ├── checkers.cc
+│   │   ├── checkers.h
 │   │   ├── game_state.cc
 │   │   ├── game_state.h
+│   │   ├── isolation.cc
+│   │   ├── isolation.h
 │   │   ├── tictactoe.cc
 │   │   └── tictactoe.h
+│   ├── players
+│   │   ├── automatic_player.cc
+│   │   ├── automatic_player.h
+│   │   ├── base_player.cc
+│   │   ├── base_player.h
+│   │   ├── checkers_player.cc
+│   │   ├── checkers_player.h
+│   │   ├── interactive_player.cc
+│   │   └── interactive_player.h
 │   └── solver
 │       ├── minimax_solver.cc
 │       └── minimax_solver.h
-├── minimax_exe
-│   ├── CMakeLists.txt
-│   ├── main.cc
-│   └── main.h
+├── games_exe
+│   ├── checkers
+│   │   ├── CMakeLists.txt
+│   │   └── main.cc
+│   ├── isolation
+│   │   ├── CMakeLists.txt
+│   │   └── main.cc
+│   └── tictactoe
+│       ├── CMakeLists.txt
+│       └── main.cc
 └── tests
     ├── CMakeLists.txt
+    ├── checkers_tests
+    │   ├── checkers_test.cc
+    │   └── checkers_test.h
+    ├── isolation_tests
+    │   ├── isolation_tests.cc
+    │   └── isolation_tests.h
+    ├── performance
+    │   ├── performance_tests.cc
+    │   └── performance_tests.h
     ├── tests.cc
     └── tictactoe_tests
         ├── tictactoe_tests.cc

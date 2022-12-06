@@ -54,7 +54,7 @@ void InteractiveCheckersPlayer::play() {
       x_end_int = std::stoi(x_end);
       y_end_int = std::stoi(y_end);
 
-      if (game_state_->makeMove({y_start_int, x_start_int}, {y_end_int, x_end_int})) {
+      if (game_state_->makeMove(y_start_int, x_start_int, y_end_int, x_end_int)) {
         break;
       }
       std::cout << "Invalid move. Try again." << std::endl;

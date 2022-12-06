@@ -90,9 +90,10 @@ std::vector<std::shared_ptr<GameState>> Tictactoe::getNextState() {
   }
 }
 
-bool Tictactoe::makeMove(uint row, uint col) {
-  if (isValidMove(row, col)) {
-    board_[row][col] = X;
+bool Tictactoe::makeMove(int row, int col, int /*y2*/, int /*x2*/) {
+  uint r = static_cast<uint>(row), c = static_cast<uint>(col);
+  if (isValidMove(r, c)) {
+    board_[r][c] = X;
     return true;
   } else {
     // std::cout << "Invalid move\n";

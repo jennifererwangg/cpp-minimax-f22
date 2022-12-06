@@ -23,8 +23,8 @@ public:
   int evalHeuristics() override;
   void printState() override;
   std::vector<std::shared_ptr<GameState>> getNextState() override;
-  bool makeMove(std::vector<int> initialPlace, std::vector<int> newPlace) override;
   void printWinner() override;
+  bool makeMove(int y1, int x1, int y2, int x2) override;
 
 
   // getters & setters

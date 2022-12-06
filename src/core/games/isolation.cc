@@ -66,29 +66,31 @@ std::vector<std::shared_ptr<GameState>> Isolation::getNextState() {
   return next_states;
 }
 
-bool Isolation::makeMove(uint row, uint col) {
-  if (!isValidMove(row, col)) {
+bool Isolation::makeMove(int row, int col, int /*y2*/, int /*x2*/) { 
+  uint r = static_cast<uint>(row);
+  uint c = static_cast<uint>(col);
+  if (!isValidMove(r, c)) {
     return false;
   }
   std::pair<uint, uint> pos = getCurrPos(P1);
   uint curr_row = pos.first, curr_col = pos.second;
   if (curr_row == static_cast<uint>(board_.size())) {
-    board_[row][col] = P1;
+    board_[r][c] = P1;
     return true;
   }
   std::vector<std::vector<IBoardEntry>> next_board(board_);
-  if (curr_row == row) {
-    uint begin = (curr_col < col) ? curr_col : col;
-    uint end = (curr_col < col) ? col : curr_col;
+  if (curr_row == r) {
+    uint begin = (curr_col < c) ? curr_col : c;
+    uint end = (curr_col < c) ? c : curr_col;
     for (uint i = begin; i <= end; i++) {
       if (board_[curr_row][i] != FREE && board_[curr_row][i] != P1) {
         return false;
      }
      next_board[curr_row][i] = BLOCKED;
     }
-  } else if (curr_col == col) {
-    uint begin = (curr_row < row) ? curr_row : row;
-    uint end = (curr_row < row) ? row : curr_row;
+  } else if (curr_col == c) {
+    uint begin = (curr_row < r) ? curr_row : r;
+    uint end = (curr_row < r) ? r : curr_row;
     for (uint i = begin; i <= end; i++) {
       if (board_[i][curr_col] != FREE && board_[i][curr_col] != P1) {
         return false;
@@ -97,8 +99,8 @@ bool Isolation::makeMove(uint row, uint col) {
     }
   } else if (abs(static_cast<int>(curr_row) - static_cast<int>(row)) == abs(static_cast<int>(curr_col) - static_cast<int>(col))) {
     auto diff = abs(static_cast<int>(curr_row) - static_cast<int>(row));
-    bool up = (curr_row > row);
-    bool left = (curr_col > col);
+    bool up = (curr_row > r);
+    bool left = (curr_col > c);
     for (; diff >= 0; diff--) {
       if (board_[curr_row][curr_col] != FREE && board_[curr_row][curr_col] != P1) {
         return false;
@@ -118,7 +120,7 @@ bool Isolation::makeMove(uint row, uint col) {
   } else {
     return false;
   }
-  next_board[row][col] = P1;
+  next_board[r][c] = P1;
   board_ = next_board;
   return true;
 }

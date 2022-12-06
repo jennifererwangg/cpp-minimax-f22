@@ -241,7 +241,7 @@ bool Checkers::isValidMove(std::vector<int> initialPlace, std::vector<int> newPl
   // is it in bounds?
   if (initialPlace[0] < 0 || initialPlace[0] > 8 || initialPlace[1] < 0 || initialPlace[1] > 8 || 
         newPlace[0] < 0 || newPlace[0] > 8 || newPlace[1] < 0 || newPlace[1] > 8) {
-          std::cout << "not in bounds \n";
+          std::cout << "not in bounds " << initialPlace[0] << ", " << initialPlace[1] << "\n";
           return false;
   }
 
@@ -369,7 +369,10 @@ std::vector<std::vector<CBoardEntry>> Checkers::movePiece(std::vector<int> initi
   return new_board;
 }
 
-bool Checkers::makeMove(std::vector<int> initialPlace, std::vector<int> newPlace) {
+bool Checkers::makeMove(int y1, int x1, int y2, int x2) {
+  std::vector<int> initialPlace = {y1, x1};
+  std::vector<int> newPlace = {y2, x2};
+
   auto jump = checkIfJump(initialPlace, newPlace);
 
   if (!isValidMove(initialPlace, newPlace, jump)) {
