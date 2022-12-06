@@ -4,7 +4,7 @@
 #include "core/games/checkers.h"
 #include "core/solver/minimax_solver.h"
 #include "core/players/automatic_player.h"
-#include "core/players/checkers_player.h"
+#include "core/players/interactive_player.h"
 
 using namespace std;
 using namespace minimax::core;
@@ -30,7 +30,7 @@ int main(int argc, char **argv) {
   } else {
     // Interactive tic tac toe (uncomment to play)
     std::shared_ptr<checkers::Checkers> checkers = std::make_shared<checkers::Checkers>(); // create game
-    InteractiveCheckersPlayer interactive_checkers_player(checkers, 5, "B", "W"); // create player
+    InteractivePlayer interactive_checkers_player(checkers, 5, "B", "W"); // create player
     interactive_checkers_player.play(); // play game
   }
 

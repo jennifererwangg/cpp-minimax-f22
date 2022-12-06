@@ -22,7 +22,7 @@ public:
   void printState() override;
   std::vector<std::shared_ptr<GameState>> getNextState() override;
   void printWinner() override;
-  bool makeMove(int y1, int x1, int y2 = 0, int x2 = 0) override;
+  void processUserInput() override;
   void setPlayer(int player) override;
 
   // getters & setters
@@ -42,6 +42,8 @@ public:
   std::vector<std::shared_ptr<GameState>> putMark(TBoardEntry player);
   // return if the given move is valid
   bool isValidMove(uint row, uint col);
+  // place an X on the board
+  bool makeMove(uint y1, uint x1);
   
 protected:
   

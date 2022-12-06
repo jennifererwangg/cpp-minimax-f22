@@ -66,7 +66,36 @@ std::vector<std::shared_ptr<GameState>> Isolation::getNextState() {
   return next_states;
 }
 
-bool Isolation::makeMove(int row, int col, int /*y2*/, int /*x2*/) { 
+void Isolation::processUserInput() {
+  std::cout << "Your turn (1)" << std::endl;
+  std::string x = "", y = "";
+  uint x_int = 10, y_int = 10;
+  while (true) {
+    std::cout << "Enter x (0 to 2): ";
+    std::cin >> x;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cout << "Enter y (0 to 2): ";
+    std::cin >> y;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    // if x and y are not integers, continue
+    if (x.find_first_not_of("0123456789") != std::string::npos ||
+        y.find_first_not_of("0123456789") != std::string::npos) {
+      std::cout << "Invalid input. Please enter positive integers." << std::endl;
+      continue;
+    }
+    x_int = static_cast<uint>(std::stoi(x));
+    y_int = static_cast<uint>(std::stoi(y));
+    if (makeMove(x_int, y_int)) {
+      break;
+    }
+    std::cout << "Invalid move. Try again." << std::endl;
+  }
+}
+
+/**
+ * Isolation game specific functions
+ */
+bool Isolation::makeMove(uint row, uint col) { 
   uint r = static_cast<uint>(row);
   uint c = static_cast<uint>(col);
   if (!isValidMove(r, c)) {
