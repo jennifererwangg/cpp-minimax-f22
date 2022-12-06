@@ -58,6 +58,8 @@ public:
   // TODO: maybe remove this after some refactoring?
   virtual void setPlayer(int player);
 
+  virtual void processUserInput();
+
 protected:
 private:
 };
