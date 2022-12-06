@@ -8,6 +8,7 @@ set (HEADERS
   tictactoe_tests/tictactoe_tests.h
   checkers_tests/checkers_test.h
   isolation_tests/isolation_tests.h
+  performance/performance_tests.h
 )
 
 set (SOURCES
@@ -15,6 +16,7 @@ set (SOURCES
   tictactoe_tests/tictactoe_tests.cc
   checkers_tests/checkers_test.cc
   isolation_tests/isolation_tests.cc
+  performance/performance_tests.cc
 )
 
 set (SYSTEM_INCLUDES
