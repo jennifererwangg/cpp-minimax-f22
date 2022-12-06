@@ -9,7 +9,7 @@ using uint = unsigned int;
 
 Isolation::Isolation(int player) {
   // initialize empty board
-  board_ = std::vector<std::vector<BoardEntry>>(3, std::vector<BoardEntry>(3, FREE));
+  board_ = std::vector<std::vector<IBoardEntry>>(3, std::vector<IBoardEntry>(3, FREE));
   if (player == 1) {
     player_ = P1;
   } else {
@@ -76,7 +76,7 @@ bool Isolation::makeMove(uint row, uint col) {
     board_[row][col] = P1;
     return true;
   }
-  std::vector<std::vector<BoardEntry>> next_board(board_);
+  std::vector<std::vector<IBoardEntry>> next_board(board_);
   if (curr_row == row) {
     uint begin = (curr_col < col) ? curr_col : col;
     uint end = (curr_col < col) ? col : curr_col;
@@ -123,7 +123,7 @@ bool Isolation::makeMove(uint row, uint col) {
   return true;
 }
 
-BoardEntry Isolation::getWinner() {
+void Isolation::printWinner() {
   // see who is blocked. If both are blocked, return the opposite of the current player. 
   bool player1_can_move = true;
   bool player2_can_move = true;
@@ -139,18 +139,13 @@ BoardEntry Isolation::getWinner() {
   }
   if (!player1_can_move && player2_can_move) {
     std::cout << "Player 2 wins!" << std::endl;
-    return P2;
-  }
-  if (!player2_can_move && player1_can_move) {
+  } else if (!player2_can_move && player1_can_move) {
     std::cout << "Player 1 wins!" << std::endl;
-    return P1;
-  }
-  if (player_ == P2) {
+  } else if (player_ == P2) {
     std::cout << "Player 2 wins!" << std::endl;
-    return P1;
+  } else {
+    std::cout << "Player 1 wins!" << std::endl;
   }
-  std::cout << "Player 1 wins!" << std::endl;
-  return P2;
 }
 
 void Isolation::setPlayer(int p) {
@@ -179,7 +174,7 @@ bool Isolation::hasAvailableMoves(uint row, uint col) {
 
 std::vector<std::shared_ptr<GameState>> Isolation::moveInDirection(uint row, uint col, Direction dir) {
     std::vector<std::shared_ptr<GameState>> next_states;
-    std::vector<std::vector<BoardEntry>> next_board(board_);
+    std::vector<std::vector<IBoardEntry>> next_board(board_);
     auto new_row = static_cast<int>(row), new_col = static_cast<int>(col);
     for (; ;) {
         if (dir == NORTHEAST || dir == EAST || dir == SOUTHEAST) {
@@ -226,7 +221,7 @@ std::shared_ptr<GameState> Isolation::randomFirstMove() {
   using my_engine = std::default_random_engine;
   using uniform_distribution = std::uniform_int_distribution<>;
   std::shared_ptr<Isolation> next_state = std::make_shared<Isolation>();
-  std::vector<std::vector<BoardEntry>> next_board(board_);
+  std::vector<std::vector<IBoardEntry>> next_board(board_);
   my_engine re {};
   uniform_distribution generate_unique {0, (int)board_.size() - 1};
   re.seed((uint)time(NULL));
@@ -259,7 +254,7 @@ bool Isolation::isValidMove(uint row, uint col) {
   return true;
 }
 
-std::pair<uint, uint> Isolation::getCurrPos(BoardEntry p) {
+std::pair<uint, uint> Isolation::getCurrPos(IBoardEntry p) {
   uint r, c;
   bool found = false;
   for (r = 0; r < board_.size(); r++) {

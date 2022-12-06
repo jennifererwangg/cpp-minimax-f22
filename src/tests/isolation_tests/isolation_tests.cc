@@ -14,8 +14,8 @@ using namespace minimax::core;
 bool testIsolationIsDone() {
   std::shared_ptr<Isolation> isolation = std::make_shared<Isolation>();
   
-  // BoardEntry Configuration 1 (One player is completely blocked)
-  std::vector<std::vector<BoardEntry>> board = {
+  // IBoardEntry Configuration 1 (One player is completely blocked)
+  std::vector<std::vector<IBoardEntry>> board = {
       {BLOCKED, BLOCKED, BLOCKED},
       {P1, BLOCKED, FREE},
       {BLOCKED, BLOCKED, P2}};
@@ -26,7 +26,7 @@ bool testIsolationIsDone() {
     return false;
   }
 
-  // BoardEntry Configuration 2 (Both players are completely blocked)
+  // IBoardEntry Configuration 2 (Both players are completely blocked)
   board = {
       {BLOCKED, BLOCKED, BLOCKED},
       {P1, BLOCKED, BLOCKED},
@@ -37,7 +37,7 @@ bool testIsolationIsDone() {
     return false;
   }
 
-  // BoardEntry Configuration 3 (Both players have available moves)
+  // IBoardEntry Configuration 3 (Both players have available moves)
   board = {
       {FREE, BLOCKED, BLOCKED},
       {P1, BLOCKED, FREE},
@@ -55,8 +55,8 @@ bool testIsolationIsDone() {
 bool testIsolationNextState() {
   std::shared_ptr<Isolation> isolation = std::make_shared<Isolation>(2);
   
-  // BoardEntry Configuration 1 (Restricted Movement)
-  std::vector<std::vector<BoardEntry>> board = {
+  // IBoardEntry Configuration 1 (Restricted Movement)
+  std::vector<std::vector<IBoardEntry>> board = {
       {BLOCKED, BLOCKED, FREE},
       {P1, BLOCKED, FREE},
       {BLOCKED, FREE, P2}};
@@ -71,7 +71,7 @@ bool testIsolationNextState() {
     return false;
   }
 
-  // BoardEntry Configuration 2 (Unrestricted Movement, but check that it can only move in one direction at a time)
+  // IBoardEntry Configuration 2 (Unrestricted Movement, but check that it can only move in one direction at a time)
   board = {
       {FREE, FREE, FREE},
       {P1, FREE, FREE},
@@ -93,8 +93,8 @@ bool testIsolationNextState() {
 bool testIsolationMakeMove() {
   std::shared_ptr<Isolation> isolation = std::make_shared<Isolation>();
   
-  // BoardEntry Configuration 1 (Allowed move)
-  std::vector<std::vector<BoardEntry>> board = {
+  // IBoardEntry Configuration 1 (Allowed move)
+  std::vector<std::vector<IBoardEntry>> board = {
       {FREE, BLOCKED, FREE},
       {P1, BLOCKED, FREE},
       {BLOCKED, FREE, P2}};
@@ -105,7 +105,7 @@ bool testIsolationMakeMove() {
     return false;
   }
 
-  // BoardEntry Configuration 2 (Not allowed move-- blocked space)
+  // IBoardEntry Configuration 2 (Not allowed move-- blocked space)
   board = {
       {BLOCKED, FREE, FREE},
       {P1, FREE, FREE},
@@ -116,7 +116,7 @@ bool testIsolationMakeMove() {
     return false;
   }
 
-  // BoardEntry Configuration 3 (Not allowed move-- free space but no direct path)
+  // IBoardEntry Configuration 3 (Not allowed move-- free space but no direct path)
   board = {
       {BLOCKED, FREE, FREE},
       {P1, FREE, FREE},

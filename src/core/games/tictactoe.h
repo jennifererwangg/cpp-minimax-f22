@@ -9,6 +9,8 @@
 namespace minimax {
 namespace core {
 
+enum TBoardEntry { X = 'X', O = 'O', EMPTY = '-' };
+
 class Tictactoe : public GameState {  
 public:
 
@@ -20,31 +22,31 @@ public:
   void printState() override;
   std::vector<std::shared_ptr<GameState>> getNextState() override;
   bool makeMove(uint row, uint col) override;
-  BoardEntry getWinner() override;
+  void printWinner() override;
   void setPlayer(int player) override;
 
   // getters & setters
-  inline std::vector<std::vector<BoardEntry>> getBoard() {
+  inline std::vector<std::vector<TBoardEntry>> getBoard() {
     return board_;
   }
-  inline void setBoard(const std::vector<std::vector<BoardEntry>> &board) {
+  inline void setBoard(const std::vector<std::vector<TBoardEntry>> &board) {
     board_ = board;
   }
 
   // game-specific functions
   // return the number of marks in a row/column/diagonal
-  int getMaxCount(BoardEntry player);
+  int getMaxCount(TBoardEntry player);
   // return the number of marks on the board for a given player (used to check which player plays next)
-  int getMarkCount(BoardEntry player);
+  int getMarkCount(TBoardEntry player);
   // place a mark on an empty cell of the board for a given player (ex: place X at position 1,1)
-  std::vector<std::shared_ptr<GameState>> putMark(BoardEntry player);
+  std::vector<std::shared_ptr<GameState>> putMark(TBoardEntry player);
   // return if the given move is valid
   bool isValidMove(uint row, uint col);
   
 protected:
   
 private:
-  std::vector<std::vector<BoardEntry>> board_;
+  std::vector<std::vector<TBoardEntry>> board_;
 };
 
 }  // namespace core

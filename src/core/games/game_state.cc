@@ -35,9 +35,8 @@ bool GameState::makeMove(std::vector<int> /*initialPlace*/, std::vector<int> /*n
   return false;
 }
 
-BoardEntry GameState::getWinner() {
+void GameState::printWinner() {
   std::cout << "WARNING: base GameState() invoked.\n";
-  return EMPTY;
 }
 
 void GameState::setPlayer(int /*player*/) {
