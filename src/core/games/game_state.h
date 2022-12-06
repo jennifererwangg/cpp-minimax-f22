@@ -36,7 +36,7 @@ public:
   virtual void printState();
   // get the winner of the game
   virtual void printWinner();
-
+  // prompt for, take in, and process user input
   virtual void processUserInput();
 
 protected:

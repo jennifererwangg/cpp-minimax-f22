@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
   } else {
     // Interactive tic tac toe (uncomment to play)
     std::shared_ptr<Tictactoe> tictactoe = std::make_shared<Tictactoe>(); // create game
-    InteractivePlayer interactive_tic_tac_toe_player(tictactoe, 5, string{X}, string{O}); // create player
+    InteractivePlayer interactive_tic_tac_toe_player(tictactoe, 5); // create player
     interactive_tic_tac_toe_player.play(); // play game
   }
 
