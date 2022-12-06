@@ -55,14 +55,29 @@ std::vector<std::shared_ptr<GameState>> Isolation::getNextState() {
   std::vector<Direction> all_directions = {NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST};
   std::pair<uint, uint> pos = getCurrPos(player_);
   uint row = pos.first, col = pos.second;
- if (row == board_.size()) {
-    next_states.push_back(Isolation::randomFirstMove());
+  if (row == board_.size()) {
+    for (uint i = 0; i < board_.size(); i++) {
+      for (uint j = 0; j < board_[0].size(); j++) {
+        if (board_[i][j] == FREE) {
+          std::vector<std::vector<IBoardEntry>> next_board(board_);
+          next_board[i][j] = player_;
+          std::shared_ptr<Isolation> next_state = std::make_shared<Isolation>();
+          next_state->setBoard(next_board);
+          if (player_ == P1) {
+            next_state->setPlayer(2);
+          } else {
+            next_state->setPlayer(1);
+          }
+          next_states.push_back(next_state);
+        }
+      }
+    }
     return next_states;
- }
- for (auto dir : all_directions) {
-     auto dir_states = moveInDirection(row, col, dir);
-     next_states.insert(next_states.end(), dir_states.begin(), dir_states.end());
- }
+  }
+  for (auto dir : all_directions) {
+      auto dir_states = moveInDirection(row, col, dir);
+      next_states.insert(next_states.end(), dir_states.begin(), dir_states.end());
+  }
   return next_states;
 }
 
@@ -105,6 +120,7 @@ bool Isolation::makeMove(uint row, uint col) {
   uint curr_row = pos.first, curr_col = pos.second;
   if (curr_row == static_cast<uint>(board_.size())) {
     board_[r][c] = P1;
+    player_ = P2;
     return true;
   }
   std::vector<std::vector<IBoardEntry>> next_board(board_);
@@ -151,39 +167,22 @@ bool Isolation::makeMove(uint row, uint col) {
   }
   next_board[r][c] = P1;
   board_ = next_board;
+  player_ = P2;
   return true;
 }
 
 void Isolation::printWinner() {
   // see who is blocked. If both are blocked, return the opposite of the current player. 
-  bool player1_can_move = true;
-  bool player2_can_move = true;
-  for (uint i = 0; i < board_.size(); ++i) {
-    for (uint j = 0; j < board_[i].size(); ++j) {
-      if (board_[i][j] == P1) {
-        player1_can_move = Isolation::hasAvailableMoves(i, j);
-      }
-      if (board_[i][j] == P2) {
-        player2_can_move = Isolation::hasAvailableMoves(i, j);
-      }
-    }
-  }
+  bool player1_can_move = hasAvailableMoves(getCurrPos(P1).first, getCurrPos(P1).second);
+  bool player2_can_move = hasAvailableMoves(getCurrPos(P2).first, getCurrPos(P2).second);;
   if (!player1_can_move && player2_can_move) {
     std::cout << "Player 2 wins!" << std::endl;
   } else if (!player2_can_move && player1_can_move) {
     std::cout << "Player 1 wins!" << std::endl;
   } else if (player_ == P2) {
-    std::cout << "Player 2 wins!" << std::endl;
-  } else {
     std::cout << "Player 1 wins!" << std::endl;
-  }
-}
-
-void Isolation::setPlayer(int p) {
-  if (p== 1) {
-    player_ = P1;
   } else {
-    player_ = P2;
+    std::cout << "Player 2 wins!" << std::endl;
   }
 }
 
@@ -246,33 +245,6 @@ std::vector<std::shared_ptr<GameState>> Isolation::moveInDirection(uint row, uin
         col = u_new_col;
     }
     return next_states;
-}
-
-std::shared_ptr<GameState> Isolation::randomFirstMove() {
-  using my_engine = std::default_random_engine;
-  using uniform_distribution = std::uniform_int_distribution<>;
-  std::shared_ptr<Isolation> next_state = std::make_shared<Isolation>();
-  std::vector<std::vector<IBoardEntry>> next_board(board_);
-  my_engine re {};
-  uniform_distribution generate_unique {0, (int)board_.size() - 1};
-  re.seed((uint)time(NULL));
-  uint row = (uint)generate_unique(re);
-  uint col = (uint)generate_unique(re);
-  while (next_board[row][col] != player_) {
-    if (next_board[row][col] == FREE) {
-      next_board[row][col] = player_;
-    } else {
-      row = (uint)generate_unique(re);
-      col = (uint)generate_unique(re);
-    }
-  }
-  next_state->setBoard(next_board);
-  if (player_ == P1) {
-    next_state->setPlayer(2);
-  } else {
-    next_state->setPlayer(1);
-  }
-  return next_state;
 }
 
 bool Isolation::isValidMove(uint row, uint col) {

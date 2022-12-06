@@ -27,7 +27,6 @@ void InteractivePlayer::play() {
     std::shared_ptr<GameState> next_state = minimax_solver.evaluate(game_state_);
     game_state_ = next_state;
     game_state_->printState();
-    game_state_->setPlayer(2);
     if (game_state_->isDone()) {
       game_state_->printWinner();
       break;

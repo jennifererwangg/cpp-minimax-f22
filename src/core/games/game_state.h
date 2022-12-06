@@ -37,10 +37,6 @@ public:
   // get the winner of the game
   virtual void printWinner();
 
-  // set the current player (currently used only by isolation)
-  // but has to be included here due to the interactive player
-  // TODO: maybe remove this after some refactoring?
-  virtual void setPlayer(int player);
   virtual void processUserInput();
 
 protected:

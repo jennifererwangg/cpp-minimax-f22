@@ -23,7 +23,6 @@ public:
   std::vector<std::shared_ptr<GameState>> getNextState() override;
   void printWinner() override;
   void processUserInput() override;
-  void setPlayer(int player) override;
   bool makeMove(uint y, uint x);
 
   // getters & setters
@@ -32,6 +31,13 @@ public:
   }
   inline void setBoard(const std::vector<std::vector<IBoardEntry>> &board) {
     board_ = board;
+  }
+  inline void setPlayer(int p) {
+    if (p== 1) {
+      player_ = P1;
+    } else {
+      player_ = P2;
+    }
   }
   
 protected:
