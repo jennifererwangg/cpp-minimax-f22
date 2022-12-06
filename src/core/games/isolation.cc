@@ -66,7 +66,7 @@ std::vector<std::shared_ptr<GameState>> Isolation::getNextState() {
   return next_states;
 }
 
-bool Isolation::makeMove(uint row, uint col) {
+bool Isolation::makeMove(int row, int col, int y2, int x2) { 
   if (!isValidMove(row, col)) {
     return false;
   }
