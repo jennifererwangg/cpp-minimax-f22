@@ -25,12 +25,7 @@ std::vector<std::shared_ptr<GameState>> GameState::getNextState() {
   return std::vector<std::shared_ptr<GameState>>();
 }
 
-bool GameState::makeMove(uint /*row*/, uint /*col*/) {
-  std::cout << "WARNING: base GameState() invoked.\n";
-  return false;
-}
-
-bool GameState::makeMove(std::vector<int> /*initialPlace*/, std::vector<int> /*newPlace*/) {
+bool GameState::makeMove(int y1, int x1, int y2, int x2) {
   std::cout << "WARNING: base GameState() invoked.\n";
   return false;
 }
