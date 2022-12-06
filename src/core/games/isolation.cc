@@ -213,7 +213,7 @@ std::vector<std::shared_ptr<GameState>> Isolation::moveInDirection(uint row, uin
         if (player_ == P1) {
           next_state->setPlayer(2);
         } else {
-          next_state->setPlayer(11);
+          next_state->setPlayer(1);
         }
         next_states.push_back(next_state);
         row = u_new_row;

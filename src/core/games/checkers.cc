@@ -48,16 +48,16 @@ void Checkers::printState() {
   std::cout << turn;
   std::cout << "    0   1   2   3   4   5   6   7\n";
   std::cout << "----------------------------------\n";
-  for (int i = 0; i < 8; i++) {
+  for (uint i = 0; i < 8; i++) {
     std::cout << i << " | ";
-    for (int j = 0; j < 8; j++) {
-      if(board[i][j] == WHITE) {
+    for (uint j = 0; j < 8; j++) {
+      if(board[static_cast<unsigned long>(i)][static_cast<unsigned long>(j)] == WHITE) {
         std::cout << "\u25EF";
-      } else if(board[i][j] == BLACK) {
+      } else if(board[static_cast<unsigned long>(i)][static_cast<unsigned long>(j)] == BLACK) {
         std::cout << "\u25CD";
-      } else if(board[i][j] == WHITE_KING) {
+      } else if(board[static_cast<unsigned long>(i)][static_cast<unsigned long>(j)] == WHITE_KING) {
         std::cout << "\u25B3";
-      } else if(board[i][j] == BLACK_KING) {
+      } else if(board[static_cast<unsigned long>(i)][static_cast<unsigned long>(j)] == BLACK_KING) {
         std::cout << "\u25B2";
       } else {
         std::cout << " ";
@@ -80,7 +80,7 @@ std::vector<std::shared_ptr<GameState>> Checkers::getNextState() {
       bool isValid;
 
 
-      if (white_turn && board[i][j] == WHITE) {
+      if (white_turn && board[static_cast<unsigned long>(i)][static_cast<unsigned long>(j)] == WHITE) {
         // left and down
         tie(isValid, next_state) = moveLeftAndDown(i, j, BLACK, BLACK_KING);
         if(isValid) next_states.push_back(next_state);
@@ -90,7 +90,7 @@ std::vector<std::shared_ptr<GameState>> Checkers::getNextState() {
         if(isValid) next_states.push_back(next_state);
       }
 
-      if(white_turn && board[i][j] == WHITE_KING) {
+      if(white_turn && board[static_cast<unsigned long>(i)][static_cast<unsigned long>(j)] == WHITE_KING) {
         // left and down
         tie(isValid, next_state) = moveLeftAndDown(i, j, BLACK, BLACK_KING);
         if(isValid) next_states.push_back(next_state);
@@ -109,7 +109,7 @@ std::vector<std::shared_ptr<GameState>> Checkers::getNextState() {
 
       }
 
-      if(!white_turn && board[i][j] == BLACK) {
+      if(!white_turn && board[static_cast<unsigned long>(i)][static_cast<unsigned long>(j)] == BLACK) {
         // left and up
         tie(isValid, next_state) = moveLeftAndUp(i, j, WHITE, WHITE_KING);
         if(isValid) next_states.push_back(next_state);
@@ -119,7 +119,7 @@ std::vector<std::shared_ptr<GameState>> Checkers::getNextState() {
         if(isValid) next_states.push_back(next_state);
       }
 
-      if(!white_turn && board[i][j] == BLACK_KING) {
+      if(!white_turn && board[static_cast<unsigned long>(i)][static_cast<unsigned long>(j)] == BLACK_KING) {
         // left and down
         tie(isValid, next_state) = moveLeftAndDown(i, j, WHITE, WHITE_KING);
         if(isValid) next_states.push_back(next_state);
@@ -140,8 +140,8 @@ std::vector<std::shared_ptr<GameState>> Checkers::getNextState() {
     }
   }
 
-  if (white_turn) white_next_states = next_states.size();
-  else black_next_states = next_states.size();
+  if (white_turn) white_next_states = static_cast<int>(next_states.size());
+  else black_next_states = static_cast<int>(next_states.size());
 
   // std::cout << "Next states num : " << next_states.size() << "\n";
   return next_states;
@@ -150,13 +150,15 @@ std::vector<std::shared_ptr<GameState>> Checkers::getNextState() {
 std::tuple<bool, std::shared_ptr<Checkers>> Checkers::moveRightAndUp(int i, int j, BoardEntry piece1, BoardEntry piece2) {
   auto next_state = std::make_shared<Checkers>();
   if ( !( i - 1 < 0 || j + 1 >= 8 ) ) {
-    if ( board[i - 1][j + 1] == EMPTY ) {
+    if ( board[static_cast<unsigned long>(i - 1)][static_cast<unsigned long>(j + 1)] == EMPTY ) {
       next_state->setBoard(movePiece({i, j}, {i - 1, j + 1}, {-1, -1}));
       next_state->switchTurn(white_turn);
 
       return std::make_tuple(true, next_state);
-    } else if ( board[i - 1][j + 1] == piece1 || board[i - 1][j + 1] == piece2 ) { // we have a jump situation!
-      if ( !( i - 2 < 0 || j + 2 >= 8 ) && board[i - 2][j + 2] == EMPTY) { // make sure it is in bounds and doesn't have a current piece
+    } else if ( board[static_cast<unsigned long>(i - 1)][static_cast<unsigned long>(j + 1)] == piece1 || 
+                board[static_cast<unsigned long>(i - 1)][static_cast<unsigned long>(j + 1)] == piece2 ) { // we have a jump situation!
+      if ( !( i - 2 < 0 || j + 2 >= 8 ) && 
+              board[static_cast<unsigned long>(i - 2)][static_cast<unsigned long>(j + 2)] == EMPTY) { // make sure it is in bounds and doesn't have a current piece
         next_state->setBoard(movePiece({i, j}, {i - 2, j + 2}, {i - 1, j + 1}));
         next_state->switchTurn(white_turn);
 
@@ -171,13 +173,17 @@ std::tuple<bool, std::shared_ptr<Checkers>> Checkers::moveRightAndUp(int i, int 
 std::tuple<bool, std::shared_ptr<Checkers>> Checkers::moveRightAndDown(int i, int j, BoardEntry piece1, BoardEntry piece2) {
   auto next_state = std::make_shared<Checkers>();
   if ( !( i + 1 >= 8 || j + 1 >= 8 ) ) {
-    if ( board[i + 1][j + 1] == EMPTY ) {
+    unsigned long board_x = static_cast<unsigned long>(i + 1);
+    unsigned long board_y = static_cast<unsigned long>(j + 1);
+    if ( board[board_x][board_y] == EMPTY ) {
       next_state->setBoard(movePiece({i, j}, {i + 1, j + 1}, {-1, -1}));
       next_state->switchTurn(white_turn);
 
       return std::make_tuple(true, next_state);
-    } else if ( board[i + 1][j + 1] == piece1 || board[i + 1][j + 1] == piece2 ) { // we have a jump situation!
-      if ( !( i + 2 >= 8 || j + 2 >= 8 ) && board[i + 2][j + 2] == EMPTY) { // make sure it is in bounds and doesn't have a current piece
+    } else if ( board[static_cast<unsigned long>(i + 1)][static_cast<unsigned long>(j + 1)] == piece1 || 
+                board[static_cast<unsigned long>(i + 1)][static_cast<unsigned long>(j + 1)] == piece2 ) { // we have a jump situation!
+      if ( !( i + 2 >= 8 || j + 2 >= 8 ) && 
+              board[static_cast<unsigned long>(i + 2)][static_cast<unsigned long>(j + 2)] == EMPTY) { // make sure it is in bounds and doesn't have a current piece
         next_state->setBoard(movePiece({i, j}, {i + 2, j + 2}, {i + 1, j + 1}));
         next_state->switchTurn(white_turn);
 
@@ -192,13 +198,14 @@ std::tuple<bool, std::shared_ptr<Checkers>> Checkers::moveRightAndDown(int i, in
 std::tuple<bool, std::shared_ptr<Checkers>> Checkers::moveLeftAndDown(int i, int j, BoardEntry piece1, BoardEntry piece2) {
   auto next_state = std::make_shared<Checkers>();
   if ( !( i + 1 >= 8 || j - 1 < 0 ) ) {
-    if ( board[i + 1][j - 1] == EMPTY ) {
+    if ( board[static_cast<unsigned long>(i + 1)][static_cast<unsigned long>(j - 1)] == EMPTY ) {
       next_state->setBoard(movePiece({i, j}, {i + 1, j - 1}, {-1, -1}));
       next_state->switchTurn(white_turn);
 
       return std::make_tuple(true, next_state);
-    } else if ( board[i + 1][j - 1] == piece1 ||  board[i + 1][j - 1] == piece2 ) { // we have a jump situation!
-      if ( !( i + 2 >= 8 || j - 2 < 0 ) && board[i + 2][j - 2] == EMPTY) { // make sure it is in bounds and doesn't have a current piece
+    } else if ( board[static_cast<unsigned long>(i + 1)][static_cast<unsigned long>(j - 1)] == piece1 ||  
+                board[static_cast<unsigned long>(i + 1)][static_cast<unsigned long>(j - 1)] == piece2 ) { // we have a jump situation!
+      if ( !( i + 2 >= 8 || j - 2 < 0 ) && board[static_cast<unsigned long>(i + 2)][static_cast<unsigned long>(j - 2)] == EMPTY) { // make sure it is in bounds and doesn't have a current piece
         next_state->setBoard(movePiece({i, j}, {i + 2, j - 2}, {i + 1, j - 1}));
         next_state->switchTurn(white_turn);
 
@@ -213,13 +220,14 @@ std::tuple<bool, std::shared_ptr<Checkers>> Checkers::moveLeftAndDown(int i, int
 std::tuple<bool, std::shared_ptr<Checkers>> Checkers::moveLeftAndUp(int i, int j, BoardEntry piece1, BoardEntry piece2) {
   auto next_state = std::make_shared<Checkers>();
   if ( !( i - 1 < 0 || j - 1 < 0 ) ) {
-    if ( board[i - 1][j - 1] == EMPTY ) {
+    if ( board[static_cast<unsigned long>(i - 1)][static_cast<unsigned long>(j - 1)] == EMPTY ) {
       next_state->setBoard(movePiece({i, j}, {i - 1, j - 1}, {-1, -1}));
       next_state->switchTurn(white_turn);
 
       return std::make_tuple(true, next_state);
-    } else if ( board[i - 1][j - 1] == piece1 || board[i - 1][j - 1] == piece2 ) { // we have a jump situation!
-      if ( !( i - 2 < 0 || j - 2 < 0 ) && board[i - 2][j - 2] == EMPTY) { // make sure it is in bounds and doesn't have a current piece
+    } else if ( board[static_cast<unsigned long>(i - 1)][static_cast<unsigned long>(j - 1)] == piece1 || 
+                board[static_cast<unsigned long>(i - 1)][static_cast<unsigned long>(j - 1)] == piece2 ) { // we have a jump situation!
+      if ( !( i - 2 < 0 || j - 2 < 0 ) && board[static_cast<unsigned long>(i - 2)][static_cast<unsigned long>(j - 2)] == EMPTY) { // make sure it is in bounds and doesn't have a current piece
         next_state->setBoard(movePiece({i, j}, {i - 2, j - 2}, {i - 1, j - 1}));
         next_state->switchTurn(white_turn);
 
@@ -240,21 +248,25 @@ bool Checkers::isValidMove(std::vector<int> initialPlace, std::vector<int> newPl
   }
 
   // does the initial place have the piece we are moving?
+  unsigned long initialPlaceX = static_cast<unsigned long>(initialPlace[0]);
+  unsigned long initialPlaceY = static_cast<unsigned long>(initialPlace[1]);
   if (white_turn) {
-    if (board[initialPlace[0]][initialPlace[1]] != WHITE && board[initialPlace[0]][initialPlace[1]] != WHITE_KING) {
+    if (board[initialPlaceX][initialPlaceY] != WHITE && board[initialPlaceX][initialPlaceY] != WHITE_KING) {
       std::cout << "piece is not in the correct place W \n";
       return false;
     }
   } else {
-    if (board[initialPlace[0]][initialPlace[1]] != BLACK && board[initialPlace[0]][initialPlace[1]] != BLACK_KING) {
+    if (board[initialPlaceX][initialPlaceY] != BLACK && board[initialPlaceX][initialPlaceY] != BLACK_KING) {
       std::cout << "piece is not in the correct place B \n";
-      std::cout << board[initialPlace[0]][initialPlace[1]] << "\n";
+      std::cout << board[initialPlaceX][initialPlaceY] << "\n";
       return false;
     }
   }
 
   // is the new place empty?
-  if (board[newPlace[0]][newPlace[1]] != EMPTY) {
+  unsigned long newPlaceX = static_cast<unsigned long>(newPlace[0]);
+  unsigned long newPlaceY = static_cast<unsigned long>(newPlace[1]);
+  if (board[newPlaceX][newPlaceY] != EMPTY) {
     std::cout << "new place is not empty \n";
     return false;
   }
@@ -276,12 +288,12 @@ bool Checkers::isValidMove(std::vector<int> initialPlace, std::vector<int> newPl
   }
 
   // right direction?
-  if (board[initialPlace[0]][initialPlace[1]] == WHITE) {
+  if (board[initialPlaceX][initialPlaceY] == WHITE) {
     if (y_direction <= 0) {
       std::cout << "not the right direction W \n";
       return false;
     }
-  } else if(board[initialPlace[0]][initialPlace[1]] == BLACK) {
+  } else if(board[initialPlaceX][initialPlaceY] == BLACK) {
     if (y_direction >= 0) {
       std::cout << "not the right direction B \n";
       return false;
@@ -306,8 +318,8 @@ std::vector<int> Checkers::checkIfJump(std::vector<int> initialPlace, std::vecto
     return {-1, -1};
   }
 
-  int middle_loc_x = initialPlace[0] + (x_direction / 2);
-  int middle_loc_y = initialPlace[1] + (y_direction / 2);
+  unsigned long middle_loc_x = static_cast<unsigned long>(initialPlace[0] + (x_direction / 2));
+  unsigned long middle_loc_y = static_cast<unsigned long>(initialPlace[1] + (y_direction / 2));
 
   // is there a piece of the other color in the middle?
   if(white_turn) {
@@ -320,7 +332,7 @@ std::vector<int> Checkers::checkIfJump(std::vector<int> initialPlace, std::vecto
     }
   }
 
-  return {middle_loc_x, middle_loc_y};
+  return {static_cast<int>(middle_loc_x), static_cast<int>(middle_loc_y)};
 }
 
 /**
@@ -328,22 +340,32 @@ std::vector<int> Checkers::checkIfJump(std::vector<int> initialPlace, std::vecto
  */
 std::vector<std::vector<BoardEntry>> Checkers::movePiece(std::vector<int> initialPlace, std::vector<int> newPlace, std::vector<int> jump) {
   std::vector<std::vector<BoardEntry>> new_board = board;
-  BoardEntry piece = new_board[initialPlace[0]][initialPlace[1]];
 
-  new_board[newPlace[0]][newPlace[1]] = piece;
-  new_board[initialPlace[0]][initialPlace[1]] = EMPTY;
+  unsigned long initialPlace_x = static_cast<unsigned long>(initialPlace[0]);
+  unsigned long initialPlace_y = static_cast<unsigned long>(initialPlace[1]);
+
+  BoardEntry piece = new_board[initialPlace_x][initialPlace_y];
+
+  unsigned long newPlace_x = static_cast<unsigned long>(newPlace[0]);
+  unsigned long newPlace_y = static_cast<unsigned long>(newPlace[1]);
+  unsigned long jump_x = static_cast<unsigned long>(jump[0]);
+  unsigned long jump_y = static_cast<unsigned long>(jump[1]);
+  
+
+  new_board[newPlace_x][newPlace_y] = piece;
+  new_board[initialPlace_x][initialPlace_y] = EMPTY;
 
   if(jump[0] != -1) {
-    new_board[jump[0]][jump[1]] = EMPTY;
+    new_board[jump_x][jump_y] = EMPTY;
   }
 
   // check for kings
   if (newPlace[0] == 0 && piece == BLACK) {
-    new_board[newPlace[0]][newPlace[1]] = BLACK_KING;
+    new_board[newPlace_x][newPlace_y] = BLACK_KING;
   }
 
   if (newPlace[0] == 7 && piece == WHITE) {
-    new_board[newPlace[0]][newPlace[1]] = WHITE_KING;
+    new_board[newPlace_x][newPlace_y] = WHITE_KING;
   }
 
   return new_board;
