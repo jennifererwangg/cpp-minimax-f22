@@ -29,10 +29,6 @@ void GameState::printWinner() {
   std::cout << "WARNING: base GameState() invoked.\n";
 }
 
-void GameState::setPlayer(int /*player*/) {
-  std::cout << "WARNING: base GameState() setPlayer invoked.\n";
-}
-
 void GameState::processUserInput() {
   std::cout << "WARNING: base GameState() processUserInput invoked.\n";
 }

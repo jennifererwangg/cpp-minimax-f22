@@ -126,8 +126,6 @@ void Tictactoe::printWinner() {
   std::cout << "Draw!\n";
 }
 
-void Tictactoe::setPlayer(int /*player*/) { /* do nothing */}
-
 /**
  * Tictactoe game specific functions
  */

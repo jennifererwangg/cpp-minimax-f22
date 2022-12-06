@@ -433,8 +433,6 @@ bool Checkers::makeMove(int y1, int x1, int y2, int x2) {
   return true;
 }
 
-void Checkers::setPlayer(int /*player*/) { /* do nothing */}
-
 int Checkers::countPieces(CBoardEntry color, CBoardEntry color_king) {
   int count = 0;
 

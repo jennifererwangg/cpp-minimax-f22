@@ -25,7 +25,6 @@ public:
   std::vector<std::shared_ptr<GameState>> getNextState() override;
   void printWinner() override;
   void processUserInput() override;
-  void setPlayer(int player) override;
 
 
   // getters & setters
