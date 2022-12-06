@@ -14,6 +14,7 @@ void AutomaticPlayer::play() {
     next_best_state->printState();
     game_ = next_best_state;
     if (game_->isDone()) {
+      game_->printWinner();
       break;
     }
   }

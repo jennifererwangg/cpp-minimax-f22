@@ -40,7 +40,7 @@ void InteractivePlayer::play() {
     }
     game_state_->printState();
     if (game_state_->isDone()) {
-      game_state_->getWinner();
+      game_state_->printWinner();
       break;
     }
     // Computer Move
@@ -51,7 +51,7 @@ void InteractivePlayer::play() {
     game_state_->printState();
     game_state_->setPlayer(2);
     if (game_state_->isDone()) {
-      game_state_->getWinner();
+      game_state_->printWinner();
       break;
     }
   }

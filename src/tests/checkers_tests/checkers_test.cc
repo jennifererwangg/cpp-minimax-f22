@@ -40,7 +40,7 @@ bool testGetNextMoves() {
 bool testJump() {
     std::shared_ptr<Checkers> checkers = std::make_shared<Checkers>();
 
-    std::vector<std::vector<BoardEntry>> new_board = checkers->movePiece({2, 1}, {4, 1}, {-1, -1});
+    std::vector<std::vector<CBoardEntry>> new_board = checkers->movePiece({2, 1}, {4, 1}, {-1, -1});
 
     checkers->setBoard(new_board);
 
@@ -65,7 +65,7 @@ bool testNextMove() {
 
 bool testJumpMove() {
     std::shared_ptr<Checkers> checkers = std::make_shared<Checkers>();
-    std::vector<std::vector<BoardEntry>> board;
+    std::vector<std::vector<CBoardEntry>> board;
 
     board.push_back({EMPTY, WHITE, EMPTY, WHITE, EMPTY, WHITE, EMPTY, WHITE});
     board.push_back({WHITE, EMPTY, WHITE, EMPTY, WHITE, EMPTY, WHITE, EMPTY});

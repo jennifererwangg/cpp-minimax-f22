@@ -14,8 +14,8 @@ using namespace minimax::core;
 bool testTicTacToeGetMaxCount() {
   std::shared_ptr<Tictactoe> tictactoe = std::make_shared<Tictactoe>();
   
-  // BoardEntry Configuration 1 (horizontal)
-  std::vector<std::vector<BoardEntry>> board = {
+  // TBoardEntry Configuration 1 (horizontal)
+  std::vector<std::vector<TBoardEntry>> board = {
       {X, X, X},
       {O, O, EMPTY},
       {EMPTY, EMPTY, EMPTY}};
@@ -30,7 +30,7 @@ bool testTicTacToeGetMaxCount() {
     return false;
   }
 
-  // BoardEntry Configuration 2 (vertical)
+  // TBoardEntry Configuration 2 (vertical)
   board = {
       {X, O, EMPTY},
       {X, O, EMPTY},
@@ -46,7 +46,7 @@ bool testTicTacToeGetMaxCount() {
     return false;
   }
 
-  // BoardEntry Configuration 3 (diagonal)
+  // TBoardEntry Configuration 3 (diagonal)
   board = {
       {X, O, EMPTY},
       {O, X, EMPTY},
@@ -68,8 +68,8 @@ bool testTicTacToeGetMaxCount() {
 bool testTicTacToeNextState() {
   std::shared_ptr<Tictactoe> tictactoe = std::make_shared<Tictactoe>();
   
-  // BoardEntry Configuration 1 (O's turn)
-  std::vector<std::vector<BoardEntry>> board = {
+  // TBoardEntry Configuration 1 (O's turn)
+  std::vector<std::vector<TBoardEntry>> board = {
       {X, X, X},
       {O, O, EMPTY},
       {EMPTY, EMPTY, EMPTY}};
@@ -81,7 +81,7 @@ bool testTicTacToeNextState() {
   //   state->printState();
   // }
 
-  // BoardEntry Configuration 2 (X's turn)
+  // TBoardEntry Configuration 2 (X's turn)
   board = {
       {X, O, EMPTY},
       {X, O, EMPTY},
@@ -94,7 +94,7 @@ bool testTicTacToeNextState() {
   //   state->printState();
   // }
 
-  // BoardEntry Configuration 3 (empty board: X's turn)
+  // TBoardEntry Configuration 3 (empty board: X's turn)
   board = {
       {EMPTY, EMPTY, EMPTY},
       {EMPTY, EMPTY, EMPTY},

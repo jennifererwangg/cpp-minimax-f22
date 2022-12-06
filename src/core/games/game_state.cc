@@ -30,9 +30,8 @@ bool GameState::makeMove(int /*y1*/, int /*x1*/, int /*y2*/, int /*x2*/) {
   return false;
 }
 
-BoardEntry GameState::getWinner() {
+void GameState::printWinner() {
   std::cout << "WARNING: base GameState() invoked.\n";
-  return EMPTY;
 }
 
 void GameState::setPlayer(int /*player*/) {

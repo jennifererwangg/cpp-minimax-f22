@@ -61,7 +61,7 @@ void InteractiveCheckersPlayer::play() {
     }
     game_state_->printState();
     if (game_state_->isDone()) {
-      game_state_->getWinner();
+      game_state_->printWinner();
       break;
     }
     // Computer Move
@@ -71,7 +71,7 @@ void InteractiveCheckersPlayer::play() {
     game_state_ = next_state;
     game_state_->printState();
     if (game_state_->isDone()) {
-      game_state_->getWinner();
+      game_state_->printWinner();
       break;
     }
   }

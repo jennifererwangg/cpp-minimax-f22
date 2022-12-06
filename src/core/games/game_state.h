@@ -9,13 +9,6 @@ namespace core {
 
 using uint = unsigned int;
 
-enum BoardEntry { 
-  X = 'X', O = 'O', // TicTacToe
-  BLOCKED = 'X', FREE = '-', P1 = '1', P2 = '2', // isolation
-  BLACK = 'b', WHITE = 'w', BLACK_KING = 'B', WHITE_KING = 'W', // checkers
-  EMPTY = '-' // for tic tac toe and checkers
-};
-
 // Base class for games
 class GameState {
 public:
@@ -51,7 +44,7 @@ public:
   virtual bool makeMove(int y1, int x1, int y2 = 0, int x2 = 0);
 
   // get the winner of the game
-  virtual BoardEntry getWinner();
+  virtual void printWinner();
 
   // set the current player (currently used only by isolation)
   // but has to be included here due to the interactive player
