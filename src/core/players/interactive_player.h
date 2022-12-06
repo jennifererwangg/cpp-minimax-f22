@@ -10,8 +10,7 @@ namespace core {
 class InteractivePlayer : public BasePlayer {
 public:
 
-  explicit InteractivePlayer(std::shared_ptr<GameState> game, int depth,
-                             std::string player_name, std::string opponent_name);
+  explicit InteractivePlayer(std::shared_ptr<GameState> game, int depth);
 
   void play() override;
 

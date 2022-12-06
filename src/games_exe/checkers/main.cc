@@ -30,7 +30,7 @@ int main(int argc, char **argv) {
   } else {
     // Interactive tic tac toe (uncomment to play)
     std::shared_ptr<checkers::Checkers> checkers = std::make_shared<checkers::Checkers>(); // create game
-    InteractivePlayer interactive_checkers_player(checkers, 5, "B", "W"); // create player
+    InteractivePlayer interactive_checkers_player(checkers, 5); // create player
     interactive_checkers_player.play(); // play game
   }
 

@@ -29,7 +29,7 @@ int main(int argc, char **argv) {
   } else {
     // Interactive isolation (uncomment to play)
     std::shared_ptr<Isolation> isolation = std::make_shared<Isolation>(2); // create game
-    InteractivePlayer interactive_isolation_player(isolation, 10, "1", "2"); // create player
+    InteractivePlayer interactive_isolation_player(isolation, 10); // create player
     interactive_isolation_player.play(); // play game
   }
 
