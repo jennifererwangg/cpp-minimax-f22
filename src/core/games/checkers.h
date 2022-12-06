@@ -22,8 +22,9 @@ public:
   int evalHeuristics() override;
   void printState() override;
   std::vector<std::shared_ptr<GameState>> getNextState() override;
-  bool makeMove(int y1, int x1, int y2, int x2) override;
+  void processUserInput() override;
   BoardEntry getWinner() override;
+  void setPlayer(int player) override;
 
 
   // getters & setters
@@ -39,6 +40,7 @@ public:
   }
 
   // game-specific functions
+  bool makeMove(int y1, int x1, int y2, int x2);
   bool isValidMove(std::vector<int> initialPlace, std::vector<int> newPlace, std::vector<int> jump);
   std::vector<int> checkIfJump(std::vector<int> initialPlace, std::vector<int> newPlace);
 

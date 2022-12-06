@@ -371,6 +371,52 @@ std::vector<std::vector<BoardEntry>> Checkers::movePiece(std::vector<int> initia
   return new_board;
 }
 
+void Checkers::processUserInput() {
+  std::cout << "Your turn (B)" << std::endl;
+  std::string x_start = "", y_start = "";
+  std::string x_end = "", y_end = "";
+  int x_start_int = 10, y_start_int = 10, x_end_int = 10, y_end_int = 10;
+  while (true) {
+    // initial place
+    std::cout << "Enter x (0 to 7): ";
+    std::cin >> x_start;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cout << "Enter y (0 to 7): ";
+    std::cin >> y_start;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    // if x and y are not integers, continue
+    if (x_start.find_first_not_of("0123456789") != std::string::npos ||
+        y_start.find_first_not_of("0123456789") != std::string::npos) {
+      std::cout << "Invalid input. Please enter positive integers." << std::endl;
+      continue;
+    }
+
+    x_start_int = std::stoi(x_start);
+    y_start_int = std::stoi(y_start);
+    
+    // new place
+    std::cout << "Enter x (0 to 7): ";
+    std::cin >> x_end;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cout << "Enter y (0 to 7): ";
+    std::cin >> y_end;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    // if x and y are not integers, continue
+    if (x_end.find_first_not_of("0123456789") != std::string::npos ||
+        y_end.find_first_not_of("0123456789") != std::string::npos) {
+      std::cout << "Invalid input. Please enter positive integers." << std::endl;
+      continue;
+    }
+    x_end_int = std::stoi(x_end);
+    y_end_int = std::stoi(y_end);
+
+    if (makeMove(y_start_int, x_start_int, y_end_int, x_end_int)) {
+      break;
+    }
+    std::cout << "Invalid move. Try again." << std::endl;
+  }
+}
+
 bool Checkers::makeMove(int y1, int x1, int y2, int x2) {
   std::vector<int> initialPlace = {y1, x1};
   std::vector<int> newPlace = {y2, x2};
@@ -388,6 +434,8 @@ bool Checkers::makeMove(int y1, int x1, int y2, int x2) {
 
   return true;
 }
+
+void Checkers::setPlayer(int /*player*/) { /* do nothing */}
 
 int Checkers::countPieces(BoardEntry color, BoardEntry color_king) {
   int count = 0;

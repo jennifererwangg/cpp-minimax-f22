@@ -25,22 +25,17 @@ std::vector<std::shared_ptr<GameState>> GameState::getNextState() {
   return std::vector<std::shared_ptr<GameState>>();
 }
 
-bool GameState::makeMove(int /*y1*/, int /*x1*/, int /*y2*/, int /*x2*/) {
-  std::cout << "WARNING: base GameState() invoked.\n";
-  return false;
-}
-
 BoardEntry GameState::getWinner() {
-  std::cout << "WARNING: base GameState() invoked.\n";
+  std::cout << "WARNING: base GameState() getWinner invoked.\n";
   return EMPTY;
 }
 
 void GameState::setPlayer(int /*player*/) {
-  std::cout << "WARNING: base GameState() invoked.\n";
+  std::cout << "WARNING: base GameState() setPlayer invoked.\n";
 }
 
 void GameState::processUserInput() {
-  std::cout << "WARNING: base GameState() invoked.\n";
+  std::cout << "WARNING: base GameState() processUserInput invoked.\n";
 }
 
 }  // namespace core

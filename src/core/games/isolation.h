@@ -22,9 +22,10 @@ public:
   int evalHeuristics() override;
   void printState() override;
   std::vector<std::shared_ptr<GameState>> getNextState() override;
-  bool makeMove(int y1, int x1, int y2 = 0, int x2 = 0) override;
+  void processUserInput() override;
   BoardEntry getWinner() override;
   void setPlayer(int player) override;
+  bool makeMove(uint y, uint x);
 
   // getters & setters
   inline std::vector<std::vector<BoardEntry>> getBoard() {
