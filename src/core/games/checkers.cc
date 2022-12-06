@@ -35,11 +35,9 @@ int Checkers::evalHeuristics() {
   }
 }
 
-BoardEntry Checkers::getWinner() {
-  if (countPieces(WHITE, WHITE_KING) == 0) return WHITE;
-  if (countPieces(BLACK, BLACK_KING) == 0) return BLACK;
-
-  return EMPTY;
+void Checkers::printWinner() {
+  if (countPieces(WHITE, WHITE_KING) == 0) std::cout << "White wins!\n";
+  else if (countPieces(BLACK, BLACK_KING) == 0) std::cout << "Black wins!\n";
 }
 
 void Checkers::printState() {
@@ -147,7 +145,7 @@ std::vector<std::shared_ptr<GameState>> Checkers::getNextState() {
   return next_states;
 }
 
-std::tuple<bool, std::shared_ptr<Checkers>> Checkers::moveRightAndUp(int i, int j, BoardEntry piece1, BoardEntry piece2) {
+std::tuple<bool, std::shared_ptr<Checkers>> Checkers::moveRightAndUp(int i, int j, CBoardEntry piece1, CBoardEntry piece2) {
   auto next_state = std::make_shared<Checkers>();
   if ( !( i - 1 < 0 || j + 1 >= 8 ) ) {
     if ( board[static_cast<unsigned long>(i - 1)][static_cast<unsigned long>(j + 1)] == EMPTY ) {
@@ -170,7 +168,7 @@ std::tuple<bool, std::shared_ptr<Checkers>> Checkers::moveRightAndUp(int i, int 
   return std::make_tuple(false, next_state);
 }
 
-std::tuple<bool, std::shared_ptr<Checkers>> Checkers::moveRightAndDown(int i, int j, BoardEntry piece1, BoardEntry piece2) {
+std::tuple<bool, std::shared_ptr<Checkers>> Checkers::moveRightAndDown(int i, int j, CBoardEntry piece1, CBoardEntry piece2) {
   auto next_state = std::make_shared<Checkers>();
   if ( !( i + 1 >= 8 || j + 1 >= 8 ) ) {
     unsigned long board_x = static_cast<unsigned long>(i + 1);
@@ -195,7 +193,7 @@ std::tuple<bool, std::shared_ptr<Checkers>> Checkers::moveRightAndDown(int i, in
   return std::make_tuple(false, next_state);
 }
 
-std::tuple<bool, std::shared_ptr<Checkers>> Checkers::moveLeftAndDown(int i, int j, BoardEntry piece1, BoardEntry piece2) {
+std::tuple<bool, std::shared_ptr<Checkers>> Checkers::moveLeftAndDown(int i, int j, CBoardEntry piece1, CBoardEntry piece2) {
   auto next_state = std::make_shared<Checkers>();
   if ( !( i + 1 >= 8 || j - 1 < 0 ) ) {
     if ( board[static_cast<unsigned long>(i + 1)][static_cast<unsigned long>(j - 1)] == EMPTY ) {
@@ -217,7 +215,7 @@ std::tuple<bool, std::shared_ptr<Checkers>> Checkers::moveLeftAndDown(int i, int
   return std::make_tuple(false, next_state);
 }
 
-std::tuple<bool, std::shared_ptr<Checkers>> Checkers::moveLeftAndUp(int i, int j, BoardEntry piece1, BoardEntry piece2) {
+std::tuple<bool, std::shared_ptr<Checkers>> Checkers::moveLeftAndUp(int i, int j, CBoardEntry piece1, CBoardEntry piece2) {
   auto next_state = std::make_shared<Checkers>();
   if ( !( i - 1 < 0 || j - 1 < 0 ) ) {
     if ( board[static_cast<unsigned long>(i - 1)][static_cast<unsigned long>(j - 1)] == EMPTY ) {
@@ -338,13 +336,13 @@ std::vector<int> Checkers::checkIfJump(std::vector<int> initialPlace, std::vecto
 /**
  * Checkers game specific functions
  */
-std::vector<std::vector<BoardEntry>> Checkers::movePiece(std::vector<int> initialPlace, std::vector<int> newPlace, std::vector<int> jump) {
-  std::vector<std::vector<BoardEntry>> new_board = board;
+std::vector<std::vector<CBoardEntry>> Checkers::movePiece(std::vector<int> initialPlace, std::vector<int> newPlace, std::vector<int> jump) {
+  std::vector<std::vector<CBoardEntry>> new_board = board;
 
   unsigned long initialPlace_x = static_cast<unsigned long>(initialPlace[0]);
   unsigned long initialPlace_y = static_cast<unsigned long>(initialPlace[1]);
 
-  BoardEntry piece = new_board[initialPlace_x][initialPlace_y];
+  CBoardEntry piece = new_board[initialPlace_x][initialPlace_y];
 
   unsigned long newPlace_x = static_cast<unsigned long>(newPlace[0]);
   unsigned long newPlace_y = static_cast<unsigned long>(newPlace[1]);
@@ -371,6 +369,52 @@ std::vector<std::vector<BoardEntry>> Checkers::movePiece(std::vector<int> initia
   return new_board;
 }
 
+void Checkers::processUserInput() {
+  std::cout << "Your turn (B)" << std::endl;
+  std::string x_start = "", y_start = "";
+  std::string x_end = "", y_end = "";
+  int x_start_int = 10, y_start_int = 10, x_end_int = 10, y_end_int = 10;
+  while (true) {
+    // initial place
+    std::cout << "Enter x (0 to 7): ";
+    std::cin >> x_start;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cout << "Enter y (0 to 7): ";
+    std::cin >> y_start;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    // if x and y are not integers, continue
+    if (x_start.find_first_not_of("0123456789") != std::string::npos ||
+        y_start.find_first_not_of("0123456789") != std::string::npos) {
+      std::cout << "Invalid input. Please enter positive integers." << std::endl;
+      continue;
+    }
+
+    x_start_int = std::stoi(x_start);
+    y_start_int = std::stoi(y_start);
+    
+    // new place
+    std::cout << "Enter x (0 to 7): ";
+    std::cin >> x_end;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cout << "Enter y (0 to 7): ";
+    std::cin >> y_end;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    // if x and y are not integers, continue
+    if (x_end.find_first_not_of("0123456789") != std::string::npos ||
+        y_end.find_first_not_of("0123456789") != std::string::npos) {
+      std::cout << "Invalid input. Please enter positive integers." << std::endl;
+      continue;
+    }
+    x_end_int = std::stoi(x_end);
+    y_end_int = std::stoi(y_end);
+
+    if (makeMove(y_start_int, x_start_int, y_end_int, x_end_int)) {
+      break;
+    }
+    std::cout << "Invalid move. Try again." << std::endl;
+  }
+}
+
 bool Checkers::makeMove(int y1, int x1, int y2, int x2) {
   std::vector<int> initialPlace = {y1, x1};
   std::vector<int> newPlace = {y2, x2};
@@ -389,7 +433,7 @@ bool Checkers::makeMove(int y1, int x1, int y2, int x2) {
   return true;
 }
 
-int Checkers::countPieces(BoardEntry color, BoardEntry color_king) {
+int Checkers::countPieces(CBoardEntry color, CBoardEntry color_king) {
   int count = 0;
 
   for(auto row : board) {

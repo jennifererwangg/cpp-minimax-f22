@@ -7,7 +7,7 @@ using uint = unsigned int;
 
 Tictactoe::Tictactoe() {
   // initialize empty board
-  board_ = std::vector<std::vector<BoardEntry>>(3, std::vector<BoardEntry>(3, EMPTY));
+  board_ = std::vector<std::vector<TBoardEntry>>(3, std::vector<TBoardEntry>(3, EMPTY));
 }
 
 /**
@@ -90,9 +90,48 @@ std::vector<std::shared_ptr<GameState>> Tictactoe::getNextState() {
   }
 }
 
-bool Tictactoe::makeMove(int row, int col, int y2, int x2) {
-  if (isValidMove(row, col)) {
-    board_[row][col] = X;
+void Tictactoe::processUserInput() {
+  std::cout << "Your turn (X)" << std::endl;
+  std::string x = "", y = "";
+  uint x_int = 10, y_int = 10;
+  while (true) {
+    std::cout << "Enter x (0 to 2): ";
+    std::cin >> x;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cout << "Enter y (0 to 2): ";
+    std::cin >> y;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    // if x and y are not integers, continue
+    if (x.find_first_not_of("0123456789") != std::string::npos ||
+        y.find_first_not_of("0123456789") != std::string::npos) {
+      std::cout << "Invalid input. Please enter positive integers." << std::endl;
+      continue;
+    }
+    x_int = static_cast<uint>(std::stoi(x));
+    y_int = static_cast<uint>(std::stoi(y));
+    if (makeMove(x_int, y_int)) {
+      break;
+    }
+    std::cout << "Invalid move. Try again." << std::endl;
+  }
+}
+
+void Tictactoe::printWinner() {
+  if (getMaxCount(X) == 3) {
+    std::cout << "X wins!\n";
+  }
+  if (getMaxCount(O) == 3) {
+    std::cout << "O wins!\n";
+  }
+  std::cout << "Draw!\n";
+}
+
+/**
+ * Tictactoe game specific functions
+ */
+bool Tictactoe::makeMove(uint r, uint c) {
+  if (isValidMove(r, c)) {
+    board_[r][c] = X;
     return true;
   } else {
     // std::cout << "Invalid move\n";
@@ -100,24 +139,6 @@ bool Tictactoe::makeMove(int row, int col, int y2, int x2) {
   }
 }
 
-BoardEntry Tictactoe::getWinner() {
-  if (getMaxCount(X) == 3) {
-    std::cout << "X wins!\n";
-    return X;
-  }
-  if (getMaxCount(O) == 3) {
-    std::cout << "O wins!\n";
-    return O;
-  }
-  std::cout << "Draw!\n";
-  return EMPTY;
-}
-
-void Tictactoe::setPlayer(int /*player*/) { /* do nothing */}
-
-/**
- * Tictactoe game specific functions
- */
 bool Tictactoe::isValidMove(uint row, uint col) {
   if (row < 0 || row >= 3 || col < 0 || col >= 3) {
     return false;
@@ -125,13 +146,13 @@ bool Tictactoe::isValidMove(uint row, uint col) {
   return board_[row][col] == EMPTY;
 }
 
-std::vector<std::shared_ptr<GameState>> Tictactoe::putMark(BoardEntry player) {
+std::vector<std::shared_ptr<GameState>> Tictactoe::putMark(TBoardEntry player) {
   std::vector<std::shared_ptr<GameState>> next_states;
   for (uint i = 0; i < board_.size(); ++i) {
     for (uint j = 0; j < board_[i].size(); ++j) {
       if (board_[i][j] == EMPTY) {
         std::shared_ptr<Tictactoe> next_state = std::make_shared<Tictactoe>();
-        std::vector<std::vector<BoardEntry>> next_board(board_);
+        std::vector<std::vector<TBoardEntry>> next_board(board_);
         next_board[i][j] = player;
         next_state->setBoard(next_board);
         next_states.push_back(next_state);
@@ -141,7 +162,7 @@ std::vector<std::shared_ptr<GameState>> Tictactoe::putMark(BoardEntry player) {
   return next_states;
 }
 
-int Tictactoe::getMarkCount(BoardEntry player) {
+int Tictactoe::getMarkCount(TBoardEntry player) {
   int count = 0;
   for (auto &row : board_) {
     for (auto &cell : row) {
@@ -153,7 +174,7 @@ int Tictactoe::getMarkCount(BoardEntry player) {
   return count;
 }
 
-int Tictactoe::getMaxCount(BoardEntry player) {
+int Tictactoe::getMaxCount(TBoardEntry player) {
   int max_count = 0;
   // check rows & cols
   for (uint i = 0; i < 3; i++) {

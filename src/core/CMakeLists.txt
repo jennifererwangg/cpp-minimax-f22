@@ -13,7 +13,6 @@ set (HEADERS
   players/base_player.h
   players/automatic_player.h
   players/interactive_player.h
-  players/checkers_player.h
 )
 
 set (SOURCES
@@ -25,7 +24,6 @@ set (SOURCES
   players/base_player.cc
   players/automatic_player.cc
   players/interactive_player.cc
-  players/checkers_player.cc
 )
 
 set (SYSTEM_INCLUDES
