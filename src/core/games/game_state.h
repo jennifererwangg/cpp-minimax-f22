@@ -80,12 +80,16 @@ public:
    * Prints the winner of the game, only called when the game is done.
    */
   virtual void printWinner();
+<<<<<<< HEAD
 
   /**
    * \brief processUserInput(): Prompt for and process user input.
    * Interacts with the user in order to take in and then process input. Should prompt the user for
    * input, and then make a move accordingly on the game board.
    */
+=======
+  // prompt for, take in, and process user input
+>>>>>>> 1b6e7a5c9343c57851ab09303183f49e0576f60b
   virtual void processUserInput();
 
 protected:
