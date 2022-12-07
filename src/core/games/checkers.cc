@@ -27,7 +27,6 @@ bool Checkers::isDone() {
 }
 
 int Checkers::evalHeuristics() {
-  // TODO: improve this
   if (white_turn) {
     return countPieces(WHITE, WHITE_KING) - countPieces(BLACK, BLACK_KING);
   } else {
@@ -72,12 +71,8 @@ std::vector<std::shared_ptr<GameState>> Checkers::getNextState() {
 
   for (int i = 0; i < 8; i++) {
     for (int j = 0; j < 8; j++) {
-      // TODO: implement double jumping
-      // TODO: can only jump into empty space
       std::shared_ptr<GameState> next_state;
       bool isValid;
-
-
       if (white_turn && board[static_cast<unsigned long>(i)][static_cast<unsigned long>(j)] == WHITE) {
         // left and down
         tie(isValid, next_state) = moveLeftAndDown(i, j, BLACK, BLACK_KING);
@@ -133,7 +128,6 @@ std::vector<std::shared_ptr<GameState>> Checkers::getNextState() {
         // right and up
         tie(isValid, next_state) = moveRightAndUp(i, j, WHITE, WHITE_KING);
         if(isValid) next_states.push_back(next_state);
-
       }
     }
   }
@@ -141,7 +135,6 @@ std::vector<std::shared_ptr<GameState>> Checkers::getNextState() {
   if (white_turn) white_next_states = static_cast<int>(next_states.size());
   else black_next_states = static_cast<int>(next_states.size());
 
-  // std::cout << "Next states num : " << next_states.size() << "\n";
   return next_states;
 }
 
@@ -300,7 +293,6 @@ bool Checkers::isValidMove(std::vector<int> initialPlace, std::vector<int> newPl
 
   // cannot move straight
   if(initialPlace[0] == newPlace[0] || initialPlace[1] == newPlace[1]) {
-
     return false;
   }
 

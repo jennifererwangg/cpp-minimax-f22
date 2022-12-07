@@ -1,0 +1,117 @@
+
+\begin{DoxyItemize}
+\item Minimax Library
+\begin{DoxyItemize}
+\item How to run
+\item Design
+\item Pointer Management Tips
+\item Compilation Tips
+\item Current Directory Structure (inside \`{}src\`{})
+\item TODO
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md___users_theodoremcnulty__programming_generic_minimax__r_e_a_d_m_e_autotoc_md3}{}\doxysection{Minimax Library}\label{md___users_theodoremcnulty__programming_generic_minimax__r_e_a_d_m_e_autotoc_md3}
+\hypertarget{md___users_theodoremcnulty__programming_generic_minimax__r_e_a_d_m_e_autotoc_md4}{}\doxysubsection{How to run}\label{md___users_theodoremcnulty__programming_generic_minimax__r_e_a_d_m_e_autotoc_md4}
+
+\begin{DoxyEnumerate}
+\item Make 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mkdir build}
+\DoxyCodeLine{cd build}
+\DoxyCodeLine{cmake -\/DCMAKE\_BUILD\_TYPE=Release ..}
+\DoxyCodeLine{make}
+
+\end{DoxyCode}
+
+\item Stay inside the build directory
+\item To run the main executable (play a game)\+: {\ttfamily ./src/minimax\+\_\+exe/minimax\+\_\+exe}
+\item To run tests\+: {\ttfamily ./src/tests/minimax\+\_\+tests}
+\end{DoxyEnumerate}\hypertarget{md___users_theodoremcnulty__programming_generic_minimax__r_e_a_d_m_e_autotoc_md5}{}\doxysubsection{Design}\label{md___users_theodoremcnulty__programming_generic_minimax__r_e_a_d_m_e_autotoc_md5}
+There are 2 main components to the Mini\+Max library.
+\begin{DoxyEnumerate}
+\item Everything related to the minimax algorithm is located in the {\ttfamily core/solver} folder
+\item Everything related to the game is located in the {\ttfamily core/games} folder.
+\end{DoxyEnumerate}
+
+{\bfseries{Hierarchical design}}\+: Game Inheritance example for tictactoe (node is there to help with pointer management) Game\+State -\/\texorpdfstring{$>$}{>} Tictactoe
+
+Minimax Algorithm strictly uses {\ttfamily Game\+State}. It does not know anything about {\ttfamily Tictactoe}.
+
+TODO\+: make a class/folder called \char`\"{}players\char`\"{} that contains all kinds of players. This will be used by {\ttfamily minimax\+\_\+exe/main.\+cc}. For example\+:
+\begin{DoxyItemize}
+\item base (automatic/interactive/concurrent) player
+\item tictactoe automatic player, tictactoe interactive player, tictactoe concurrent player
+\item 2048 automatic player, ...
+\end{DoxyItemize}
+
+{\bfseries{All documentation is located in the {\ttfamily .h} files}}\hypertarget{md___users_theodoremcnulty__programming_generic_minimax__r_e_a_d_m_e_autotoc_md6}{}\doxysubsection{Pointer Management Tips}\label{md___users_theodoremcnulty__programming_generic_minimax__r_e_a_d_m_e_autotoc_md6}
+To create a shared pointer\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::shared\_ptr<ClassName> pointer = std::make\_shared<ClassName>();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// example:}}
+\DoxyCodeLine{std::shared\_ptr<Tictactoe> tictactoe\_ptr = std::make\_shared<TicTacToe>();}
+
+\end{DoxyCode}
+\hypertarget{md___users_theodoremcnulty__programming_generic_minimax__r_e_a_d_m_e_autotoc_md7}{}\doxysubsection{Compilation Tips}\label{md___users_theodoremcnulty__programming_generic_minimax__r_e_a_d_m_e_autotoc_md7}
+If you add a new file/directory, make sure to update the corresponding {\ttfamily CMake\+List.\+txt} as well!\hypertarget{md___users_theodoremcnulty__programming_generic_minimax__r_e_a_d_m_e_autotoc_md8}{}\doxysubsection{Current Directory Structure (inside $<$tt$>$src$<$/tt$>$)}\label{md___users_theodoremcnulty__programming_generic_minimax__r_e_a_d_m_e_autotoc_md8}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{.}
+\DoxyCodeLine{├── CMakeLists.txt}
+\DoxyCodeLine{├── core}
+\DoxyCodeLine{│   ├── CMakeLists.txt}
+\DoxyCodeLine{│   ├── games}
+\DoxyCodeLine{│   │   ├── checkers.cc}
+\DoxyCodeLine{│   │   ├── checkers.h}
+\DoxyCodeLine{│   │   ├── game\_state.cc}
+\DoxyCodeLine{│   │   ├── game\_state.h}
+\DoxyCodeLine{│   │   ├── isolation.cc}
+\DoxyCodeLine{│   │   ├── isolation.h}
+\DoxyCodeLine{│   │   ├── tictactoe.cc}
+\DoxyCodeLine{│   │   └── tictactoe.h}
+\DoxyCodeLine{│   ├── players}
+\DoxyCodeLine{│   │   ├── automatic\_player.cc}
+\DoxyCodeLine{│   │   ├── automatic\_player.h}
+\DoxyCodeLine{│   │   ├── base\_player.cc}
+\DoxyCodeLine{│   │   ├── base\_player.h}
+\DoxyCodeLine{│   │   ├── checkers\_player.cc}
+\DoxyCodeLine{│   │   ├── checkers\_player.h}
+\DoxyCodeLine{│   │   ├── interactive\_player.cc}
+\DoxyCodeLine{│   │   └── interactive\_player.h}
+\DoxyCodeLine{│   └── solver}
+\DoxyCodeLine{│       ├── minimax\_solver.cc}
+\DoxyCodeLine{│       └── minimax\_solver.h}
+\DoxyCodeLine{├── games\_exe}
+\DoxyCodeLine{│   ├── checkers}
+\DoxyCodeLine{│   │   ├── CMakeLists.txt}
+\DoxyCodeLine{│   │   └── main.cc}
+\DoxyCodeLine{│   ├── isolation}
+\DoxyCodeLine{│   │   ├── CMakeLists.txt}
+\DoxyCodeLine{│   │   └── main.cc}
+\DoxyCodeLine{│   └── tictactoe}
+\DoxyCodeLine{│       ├── CMakeLists.txt}
+\DoxyCodeLine{│       └── main.cc}
+\DoxyCodeLine{└── tests}
+\DoxyCodeLine{    ├── CMakeLists.txt}
+\DoxyCodeLine{    ├── checkers\_tests}
+\DoxyCodeLine{    │   ├── checkers\_test.cc}
+\DoxyCodeLine{    │   └── checkers\_test.h}
+\DoxyCodeLine{    ├── isolation\_tests}
+\DoxyCodeLine{    │   ├── isolation\_tests.cc}
+\DoxyCodeLine{    │   └── isolation\_tests.h}
+\DoxyCodeLine{    ├── performance}
+\DoxyCodeLine{    │   ├── performance\_tests.cc}
+\DoxyCodeLine{    │   └── performance\_tests.h}
+\DoxyCodeLine{    ├── tests.cc}
+\DoxyCodeLine{    └── tictactoe\_tests}
+\DoxyCodeLine{        ├── tictactoe\_tests.cc}
+\DoxyCodeLine{        └── tictactoe\_tests.h}
+
+\end{DoxyCode}
+\hypertarget{md___users_theodoremcnulty__programming_generic_minimax__r_e_a_d_m_e_autotoc_md9}{}\doxysubsection{TODO}\label{md___users_theodoremcnulty__programming_generic_minimax__r_e_a_d_m_e_autotoc_md9}
+Tic tac toe
+\begin{DoxyItemize}
+\item \mbox{[} \mbox{]} Implement a tic tac toe player (instead of the automated one in {\ttfamily minimax\+\_\+exe/main.\+cc}) -- see TODO in the design section for more details
+\end{DoxyItemize}
+
+Others ... 

@@ -7,9 +7,18 @@
 namespace minimax {
 namespace core {
 
+/**
+ * \brief The implementation of the minimax algorithm.
+ * 
+ * This class contains the acutal implementation of the minimax algorithm. It is game-agnostic, as it only 
+ * calls functions on the GameState base class, which all of the implemented games rely on.
+ */
 class MinimaxSolver {
 public:
 
+  /**
+   * \brief 
+   */
   MinimaxSolver(int max_depth);
 
   // return the best state to play for the player

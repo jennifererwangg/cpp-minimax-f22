@@ -13,17 +13,59 @@ namespace checkers {
 enum CBoardEntry { BLACK = 'b', WHITE = 'w', BLACK_KING = 'B', WHITE_KING = 'W', EMPTY = '-' };
 using Board = std::vector<std::vector<CBoardEntry>>;
 
+
+/**
+ * \brief The checkers game.
+ * 
+ * This class implements a checkers game with an 8x8 board.
+ */
 class Checkers : public GameState {  
 public:
 
   explicit Checkers();
 
-  // GameState BoardEntryerface
+  /**
+   * \brief Checks that both colors have pieces left that can move.
+   * 
+   * \return true if the game is over, false if not.
+   */
   bool isDone() override;
+
+  /**
+   * \brief Finds utility of board.
+   * 
+   * Calculates utility of board state by taking the difference in the number of pieces between the two colors.
+   * 
+   * \return the utility of the board for the current player.
+   */
   int evalHeuristics() override;
+
+  /**
+   * \brief Prints checkers board.
+   */
   void printState() override;
+
+  /**
+   * \brief Generate all possible checkers moves.
+   * 
+   * Attempts to move each piece in all possible directions. Also attempts to jump pieces when possible.
+   * 
+   * \return a list of all of the possible next states for the game.
+   */
   std::vector<std::shared_ptr<GameState>> getNextState() override;
+
+  /**
+   * \brief Determine winner of checkers game.
+   * 
+   * Checks if either color has lost all their pieces, and then checks if any player has no moves left.
+   */
   void printWinner() override;
+
+  /**
+   * \brief Determine winner of checkers game.
+   * 
+   * Checks if either color has lost all their pieces, and then checks if any player has no moves left.
+   */
   void processUserInput() override;
 
 

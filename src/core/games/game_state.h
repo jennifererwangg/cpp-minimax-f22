@@ -10,7 +10,8 @@ namespace core {
 using uint = unsigned int;
 
 /**
- * GameState class
+ * \brief Represent game state.
+ * 
  * This class is used to represent the state of a game being implemented. It is a base class
  * with virtual functions, and all game implementations should inherit from it.
  * 
@@ -30,7 +31,7 @@ public:
    */
   
   /**
-   * getNextState()
+   * \brief getNextState(): Generate all possible next moves.
    * This function creates the search space for the next iteration of the minimax algorithm.
    * From the current board state, it should generate all of the next possible moves that 
    * could be made by the current player.
@@ -42,7 +43,7 @@ public:
   virtual std::vector<std::shared_ptr<GameState>> getNextState();
 
   /**
-   * evalHeuristics()
+   * \brief evalHeuristics(): Determinte the utility of a state.
    * This function decides how favorable the current board state is for the player. The
    * higher the number, the more favorable the state is for the current player. This can 
    * be as simple as (for example, in checkers) counting the number of pieces on the board
@@ -54,7 +55,7 @@ public:
   virtual int evalHeuristics();
 
   /**
-   * isDone()
+   * \brief isDone(): Is the game done?
    * This function evaluates whether or not the game is over. It can do this by checking if 
    * the board is full, if there are no moves left for a player, or some other option indicating
    * whether or not the game has finished.
@@ -68,15 +69,23 @@ public:
    */
   
   /**
-   * printState()
+   * \brief printState(): Print the game board.
    * Prints the game board along with any other information about the game that should be seen
    * by the player.
    */
   virtual void printState();
   
-  // get the winner of the game
+  /**
+   * \brief printWinner(): Print the winner of a completed game.
+   * Prints the winner of the game, only called when the game is done.
+   */
   virtual void printWinner();
 
+  /**
+   * \brief processUserInput(): Prompt for and process user input.
+   * Interacts with the user in order to take in and then process input. Should prompt the user for
+   * input, and then make a move accordingly on the game board.
+   */
   virtual void processUserInput();
 
 protected:

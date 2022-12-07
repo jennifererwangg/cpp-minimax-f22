@@ -1,0 +1,37 @@
+The core of our Minimax library lays in the core folder. Here is an overview of the major components. 
+
+At its top, we have the generic minimax solver. It has an {\ttfamily evaluate} that kicks off the minimax algorithm. When the algorithm queries for states specific to the game, uses four generic functions built in the {\ttfamily Game\+State} generic class\+: {\ttfamily get\+Next\+State()}, {\ttfamily eval\+Heuristics()}, and {\ttfamily is\+Done()}.
+
+Individual games, such as checkers, isolation, and tictactoe must implement the three functions above in order to utilize the minimax solver. Of course, these classes can contain many other functions to manipulate its own state.
+
+We also implemented a generic player library that facilitates the playing of the games. There are two main types of players\+: automatic player and interactive player. The automatic player, implemented via the {\ttfamily Automatic\+Player} class, simulates the playing of two opponents via optimal strategies, while the interactive player, implemented via the {\ttfamily Interactive\+Player} class, allows users to directly play games on the terminal. Both types of players inherit from the base class {\ttfamily Base\+Player} and must implement the {\ttfamily play} function.
+
+Both {\ttfamily Automatic\+Player} and {\ttfamily Interactive\+Player} invoke the four functions {\ttfamily print\+State()}, {\ttfamily make\+Move()}, {\ttfamily get\+Winner()}, and {\ttfamily set\+Player} from the base Game\+State class. Similar to the minimax framework above, it is also the individual game\textquotesingle{}s responsibility to implement these four generic functions.
+
+In summary, our library is very adaptable for supporting new games. In order to utilize the minimax solver, one will need to implement three functions specific to state management\+: {\ttfamily get\+Next\+State()}, {\ttfamily eval\+Heuristics()}, and {\ttfamily is\+Done()}. In order to support automatic and interactive player, one will need to implement another set of functions\+: {\ttfamily print\+State()}, {\ttfamily make\+Move()}, {\ttfamily get\+Winner()}, and {\ttfamily set\+Player}.\hypertarget{md___users_theodoremcnulty__programming_generic_minimax__design_autotoc_md1}{}\doxysection{Performance}\label{md___users_theodoremcnulty__programming_generic_minimax__design_autotoc_md1}
+We measured the performance of the tictactoe game at various search depths and found that as expected, greater search depths lead to longer runtime. As the board becomes less empty, the max search depth decreases, leading to faster runtime.
+
+The runtime is also impacted by alpha-\/beta pruning. We can drastically decrease runtime after utilizing alpha-\/beta pruning.
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Tictactoe Runtime Performance With Alpha-\/beta Pruning   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Tictactoe Runtime Performance Without Alpha-\/beta Pruning    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Tictactoe Runtime Performance With Alpha-\/beta Pruning   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Tictactoe Runtime Performance Without Alpha-\/beta Pruning    }\\\cline{1-2}
+\endhead
+   &   \\\cline{1-2}
+\end{longtabu}
+
+
+A comparison between pruning vs. no pruning is made for an initially empty tic-\/tac-\/toe board. We can see that especially when the max search depth is very large, alpha-\/beta pruning reduces the search time by more than 1/2.
+
+\hypertarget{md___users_theodoremcnulty__programming_generic_minimax__design_autotoc_md2}{}\doxysection{Looking ahead\+: C++ 20}\label{md___users_theodoremcnulty__programming_generic_minimax__design_autotoc_md2}
+Currently, clang does not fully support C++ 20. However, in the future, if this changes, we hope to incorporate the following into our library\+:
+\begin{DoxyItemize}
+\item Modules\+: export the minimax solver as modules
+\item Parallelism\+: support parallel evaluation of the minimax algorithm for better performance 
+\end{DoxyItemize}

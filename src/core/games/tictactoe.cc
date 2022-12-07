@@ -95,10 +95,10 @@ void Tictactoe::processUserInput() {
   std::string x = "", y = "";
   uint x_int = 10, y_int = 10;
   while (true) {
-    std::cout << "Enter x (0 to 2): ";
+    std::cout << "Enter the row number (0 to 2): ";
     std::cin >> x;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::cout << "Enter y (0 to 2): ";
+    std::cout << "Enter the column number (0 to 2): ";
     std::cin >> y;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     // if x and y are not integers, continue
@@ -119,11 +119,11 @@ void Tictactoe::processUserInput() {
 void Tictactoe::printWinner() {
   if (getMaxCount(X) == 3) {
     std::cout << "X wins!\n";
-  }
-  if (getMaxCount(O) == 3) {
+  } else if (getMaxCount(O) == 3) {
     std::cout << "O wins!\n";
+  } else {
+    std::cout << "Draw!\n";
   }
-  std::cout << "Draw!\n";
 }
 
 /**
