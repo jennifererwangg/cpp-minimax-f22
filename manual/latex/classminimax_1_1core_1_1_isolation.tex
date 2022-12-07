@@ -1,0 +1,140 @@
+\hypertarget{classminimax_1_1core_1_1_isolation}{}\doxysection{minimax\+::core\+::Isolation Class Reference}
+\label{classminimax_1_1core_1_1_isolation}\index{minimax::core::Isolation@{minimax::core::Isolation}}
+Inheritance diagram for minimax\+::core\+::Isolation\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classminimax_1_1core_1_1_isolation}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1_isolation_a01bf2806e19dc6d47dc8e49fc6e3ccba}\label{classminimax_1_1core_1_1_isolation_a01bf2806e19dc6d47dc8e49fc6e3ccba}} 
+{\bfseries Isolation} (const int player=1)
+\item 
+bool \mbox{\hyperlink{classminimax_1_1core_1_1_isolation_acf7f65bfe8a981f2cda53ede23ca90ec}{is\+Done}} () override
+\item 
+int \mbox{\hyperlink{classminimax_1_1core_1_1_isolation_a1da382c75419ef2f5ee20bc9c05376ec}{eval\+Heuristics}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classminimax_1_1core_1_1_isolation_a1da382c75419ef2f5ee20bc9c05376ec}{eval\+Heuristics()}}\+: Determinte the utility of a state. This function decides how favorable the current board state is for the player. The higher the number, the more favorable the state is for the current player. This can be as simple as (for example, in checkers) counting the number of pieces on the board for the current player, or can be a complex algorithm evaluating many different factors for how favorable the current state is for the player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classminimax_1_1core_1_1_isolation_a52f20acee782a64534571f2df9636332}{print\+State}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classminimax_1_1core_1_1_isolation_a52f20acee782a64534571f2df9636332}{print\+State()}}\+: Print the game board. Prints the game board along with any other information about the game that should be seen by the player. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} $>$ $>$ \mbox{\hyperlink{classminimax_1_1core_1_1_isolation_a854c505c8ffd4f7645f3b958c00bf7a7}{get\+Next\+State}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classminimax_1_1core_1_1_isolation_a854c505c8ffd4f7645f3b958c00bf7a7}{get\+Next\+State()}}\+: Generate all possible next moves. This function creates the search space for the next iteration of the minimax algorithm. From the current board state, it should generate all of the next possible moves that could be made by the current player. Eg. for tic tac toe, then we would generate all of the next states by placing an X in all of the empty spots of the board. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classminimax_1_1core_1_1_isolation_ab945b75bf1e48800d5c15033ab85884e}{print\+Winner}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classminimax_1_1core_1_1_isolation_ab945b75bf1e48800d5c15033ab85884e}{print\+Winner()}}\+: Print the winner of a completed game. Prints the winner of the game, only called when the game is done. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classminimax_1_1core_1_1_isolation_a1922ea5b25667fe2c7379c8ae7b631d8}{process\+User\+Input}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classminimax_1_1core_1_1_isolation_a1922ea5b25667fe2c7379c8ae7b631d8}{process\+User\+Input()}}\+: Prompt for and process user input. Interacts with the user in order to take in and then process input. Should prompt the user for input, and then make a move accordingly on the game board. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classminimax_1_1core_1_1_isolation_ab277e7865a8175d931a645a4d6a46905}{make\+Move}} (uint y, uint x)
+\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1_isolation_ab24413989163b4a259c6e4e8b0820e54}\label{classminimax_1_1core_1_1_isolation_ab24413989163b4a259c6e4e8b0820e54}} 
+std\+::vector$<$ std\+::vector$<$ IBoard\+Entry $>$ $>$ {\bfseries get\+Board} ()
+\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1_isolation_ac5fd6149524685c5f5823c7c183fdbdb}\label{classminimax_1_1core_1_1_isolation_ac5fd6149524685c5f5823c7c183fdbdb}} 
+void {\bfseries set\+Board} (const std\+::vector$<$ std\+::vector$<$ IBoard\+Entry $>$ $>$ \&board)
+\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1_isolation_a52187a54c06c09d37598d27d64da2473}\label{classminimax_1_1core_1_1_isolation_a52187a54c06c09d37598d27d64da2473}} 
+void {\bfseries set\+Player} (int p)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classminimax_1_1core_1_1_isolation_a1da382c75419ef2f5ee20bc9c05376ec}\label{classminimax_1_1core_1_1_isolation_a1da382c75419ef2f5ee20bc9c05376ec}} 
+\index{minimax::core::Isolation@{minimax::core::Isolation}!evalHeuristics@{evalHeuristics}}
+\index{evalHeuristics@{evalHeuristics}!minimax::core::Isolation@{minimax::core::Isolation}}
+\doxysubsubsection{\texorpdfstring{evalHeuristics()}{evalHeuristics()}}
+{\footnotesize\ttfamily int minimax\+::core\+::\+Isolation\+::eval\+Heuristics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{classminimax_1_1core_1_1_isolation_a1da382c75419ef2f5ee20bc9c05376ec}{eval\+Heuristics()}}\+: Determinte the utility of a state. This function decides how favorable the current board state is for the player. The higher the number, the more favorable the state is for the current player. This can be as simple as (for example, in checkers) counting the number of pieces on the board for the current player, or can be a complex algorithm evaluating many different factors for how favorable the current state is for the player. 
+
+\begin{DoxyReturn}{Returns}
+an integer representing how favorable the board state is for the current player. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classminimax_1_1core_1_1_game_state_a178b4ea2badf75bf260eedc9562f456c}{minimax\+::core\+::\+Game\+State}}.
+
+\mbox{\Hypertarget{classminimax_1_1core_1_1_isolation_a854c505c8ffd4f7645f3b958c00bf7a7}\label{classminimax_1_1core_1_1_isolation_a854c505c8ffd4f7645f3b958c00bf7a7}} 
+\index{minimax::core::Isolation@{minimax::core::Isolation}!getNextState@{getNextState}}
+\index{getNextState@{getNextState}!minimax::core::Isolation@{minimax::core::Isolation}}
+\doxysubsubsection{\texorpdfstring{getNextState()}{getNextState()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} $>$ $>$ minimax\+::core\+::\+Isolation\+::get\+Next\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{classminimax_1_1core_1_1_isolation_a854c505c8ffd4f7645f3b958c00bf7a7}{get\+Next\+State()}}\+: Generate all possible next moves. This function creates the search space for the next iteration of the minimax algorithm. From the current board state, it should generate all of the next possible moves that could be made by the current player. Eg. for tic tac toe, then we would generate all of the next states by placing an X in all of the empty spots of the board. 
+
+Used by the Minimax Solver 
+
+\begin{DoxyReturn}{Returns}
+A vector of all the possible next game states 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classminimax_1_1core_1_1_game_state_af5111dc0caf8363b2d03dc92c38be983}{minimax\+::core\+::\+Game\+State}}.
+
+\mbox{\Hypertarget{classminimax_1_1core_1_1_isolation_acf7f65bfe8a981f2cda53ede23ca90ec}\label{classminimax_1_1core_1_1_isolation_acf7f65bfe8a981f2cda53ede23ca90ec}} 
+\index{minimax::core::Isolation@{minimax::core::Isolation}!isDone@{isDone}}
+\index{isDone@{isDone}!minimax::core::Isolation@{minimax::core::Isolation}}
+\doxysubsubsection{\texorpdfstring{isDone()}{isDone()}}
+{\footnotesize\ttfamily bool minimax\+::core\+::\+Isolation\+::is\+Done (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} interface 
+
+Reimplemented from \mbox{\hyperlink{classminimax_1_1core_1_1_game_state_ad3b1d57e1ac090e507508f9a912c7068}{minimax\+::core\+::\+Game\+State}}.
+
+\mbox{\Hypertarget{classminimax_1_1core_1_1_isolation_ab277e7865a8175d931a645a4d6a46905}\label{classminimax_1_1core_1_1_isolation_ab277e7865a8175d931a645a4d6a46905}} 
+\index{minimax::core::Isolation@{minimax::core::Isolation}!makeMove@{makeMove}}
+\index{makeMove@{makeMove}!minimax::core::Isolation@{minimax::core::Isolation}}
+\doxysubsubsection{\texorpdfstring{makeMove()}{makeMove()}}
+{\footnotesize\ttfamily bool minimax\+::core\+::\+Isolation\+::make\+Move (\begin{DoxyParamCaption}\item[{uint}]{row,  }\item[{uint}]{col }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classminimax_1_1core_1_1_isolation}{Isolation}} game specific functions \mbox{\Hypertarget{classminimax_1_1core_1_1_isolation_a52f20acee782a64534571f2df9636332}\label{classminimax_1_1core_1_1_isolation_a52f20acee782a64534571f2df9636332}} 
+\index{minimax::core::Isolation@{minimax::core::Isolation}!printState@{printState}}
+\index{printState@{printState}!minimax::core::Isolation@{minimax::core::Isolation}}
+\doxysubsubsection{\texorpdfstring{printState()}{printState()}}
+{\footnotesize\ttfamily void minimax\+::core\+::\+Isolation\+::print\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{classminimax_1_1core_1_1_isolation_a52f20acee782a64534571f2df9636332}{print\+State()}}\+: Print the game board. Prints the game board along with any other information about the game that should be seen by the player. 
+
+Used by players 
+
+Reimplemented from \mbox{\hyperlink{classminimax_1_1core_1_1_game_state_ad40857dd2fb1710df3af8a2b71463f92}{minimax\+::core\+::\+Game\+State}}.
+
+\mbox{\Hypertarget{classminimax_1_1core_1_1_isolation_ab945b75bf1e48800d5c15033ab85884e}\label{classminimax_1_1core_1_1_isolation_ab945b75bf1e48800d5c15033ab85884e}} 
+\index{minimax::core::Isolation@{minimax::core::Isolation}!printWinner@{printWinner}}
+\index{printWinner@{printWinner}!minimax::core::Isolation@{minimax::core::Isolation}}
+\doxysubsubsection{\texorpdfstring{printWinner()}{printWinner()}}
+{\footnotesize\ttfamily void minimax\+::core\+::\+Isolation\+::print\+Winner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{classminimax_1_1core_1_1_isolation_ab945b75bf1e48800d5c15033ab85884e}{print\+Winner()}}\+: Print the winner of a completed game. Prints the winner of the game, only called when the game is done. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classminimax_1_1core_1_1_game_state_ad490c3da8f58211c10330edc8d3f3ba3}{minimax\+::core\+::\+Game\+State}}.
+
+\mbox{\Hypertarget{classminimax_1_1core_1_1_isolation_a1922ea5b25667fe2c7379c8ae7b631d8}\label{classminimax_1_1core_1_1_isolation_a1922ea5b25667fe2c7379c8ae7b631d8}} 
+\index{minimax::core::Isolation@{minimax::core::Isolation}!processUserInput@{processUserInput}}
+\index{processUserInput@{processUserInput}!minimax::core::Isolation@{minimax::core::Isolation}}
+\doxysubsubsection{\texorpdfstring{processUserInput()}{processUserInput()}}
+{\footnotesize\ttfamily void minimax\+::core\+::\+Isolation\+::process\+User\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{classminimax_1_1core_1_1_isolation_a1922ea5b25667fe2c7379c8ae7b631d8}{process\+User\+Input()}}\+: Prompt for and process user input. Interacts with the user in order to take in and then process input. Should prompt the user for input, and then make a move accordingly on the game board. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classminimax_1_1core_1_1_game_state_ae62f434ab6900c70890c6254aa68d8cd}{minimax\+::core\+::\+Game\+State}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/theodoremcnulty/\+Programming/generic-\/minimax/src/core/games/isolation.\+h\item 
+/\+Users/theodoremcnulty/\+Programming/generic-\/minimax/src/core/games/isolation.\+cc\end{DoxyCompactItemize}

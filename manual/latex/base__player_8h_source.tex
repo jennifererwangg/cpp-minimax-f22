@@ -1,0 +1,32 @@
+\hypertarget{base__player_8h_source}{}\doxysection{base\+\_\+player.\+h}
+\label{base__player_8h_source}\index{/Users/theodoremcnulty/Programming/generic-\/minimax/src/core/players/base\_player.h@{/Users/theodoremcnulty/Programming/generic-\/minimax/src/core/players/base\_player.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}core/games/game\_state.h"{}}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{namespace }minimax \{}
+\DoxyCodeLine{9 \textcolor{keyword}{namespace }core \{}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{17 \textcolor{keyword}{class }\mbox{\hyperlink{classminimax_1_1core_1_1_base_player}{BasePlayer}} \{}
+\DoxyCodeLine{18 \textcolor{keyword}{public}:}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{26   \textcolor{keyword}{explicit} \mbox{\hyperlink{classminimax_1_1core_1_1_base_player}{BasePlayer}}(std::shared\_ptr<GameState> game, \textcolor{keywordtype}{int} depth);}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{31   \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classminimax_1_1core_1_1_base_player_ac89c1b806d47bc1985554a9df0afda70}{play}}();}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{34   std::shared\_ptr<GameState> game\_; \textcolor{comment}{// pointer to game}}
+\DoxyCodeLine{35   \textcolor{keywordtype}{int} depth\_;                       \textcolor{comment}{// max depth of minimax search}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{keyword}{private}:}
+\DoxyCodeLine{38 \};}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \}  \textcolor{comment}{// namespace core}}
+\DoxyCodeLine{41 \}  \textcolor{comment}{// namespace minimax}}
+
+\end{DoxyCode}

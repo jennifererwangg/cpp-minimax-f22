@@ -5,6 +5,12 @@
 namespace minimax {
 namespace core {
 
+/**
+ * \brief Represents an automatic player.
+ * 
+ * This class is used to represent an automatic game player, which pits two
+ * AI players against each other.
+ */
 class AutomaticPlayer : public BasePlayer {
 public:
 

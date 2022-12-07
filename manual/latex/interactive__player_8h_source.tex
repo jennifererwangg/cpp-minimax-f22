@@ -1,0 +1,32 @@
+\hypertarget{interactive__player_8h_source}{}\doxysection{interactive\+\_\+player.\+h}
+\label{interactive__player_8h_source}\index{/Users/theodoremcnulty/Programming/generic-\/minimax/src/core/players/interactive\_player.h@{/Users/theodoremcnulty/Programming/generic-\/minimax/src/core/players/interactive\_player.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}core/players/base\_player.h"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}core/games/game\_state.h"{}}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{namespace }minimax \{}
+\DoxyCodeLine{8 \textcolor{keyword}{namespace }core \{}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{17 \textcolor{keyword}{class }\mbox{\hyperlink{classminimax_1_1core_1_1_interactive_player}{InteractivePlayer}} : \textcolor{keyword}{public} \mbox{\hyperlink{classminimax_1_1core_1_1_base_player}{BasePlayer}} \{}
+\DoxyCodeLine{18 \textcolor{keyword}{public}:}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20   \textcolor{keyword}{explicit} \mbox{\hyperlink{classminimax_1_1core_1_1_interactive_player}{InteractivePlayer}}(std::shared\_ptr<GameState> game, \textcolor{keywordtype}{int} depth);}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22   \textcolor{keywordtype}{void} \mbox{\hyperlink{classminimax_1_1core_1_1_interactive_player_a32214c70f1ef9ec5f87064dfc41aa9e9}{play}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{25   std::shared\_ptr<GameState> game\_state\_; \textcolor{comment}{// pointer to game state}}
+\DoxyCodeLine{26   std::string player\_name\_; \textcolor{comment}{// name of player}}
+\DoxyCodeLine{27   std::string opponent\_name\_; \textcolor{comment}{// name of opponent}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{keyword}{private}:}
+\DoxyCodeLine{30 \};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \}  \textcolor{comment}{// namespace core}}
+\DoxyCodeLine{33 \}  \textcolor{comment}{// namespace minimax}}
+
+\end{DoxyCode}

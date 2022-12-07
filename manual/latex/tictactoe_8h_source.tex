@@ -1,0 +1,60 @@
+\hypertarget{tictactoe_8h_source}{}\doxysection{tictactoe.\+h}
+\label{tictactoe_8h_source}\index{/Users/theodoremcnulty/Programming/generic-\/minimax/src/core/games/tictactoe.h@{/Users/theodoremcnulty/Programming/generic-\/minimax/src/core/games/tictactoe.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}core/games/game\_state.h"{}}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{keyword}{namespace }minimax \{}
+\DoxyCodeLine{10 \textcolor{keyword}{namespace }core \{}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{enum} TBoardEntry \{ X = \textcolor{charliteral}{'X'}, O = \textcolor{charliteral}{'O'}, EMPTY = \textcolor{charliteral}{'-\/'} \};}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe}{Tictactoe}} : \textcolor{keyword}{public} \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{GameState}} \{  }
+\DoxyCodeLine{15 \textcolor{keyword}{public}:}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17   \textcolor{keyword}{explicit} \mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe}{Tictactoe}}();}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19   \textcolor{comment}{// GameState interface}}
+\DoxyCodeLine{20   \textcolor{keywordtype}{bool} \mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe_ae0d0222fd5907d97a710c8269a536a5d}{isDone}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{21   \textcolor{keywordtype}{int} \mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe_aa739b0b6ee6cac481c23c3d1d7460fde}{evalHeuristics}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{22   \textcolor{keywordtype}{void} \mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe_a0db3d26444062661189baa7749b489d3}{printState}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{23   std::vector<std::shared\_ptr<GameState>> \mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe_a959592fcda3ca561d831eb4824761233}{getNextState}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{24   \textcolor{keywordtype}{void} \mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe_abeda242d2ada5829e426d077a4c0b732}{printWinner}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{25   \textcolor{keywordtype}{void} \mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe_a38c889dd85c937a8d0117ba70991b8a0}{processUserInput}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27   \textcolor{comment}{// getters \& setters}}
+\DoxyCodeLine{28   \textcolor{keyword}{inline} std::vector<std::vector<TBoardEntry>> getBoard() \{}
+\DoxyCodeLine{29     \textcolor{keywordflow}{return} board\_;}
+\DoxyCodeLine{30   \}}
+\DoxyCodeLine{31   \textcolor{keyword}{inline} \textcolor{keywordtype}{void} setBoard(\textcolor{keyword}{const} std::vector<std::vector<TBoardEntry>> \&board) \{}
+\DoxyCodeLine{32     board\_ = board;}
+\DoxyCodeLine{33   \}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35   \textcolor{comment}{// game-\/specific functions}}
+\DoxyCodeLine{36   \textcolor{comment}{// return the number of marks in a row/column/diagonal}}
+\DoxyCodeLine{37   \textcolor{keywordtype}{int} getMaxCount(TBoardEntry player);}
+\DoxyCodeLine{38   \textcolor{comment}{// return the number of marks on the board for a given player (used to check which player plays next)}}
+\DoxyCodeLine{39   \textcolor{keywordtype}{int} getMarkCount(TBoardEntry player);}
+\DoxyCodeLine{40   \textcolor{comment}{// place a mark on an empty cell of the board for a given player (ex: place X at position 1,1)}}
+\DoxyCodeLine{41   std::vector<std::shared\_ptr<GameState>> putMark(TBoardEntry player);}
+\DoxyCodeLine{42   \textcolor{comment}{// return if the given move is valid}}
+\DoxyCodeLine{43   \textcolor{keywordtype}{bool} isValidMove(uint row, uint col);}
+\DoxyCodeLine{44   \textcolor{comment}{// place an X on the board}}
+\DoxyCodeLine{45   \textcolor{keywordtype}{bool} \mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe_a2a29db05865d07d14199b3db0b2d11ed}{makeMove}}(uint y1, uint x1);}
+\DoxyCodeLine{46   }
+\DoxyCodeLine{47 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{48   }
+\DoxyCodeLine{49 \textcolor{keyword}{private}:}
+\DoxyCodeLine{50   std::vector<std::vector<TBoardEntry>> board\_;}
+\DoxyCodeLine{51 \};}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 \}  \textcolor{comment}{// namespace core}}
+\DoxyCodeLine{54 \}  \textcolor{comment}{// namespace minimax}}
+
+\end{DoxyCode}

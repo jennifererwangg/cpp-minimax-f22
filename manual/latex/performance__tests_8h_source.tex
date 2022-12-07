@@ -1,0 +1,16 @@
+\hypertarget{performance__tests_8h_source}{}\doxysection{performance\+\_\+tests.\+h}
+\label{performance__tests_8h_source}\index{/Users/theodoremcnulty/Programming/generic-\/minimax/src/tests/performance/performance\_tests.h@{/Users/theodoremcnulty/Programming/generic-\/minimax/src/tests/performance/performance\_tests.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}core/games/game\_state.h"{}}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{keyword}{using }ll = \textcolor{keywordtype}{long} long;}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{15 \textcolor{keywordtype}{void} depthTest(\textcolor{keywordtype}{int} max\_depth);}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{25 \textcolor{keywordtype}{void} depthGameTest(\textcolor{keywordtype}{int} max\_depth, std::shared\_ptr<minimax::core::GameState> game, std::map<\textcolor{keywordtype}{int}, std::vector<ll>> \&depth\_to\_time, \textcolor{keywordtype}{bool} optimized = \textcolor{keyword}{true});}
+\DoxyCodeLine{26 \textcolor{keywordtype}{void} writeToCSV(std::string name, std::map<\textcolor{keywordtype}{int}, std::vector<ll>> depth\_to\_time);}
+
+\end{DoxyCode}

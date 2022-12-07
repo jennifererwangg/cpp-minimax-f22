@@ -1,0 +1,65 @@
+\hypertarget{classminimax_1_1core_1_1_interactive_player}{}\doxysection{minimax\+::core\+::Interactive\+Player Class Reference}
+\label{classminimax_1_1core_1_1_interactive_player}\index{minimax::core::InteractivePlayer@{minimax::core::InteractivePlayer}}
+
+
+Represents an interactive player.  
+
+
+
+
+{\ttfamily \#include $<$interactive\+\_\+player.\+h$>$}
+
+Inheritance diagram for minimax\+::core\+::Interactive\+Player\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classminimax_1_1core_1_1_interactive_player}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1_interactive_player_a5f272292d598f7aa1f3442817b0a83b9}\label{classminimax_1_1core_1_1_interactive_player_a5f272292d598f7aa1f3442817b0a83b9}} 
+{\bfseries Interactive\+Player} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} $>$ game, int depth)
+\item 
+void \mbox{\hyperlink{classminimax_1_1core_1_1_interactive_player_a32214c70f1ef9ec5f87064dfc41aa9e9}{play}} () override
+\begin{DoxyCompactList}\small\item\em Plays the game. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1_interactive_player_af8bb460abeb6407a8b4dd8861bb2aa75}\label{classminimax_1_1core_1_1_interactive_player_af8bb460abeb6407a8b4dd8861bb2aa75}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} $>$ {\bfseries game\+\_\+state\+\_\+}
+\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1_interactive_player_aa48ac8d5ded6f757c1bb2a0d818cd6b1}\label{classminimax_1_1core_1_1_interactive_player_aa48ac8d5ded6f757c1bb2a0d818cd6b1}} 
+std\+::string {\bfseries player\+\_\+name\+\_\+}
+\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1_interactive_player_a692b9cdd9827be7f2e9c676dfa8d4c66}\label{classminimax_1_1core_1_1_interactive_player_a692b9cdd9827be7f2e9c676dfa8d4c66}} 
+std\+::string {\bfseries opponent\+\_\+name\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents an interactive player. 
+
+This class is used to represent an interactive game player. The user is prompted for input, and we process the input and then the AI responds and makes a move accordingly. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classminimax_1_1core_1_1_interactive_player_a32214c70f1ef9ec5f87064dfc41aa9e9}\label{classminimax_1_1core_1_1_interactive_player_a32214c70f1ef9ec5f87064dfc41aa9e9}} 
+\index{minimax::core::InteractivePlayer@{minimax::core::InteractivePlayer}!play@{play}}
+\index{play@{play}!minimax::core::InteractivePlayer@{minimax::core::InteractivePlayer}}
+\doxysubsubsection{\texorpdfstring{play()}{play()}}
+{\footnotesize\ttfamily void minimax\+::core\+::\+Interactive\+Player\+::play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Plays the game. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classminimax_1_1core_1_1_base_player_ac89c1b806d47bc1985554a9df0afda70}{minimax\+::core\+::\+Base\+Player}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/theodoremcnulty/\+Programming/generic-\/minimax/src/core/players/interactive\+\_\+player.\+h\item 
+/\+Users/theodoremcnulty/\+Programming/generic-\/minimax/src/core/players/interactive\+\_\+player.\+cc\end{DoxyCompactItemize}

@@ -1,0 +1,32 @@
+\hypertarget{minimax__solver_8h_source}{}\doxysection{minimax\+\_\+solver.\+h}
+\label{minimax__solver_8h_source}\index{/Users/theodoremcnulty/Programming/generic-\/minimax/src/core/solver/minimax\_solver.h@{/Users/theodoremcnulty/Programming/generic-\/minimax/src/core/solver/minimax\_solver.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}core/games/game\_state.h"{}}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <utility>}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{namespace }minimax \{}
+\DoxyCodeLine{8 \textcolor{keyword}{namespace }core \{}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{16 \textcolor{keyword}{class }\mbox{\hyperlink{classminimax_1_1core_1_1_minimax_solver}{MinimaxSolver}} \{}
+\DoxyCodeLine{17 \textcolor{keyword}{public}:}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{26   \mbox{\hyperlink{classminimax_1_1core_1_1_minimax_solver}{MinimaxSolver}}(\textcolor{keywordtype}{int} max\_depth);}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{40   std::shared\_ptr<GameState> \mbox{\hyperlink{classminimax_1_1core_1_1_minimax_solver_ae7373672d60390cd0c7bbf769693a1c3}{evaluate}}(std::shared\_ptr<GameState> initial\_gs, \textcolor{keywordtype}{bool} pruning = \textcolor{keyword}{true});}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{57   std::pair<std::shared\_ptr<GameState>, \textcolor{keywordtype}{int}> \mbox{\hyperlink{classminimax_1_1core_1_1_minimax_solver_a261de3239a965eefb00ae09c41aa93b6}{minimize}}(std::shared\_ptr<GameState> gs, \textcolor{keywordtype}{int} curr\_depth, \textcolor{keywordtype}{int} alpha, \textcolor{keywordtype}{int} beta, \textcolor{keywordtype}{bool} pruning = \textcolor{keyword}{true});}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{74   std::pair<std::shared\_ptr<GameState>, \textcolor{keywordtype}{int}> \mbox{\hyperlink{classminimax_1_1core_1_1_minimax_solver_a68624a351179456ec5387b80f05905bd}{maximize}}(std::shared\_ptr<GameState> gs,\textcolor{keywordtype}{int} curr\_depth, \textcolor{keywordtype}{int} alpha, \textcolor{keywordtype}{int} beta, \textcolor{keywordtype}{bool} pruning = \textcolor{keyword}{true});}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76 \textcolor{keyword}{private}:}
+\DoxyCodeLine{77   \textcolor{keywordtype}{int} max\_depth\_ = 1;}
+\DoxyCodeLine{78 \};}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80 \}  \textcolor{comment}{// namespace core}}
+\DoxyCodeLine{81 \}  \textcolor{comment}{// namespace minimax}}
+
+\end{DoxyCode}

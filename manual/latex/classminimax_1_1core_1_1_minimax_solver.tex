@@ -1,0 +1,126 @@
+\hypertarget{classminimax_1_1core_1_1_minimax_solver}{}\doxysection{minimax\+::core\+::Minimax\+Solver Class Reference}
+\label{classminimax_1_1core_1_1_minimax_solver}\index{minimax::core::MinimaxSolver@{minimax::core::MinimaxSolver}}
+
+
+The implementation of the minimax algorithm.  
+
+
+
+
+{\ttfamily \#include $<$minimax\+\_\+solver.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classminimax_1_1core_1_1_minimax_solver_a5c958e5f49de41092b0308297d48042a}{Minimax\+Solver}} (int max\+\_\+depth)
+\begin{DoxyCompactList}\small\item\em Minimax solver constructor. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} $>$ \mbox{\hyperlink{classminimax_1_1core_1_1_minimax_solver_ae7373672d60390cd0c7bbf769693a1c3}{evaluate}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} $>$ initial\+\_\+gs, bool pruning=true)
+\begin{DoxyCompactList}\small\item\em Returns the best move for a player. \end{DoxyCompactList}\item 
+std\+::pair$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} $>$, int $>$ \mbox{\hyperlink{classminimax_1_1core_1_1_minimax_solver_a261de3239a965eefb00ae09c41aa93b6}{minimize}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} $>$ gs, int curr\+\_\+depth, int alpha, int beta, bool pruning=true)
+\begin{DoxyCompactList}\small\item\em Generates child states for a given state and returns the child with the minimum utility. \end{DoxyCompactList}\item 
+std\+::pair$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} $>$, int $>$ \mbox{\hyperlink{classminimax_1_1core_1_1_minimax_solver_a68624a351179456ec5387b80f05905bd}{maximize}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} $>$ gs, int curr\+\_\+depth, int alpha, int beta, bool pruning=true)
+\begin{DoxyCompactList}\small\item\em Generates child states for a given state and returns the child with the maximum utility. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The implementation of the minimax algorithm. 
+
+This class contains the acutal implementation of the minimax algorithm. It is game-\/agnostic, as it only calls functions on the \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} base class, which all of the implemented games rely on. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classminimax_1_1core_1_1_minimax_solver_a5c958e5f49de41092b0308297d48042a}\label{classminimax_1_1core_1_1_minimax_solver_a5c958e5f49de41092b0308297d48042a}} 
+\index{minimax::core::MinimaxSolver@{minimax::core::MinimaxSolver}!MinimaxSolver@{MinimaxSolver}}
+\index{MinimaxSolver@{MinimaxSolver}!minimax::core::MinimaxSolver@{minimax::core::MinimaxSolver}}
+\doxysubsubsection{\texorpdfstring{MinimaxSolver()}{MinimaxSolver()}}
+{\footnotesize\ttfamily minimax\+::core\+::\+Minimax\+Solver\+::\+Minimax\+Solver (\begin{DoxyParamCaption}\item[{int}]{max\+\_\+depth }\end{DoxyParamCaption})}
+
+
+
+Minimax solver constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & max\+\_\+depth\\
+\hline
+\end{DoxyParams}
+Creates a game-\/agnostic instance of the minimax solver that iterates until a certain max\+\_\+depth. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classminimax_1_1core_1_1_minimax_solver_ae7373672d60390cd0c7bbf769693a1c3}\label{classminimax_1_1core_1_1_minimax_solver_ae7373672d60390cd0c7bbf769693a1c3}} 
+\index{minimax::core::MinimaxSolver@{minimax::core::MinimaxSolver}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!minimax::core::MinimaxSolver@{minimax::core::MinimaxSolver}}
+\doxysubsubsection{\texorpdfstring{evaluate()}{evaluate()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} $>$ minimax\+::core\+::\+Minimax\+Solver\+::evaluate (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} $>$}]{initial\+\_\+gs,  }\item[{bool}]{pruning = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Returns the best move for a player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em std\+::shared\+\_\+ptr$<$\+Game\+State$>$} & initial\+\_\+gs \\
+\hline
+{\em bool} & pruning\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::shared\+\_\+ptr$<$\+Game\+State$>$ best\+State
+\end{DoxyReturn}
+Evaluate determines and then returns the best move for a player based on the traversal of the minimax tree. It initiates the DFS traversal by calling maximize with the starting game state at depth 0, with max/min values for the alpha beta pruning parameters. \mbox{\Hypertarget{classminimax_1_1core_1_1_minimax_solver_a68624a351179456ec5387b80f05905bd}\label{classminimax_1_1core_1_1_minimax_solver_a68624a351179456ec5387b80f05905bd}} 
+\index{minimax::core::MinimaxSolver@{minimax::core::MinimaxSolver}!maximize@{maximize}}
+\index{maximize@{maximize}!minimax::core::MinimaxSolver@{minimax::core::MinimaxSolver}}
+\doxysubsubsection{\texorpdfstring{maximize()}{maximize()}}
+{\footnotesize\ttfamily std\+::pair$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} $>$, int $>$ minimax\+::core\+::\+Minimax\+Solver\+::maximize (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} $>$}]{gs,  }\item[{int}]{curr\+\_\+depth,  }\item[{int}]{alpha,  }\item[{int}]{beta,  }\item[{bool}]{pruning = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Generates child states for a given state and returns the child with the maximum utility. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em std\+::shared\+\_\+ptr$<$\+Game\+State$>$} & gs \\
+\hline
+{\em int} & curr\+\_\+depth \\
+\hline
+{\em int} & alpha \\
+\hline
+{\em int} & beta \\
+\hline
+{\em bool} & pruning\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::pair\texorpdfstring{$<$}{<}std\+::shared\+\_\+ptr$<$\+Game\+State$>$, int\texorpdfstring{$>$}{>} best\+State, utility
+\end{DoxyReturn}
+Maximize returns the \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} along with its evaluated heuristic if curr\+\_\+depth == max\+\_\+depth, and otherwise it generates the child states from the current state, and returns the child state with the maximize utility value. It uses alpha-\/beta pruning for optimization. \mbox{\Hypertarget{classminimax_1_1core_1_1_minimax_solver_a261de3239a965eefb00ae09c41aa93b6}\label{classminimax_1_1core_1_1_minimax_solver_a261de3239a965eefb00ae09c41aa93b6}} 
+\index{minimax::core::MinimaxSolver@{minimax::core::MinimaxSolver}!minimize@{minimize}}
+\index{minimize@{minimize}!minimax::core::MinimaxSolver@{minimax::core::MinimaxSolver}}
+\doxysubsubsection{\texorpdfstring{minimize()}{minimize()}}
+{\footnotesize\ttfamily std\+::pair$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} $>$, int $>$ minimax\+::core\+::\+Minimax\+Solver\+::minimize (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} $>$}]{gs,  }\item[{int}]{curr\+\_\+depth,  }\item[{int}]{alpha,  }\item[{int}]{beta,  }\item[{bool}]{pruning = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Generates child states for a given state and returns the child with the minimum utility. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em std\+::shared\+\_\+ptr$<$\+Game\+State$>$} & gs \\
+\hline
+{\em int} & curr\+\_\+depth \\
+\hline
+{\em int} & alpha \\
+\hline
+{\em int} & beta \\
+\hline
+{\em bool} & pruning\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::pair\texorpdfstring{$<$}{<}std\+::shared\+\_\+ptr$<$\+Game\+State$>$, int\texorpdfstring{$>$}{>} best\+State, utility
+\end{DoxyReturn}
+Minimize returns the \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} along with its evaluated heuristic if curr\+\_\+depth == max\+\_\+depth, and otherwise it generates the child states from the current state, and returns the child state with the minimum utility value. It uses alpha-\/beta pruning for optimization. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/theodoremcnulty/\+Programming/generic-\/minimax/src/core/solver/minimax\+\_\+solver.\+h\item 
+/\+Users/theodoremcnulty/\+Programming/generic-\/minimax/src/core/solver/minimax\+\_\+solver.\+cc\end{DoxyCompactItemize}

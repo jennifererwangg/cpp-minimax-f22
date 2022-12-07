@@ -1,0 +1,146 @@
+\hypertarget{classminimax_1_1core_1_1_tictactoe}{}\doxysection{minimax\+::core\+::Tictactoe Class Reference}
+\label{classminimax_1_1core_1_1_tictactoe}\index{minimax::core::Tictactoe@{minimax::core::Tictactoe}}
+Inheritance diagram for minimax\+::core\+::Tictactoe\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classminimax_1_1core_1_1_tictactoe}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe_ae0d0222fd5907d97a710c8269a536a5d}{is\+Done}} () override
+\item 
+int \mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe_aa739b0b6ee6cac481c23c3d1d7460fde}{eval\+Heuristics}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe_aa739b0b6ee6cac481c23c3d1d7460fde}{eval\+Heuristics()}}\+: Determinte the utility of a state. This function decides how favorable the current board state is for the player. The higher the number, the more favorable the state is for the current player. This can be as simple as (for example, in checkers) counting the number of pieces on the board for the current player, or can be a complex algorithm evaluating many different factors for how favorable the current state is for the player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe_a0db3d26444062661189baa7749b489d3}{print\+State}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe_a0db3d26444062661189baa7749b489d3}{print\+State()}}\+: Print the game board. Prints the game board along with any other information about the game that should be seen by the player. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} $>$ $>$ \mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe_a959592fcda3ca561d831eb4824761233}{get\+Next\+State}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe_a959592fcda3ca561d831eb4824761233}{get\+Next\+State()}}\+: Generate all possible next moves. This function creates the search space for the next iteration of the minimax algorithm. From the current board state, it should generate all of the next possible moves that could be made by the current player. Eg. for tic tac toe, then we would generate all of the next states by placing an X in all of the empty spots of the board. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe_abeda242d2ada5829e426d077a4c0b732}{print\+Winner}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe_abeda242d2ada5829e426d077a4c0b732}{print\+Winner()}}\+: Print the winner of a completed game. Prints the winner of the game, only called when the game is done. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe_a38c889dd85c937a8d0117ba70991b8a0}{process\+User\+Input}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe_a38c889dd85c937a8d0117ba70991b8a0}{process\+User\+Input()}}\+: Prompt for and process user input. Interacts with the user in order to take in and then process input. Should prompt the user for input, and then make a move accordingly on the game board. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1_tictactoe_a0278e2136c1bfc1f7b1cea3b063a67dc}\label{classminimax_1_1core_1_1_tictactoe_a0278e2136c1bfc1f7b1cea3b063a67dc}} 
+std\+::vector$<$ std\+::vector$<$ TBoard\+Entry $>$ $>$ {\bfseries get\+Board} ()
+\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1_tictactoe_af0b5e237970645738e6b1b5dbddac54a}\label{classminimax_1_1core_1_1_tictactoe_af0b5e237970645738e6b1b5dbddac54a}} 
+void {\bfseries set\+Board} (const std\+::vector$<$ std\+::vector$<$ TBoard\+Entry $>$ $>$ \&board)
+\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1_tictactoe_aed82a8a9a69aedd4fef2b462fa8af77f}\label{classminimax_1_1core_1_1_tictactoe_aed82a8a9a69aedd4fef2b462fa8af77f}} 
+int {\bfseries get\+Max\+Count} (TBoard\+Entry player)
+\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1_tictactoe_a2fdca17956c3d08137181b9490f0d957}\label{classminimax_1_1core_1_1_tictactoe_a2fdca17956c3d08137181b9490f0d957}} 
+int {\bfseries get\+Mark\+Count} (TBoard\+Entry player)
+\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1_tictactoe_a895c29355df07e83e131a1a2a32d5764}\label{classminimax_1_1core_1_1_tictactoe_a895c29355df07e83e131a1a2a32d5764}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} $>$ $>$ {\bfseries put\+Mark} (TBoard\+Entry player)
+\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1_tictactoe_a66e53ec472e3528a1c17f09b99c43f66}\label{classminimax_1_1core_1_1_tictactoe_a66e53ec472e3528a1c17f09b99c43f66}} 
+bool {\bfseries is\+Valid\+Move} (uint row, uint col)
+\item 
+bool \mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe_a2a29db05865d07d14199b3db0b2d11ed}{make\+Move}} (uint y1, uint x1)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classminimax_1_1core_1_1_tictactoe_aa739b0b6ee6cac481c23c3d1d7460fde}\label{classminimax_1_1core_1_1_tictactoe_aa739b0b6ee6cac481c23c3d1d7460fde}} 
+\index{minimax::core::Tictactoe@{minimax::core::Tictactoe}!evalHeuristics@{evalHeuristics}}
+\index{evalHeuristics@{evalHeuristics}!minimax::core::Tictactoe@{minimax::core::Tictactoe}}
+\doxysubsubsection{\texorpdfstring{evalHeuristics()}{evalHeuristics()}}
+{\footnotesize\ttfamily int minimax\+::core\+::\+Tictactoe\+::eval\+Heuristics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe_aa739b0b6ee6cac481c23c3d1d7460fde}{eval\+Heuristics()}}\+: Determinte the utility of a state. This function decides how favorable the current board state is for the player. The higher the number, the more favorable the state is for the current player. This can be as simple as (for example, in checkers) counting the number of pieces on the board for the current player, or can be a complex algorithm evaluating many different factors for how favorable the current state is for the player. 
+
+\begin{DoxyReturn}{Returns}
+an integer representing how favorable the board state is for the current player. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classminimax_1_1core_1_1_game_state_a178b4ea2badf75bf260eedc9562f456c}{minimax\+::core\+::\+Game\+State}}.
+
+\mbox{\Hypertarget{classminimax_1_1core_1_1_tictactoe_a959592fcda3ca561d831eb4824761233}\label{classminimax_1_1core_1_1_tictactoe_a959592fcda3ca561d831eb4824761233}} 
+\index{minimax::core::Tictactoe@{minimax::core::Tictactoe}!getNextState@{getNextState}}
+\index{getNextState@{getNextState}!minimax::core::Tictactoe@{minimax::core::Tictactoe}}
+\doxysubsubsection{\texorpdfstring{getNextState()}{getNextState()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} $>$ $>$ minimax\+::core\+::\+Tictactoe\+::get\+Next\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe_a959592fcda3ca561d831eb4824761233}{get\+Next\+State()}}\+: Generate all possible next moves. This function creates the search space for the next iteration of the minimax algorithm. From the current board state, it should generate all of the next possible moves that could be made by the current player. Eg. for tic tac toe, then we would generate all of the next states by placing an X in all of the empty spots of the board. 
+
+Used by the Minimax Solver 
+
+\begin{DoxyReturn}{Returns}
+A vector of all the possible next game states 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classminimax_1_1core_1_1_game_state_af5111dc0caf8363b2d03dc92c38be983}{minimax\+::core\+::\+Game\+State}}.
+
+\mbox{\Hypertarget{classminimax_1_1core_1_1_tictactoe_ae0d0222fd5907d97a710c8269a536a5d}\label{classminimax_1_1core_1_1_tictactoe_ae0d0222fd5907d97a710c8269a536a5d}} 
+\index{minimax::core::Tictactoe@{minimax::core::Tictactoe}!isDone@{isDone}}
+\index{isDone@{isDone}!minimax::core::Tictactoe@{minimax::core::Tictactoe}}
+\doxysubsubsection{\texorpdfstring{isDone()}{isDone()}}
+{\footnotesize\ttfamily bool minimax\+::core\+::\+Tictactoe\+::is\+Done (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} interface 
+
+Reimplemented from \mbox{\hyperlink{classminimax_1_1core_1_1_game_state_ad3b1d57e1ac090e507508f9a912c7068}{minimax\+::core\+::\+Game\+State}}.
+
+\mbox{\Hypertarget{classminimax_1_1core_1_1_tictactoe_a2a29db05865d07d14199b3db0b2d11ed}\label{classminimax_1_1core_1_1_tictactoe_a2a29db05865d07d14199b3db0b2d11ed}} 
+\index{minimax::core::Tictactoe@{minimax::core::Tictactoe}!makeMove@{makeMove}}
+\index{makeMove@{makeMove}!minimax::core::Tictactoe@{minimax::core::Tictactoe}}
+\doxysubsubsection{\texorpdfstring{makeMove()}{makeMove()}}
+{\footnotesize\ttfamily bool minimax\+::core\+::\+Tictactoe\+::make\+Move (\begin{DoxyParamCaption}\item[{uint}]{r,  }\item[{uint}]{c }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe}{Tictactoe}} game specific functions \mbox{\Hypertarget{classminimax_1_1core_1_1_tictactoe_a0db3d26444062661189baa7749b489d3}\label{classminimax_1_1core_1_1_tictactoe_a0db3d26444062661189baa7749b489d3}} 
+\index{minimax::core::Tictactoe@{minimax::core::Tictactoe}!printState@{printState}}
+\index{printState@{printState}!minimax::core::Tictactoe@{minimax::core::Tictactoe}}
+\doxysubsubsection{\texorpdfstring{printState()}{printState()}}
+{\footnotesize\ttfamily void minimax\+::core\+::\+Tictactoe\+::print\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe_a0db3d26444062661189baa7749b489d3}{print\+State()}}\+: Print the game board. Prints the game board along with any other information about the game that should be seen by the player. 
+
+Used by players 
+
+Reimplemented from \mbox{\hyperlink{classminimax_1_1core_1_1_game_state_ad40857dd2fb1710df3af8a2b71463f92}{minimax\+::core\+::\+Game\+State}}.
+
+\mbox{\Hypertarget{classminimax_1_1core_1_1_tictactoe_abeda242d2ada5829e426d077a4c0b732}\label{classminimax_1_1core_1_1_tictactoe_abeda242d2ada5829e426d077a4c0b732}} 
+\index{minimax::core::Tictactoe@{minimax::core::Tictactoe}!printWinner@{printWinner}}
+\index{printWinner@{printWinner}!minimax::core::Tictactoe@{minimax::core::Tictactoe}}
+\doxysubsubsection{\texorpdfstring{printWinner()}{printWinner()}}
+{\footnotesize\ttfamily void minimax\+::core\+::\+Tictactoe\+::print\+Winner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe_abeda242d2ada5829e426d077a4c0b732}{print\+Winner()}}\+: Print the winner of a completed game. Prints the winner of the game, only called when the game is done. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classminimax_1_1core_1_1_game_state_ad490c3da8f58211c10330edc8d3f3ba3}{minimax\+::core\+::\+Game\+State}}.
+
+\mbox{\Hypertarget{classminimax_1_1core_1_1_tictactoe_a38c889dd85c937a8d0117ba70991b8a0}\label{classminimax_1_1core_1_1_tictactoe_a38c889dd85c937a8d0117ba70991b8a0}} 
+\index{minimax::core::Tictactoe@{minimax::core::Tictactoe}!processUserInput@{processUserInput}}
+\index{processUserInput@{processUserInput}!minimax::core::Tictactoe@{minimax::core::Tictactoe}}
+\doxysubsubsection{\texorpdfstring{processUserInput()}{processUserInput()}}
+{\footnotesize\ttfamily void minimax\+::core\+::\+Tictactoe\+::process\+User\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{classminimax_1_1core_1_1_tictactoe_a38c889dd85c937a8d0117ba70991b8a0}{process\+User\+Input()}}\+: Prompt for and process user input. Interacts with the user in order to take in and then process input. Should prompt the user for input, and then make a move accordingly on the game board. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classminimax_1_1core_1_1_game_state_ae62f434ab6900c70890c6254aa68d8cd}{minimax\+::core\+::\+Game\+State}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/theodoremcnulty/\+Programming/generic-\/minimax/src/core/games/tictactoe.\+h\item 
+/\+Users/theodoremcnulty/\+Programming/generic-\/minimax/src/core/games/tictactoe.\+cc\end{DoxyCompactItemize}

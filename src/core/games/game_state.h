@@ -15,10 +15,8 @@ using uint = unsigned int;
  * This class is used to represent the state of a game being implemented. It is a base class
  * with virtual functions, and all game implementations should inherit from it.
  * 
- * It holds information about:
- * The current board state
- * Whose turn it is
- * Any additional data required to determine who is winning/what point the game is at
+ * It holds information about the current board state, whose turn it is, and any additional data 
+ * required to determine who is winning/what point the game is at.
  */
 class GameState {
 public:
@@ -80,16 +78,12 @@ public:
    * Prints the winner of the game, only called when the game is done.
    */
   virtual void printWinner();
-<<<<<<< HEAD
 
   /**
    * \brief processUserInput(): Prompt for and process user input.
    * Interacts with the user in order to take in and then process input. Should prompt the user for
    * input, and then make a move accordingly on the game board.
    */
-=======
-  // prompt for, take in, and process user input
->>>>>>> 1b6e7a5c9343c57851ab09303183f49e0576f60b
   virtual void processUserInput();
 
 protected:

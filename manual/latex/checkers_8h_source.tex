@@ -1,0 +1,77 @@
+\hypertarget{checkers_8h_source}{}\doxysection{checkers.\+h}
+\label{checkers_8h_source}\index{/Users/theodoremcnulty/Programming/generic-\/minimax/src/core/games/checkers.h@{/Users/theodoremcnulty/Programming/generic-\/minimax/src/core/games/checkers.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}core/games/game\_state.h"{}}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{keyword}{namespace }minimax \{}
+\DoxyCodeLine{10 \textcolor{keyword}{namespace }core \{}
+\DoxyCodeLine{11 \textcolor{keyword}{namespace }checkers \{}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{enum} CBoardEntry \{ BLACK = \textcolor{charliteral}{'b'}, WHITE = \textcolor{charliteral}{'w'}, BLACK\_KING = \textcolor{charliteral}{'B'}, WHITE\_KING = \textcolor{charliteral}{'W'}, EMPTY = \textcolor{charliteral}{'-\/'} \};}
+\DoxyCodeLine{14 \textcolor{keyword}{using }Board = std::vector<std::vector<CBoardEntry>>;}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 }
+\DoxyCodeLine{22 \textcolor{keyword}{class }\mbox{\hyperlink{classminimax_1_1core_1_1checkers_1_1_checkers}{Checkers}} : \textcolor{keyword}{public} \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{GameState}} \{  }
+\DoxyCodeLine{23 \textcolor{keyword}{public}:}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25   \textcolor{keyword}{explicit} \mbox{\hyperlink{classminimax_1_1core_1_1checkers_1_1_checkers}{Checkers}}();}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{32   \textcolor{keywordtype}{bool} \mbox{\hyperlink{classminimax_1_1core_1_1checkers_1_1_checkers_adb6276dc0ff11775197dab5332ce4ee4}{isDone}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{41   \textcolor{keywordtype}{int} \mbox{\hyperlink{classminimax_1_1core_1_1checkers_1_1_checkers_a81d4468afd9048c2ea02f4beffcbc069}{evalHeuristics}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{46   \textcolor{keywordtype}{void} \mbox{\hyperlink{classminimax_1_1core_1_1checkers_1_1_checkers_a171bdb30bf051583fc7be22483725777}{printState}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{55   std::vector<std::shared\_ptr<GameState>> \mbox{\hyperlink{classminimax_1_1core_1_1checkers_1_1_checkers_a2d8eb14e2e1f656692bad6f708e26089}{getNextState}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{62   \textcolor{keywordtype}{void} \mbox{\hyperlink{classminimax_1_1core_1_1checkers_1_1_checkers_a01f41c15f2b7b7311ba9707d73bf09f4}{printWinner}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{69   \textcolor{keywordtype}{void} \mbox{\hyperlink{classminimax_1_1core_1_1checkers_1_1_checkers_aa41a0f2175c6926975fd98f954084361}{processUserInput}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72   \textcolor{comment}{// getters \& setters}}
+\DoxyCodeLine{73   \textcolor{keyword}{inline} std::vector<std::vector<CBoardEntry>> getBoard() \{}
+\DoxyCodeLine{74     \textcolor{keywordflow}{return} board;}
+\DoxyCodeLine{75   \}}
+\DoxyCodeLine{76   \textcolor{keyword}{inline} \textcolor{keywordtype}{void} setBoard(\textcolor{keyword}{const} std::vector<std::vector<CBoardEntry>> \&board\_) \{}
+\DoxyCodeLine{77     board = board\_;}
+\DoxyCodeLine{78   \}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80   \textcolor{keyword}{inline} \textcolor{keywordtype}{void} switchTurn(\textcolor{keywordtype}{bool} is\_white\_turn) \{}
+\DoxyCodeLine{81     white\_turn = !is\_white\_turn;}
+\DoxyCodeLine{82   \}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84   \textcolor{comment}{// game-\/specific functions}}
+\DoxyCodeLine{85   \textcolor{keywordtype}{bool} makeMove(\textcolor{keywordtype}{int} y1, \textcolor{keywordtype}{int} x1, \textcolor{keywordtype}{int} y2, \textcolor{keywordtype}{int} x2);}
+\DoxyCodeLine{86   \textcolor{keywordtype}{bool} isValidMove(std::vector<int> initialPlace, std::vector<int> newPlace, std::vector<int> jump);}
+\DoxyCodeLine{87   std::vector<int> checkIfJump(std::vector<int> initialPlace, std::vector<int> newPlace);}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89   std::tuple<bool, std::shared\_ptr<Checkers>> moveRightAndUp(\textcolor{keywordtype}{int} i, \textcolor{keywordtype}{int} j, CBoardEntry piece1, CBoardEntry piece2);}
+\DoxyCodeLine{90   std::tuple<bool, std::shared\_ptr<Checkers>> moveLeftAndUp(\textcolor{keywordtype}{int} i, \textcolor{keywordtype}{int} j, CBoardEntry piece1, CBoardEntry piece2);}
+\DoxyCodeLine{91   std::tuple<bool, std::shared\_ptr<Checkers>> moveRightAndDown(\textcolor{keywordtype}{int} i, \textcolor{keywordtype}{int} j, CBoardEntry piece1, CBoardEntry piece2);}
+\DoxyCodeLine{92   std::tuple<bool, std::shared\_ptr<Checkers>> moveLeftAndDown(\textcolor{keywordtype}{int} i, \textcolor{keywordtype}{int} j, CBoardEntry piece1, CBoardEntry piece2);}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94   std::vector<std::vector<CBoardEntry>> \mbox{\hyperlink{classminimax_1_1core_1_1checkers_1_1_checkers_a105ca64e7e48c7c7b9d1ad876200ec26}{movePiece}}(std::vector<int> initialPlace, std::vector<int> newPlace, std::vector<int> jump);}
+\DoxyCodeLine{95   \textcolor{keywordtype}{int} countPieces(CBoardEntry color, CBoardEntry color\_king);}
+\DoxyCodeLine{96   }
+\DoxyCodeLine{97 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{98   }
+\DoxyCodeLine{99 \textcolor{keyword}{private}:}
+\DoxyCodeLine{100   std::vector<std::vector<CBoardEntry>> board;}
+\DoxyCodeLine{101   \textcolor{keywordtype}{bool} white\_turn = \textcolor{keyword}{false};}
+\DoxyCodeLine{102   \textcolor{keywordtype}{int} white\_next\_states = 1;}
+\DoxyCodeLine{103   \textcolor{keywordtype}{int} black\_next\_states = 1;}
+\DoxyCodeLine{104 \};}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106 \}  \textcolor{comment}{// namespace checkers}}
+\DoxyCodeLine{107 \}  \textcolor{comment}{// namespace core}}
+\DoxyCodeLine{108 \}  \textcolor{comment}{// namespace minimax}}
+
+\end{DoxyCode}

@@ -1,0 +1,81 @@
+\hypertarget{classminimax_1_1core_1_1_base_player}{}\doxysection{minimax\+::core\+::Base\+Player Class Reference}
+\label{classminimax_1_1core_1_1_base_player}\index{minimax::core::BasePlayer@{minimax::core::BasePlayer}}
+
+
+Represents a game player.  
+
+
+
+
+{\ttfamily \#include $<$base\+\_\+player.\+h$>$}
+
+Inheritance diagram for minimax\+::core\+::Base\+Player\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classminimax_1_1core_1_1_base_player}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classminimax_1_1core_1_1_base_player_afdfb0b9db5ab84d62755a694beecf0f8}{Base\+Player}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} $>$ game, int depth)
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{classminimax_1_1core_1_1_base_player}{Base\+Player}}. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classminimax_1_1core_1_1_base_player_ac89c1b806d47bc1985554a9df0afda70}{play}} ()
+\begin{DoxyCompactList}\small\item\em Plays the game. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1_base_player_af039cba679f389befcff4ef394631df9}\label{classminimax_1_1core_1_1_base_player_af039cba679f389befcff4ef394631df9}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} $>$ {\bfseries game\+\_\+}
+\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1_base_player_a22de56d236a1fc07b597090c56b943a2}\label{classminimax_1_1core_1_1_base_player_a22de56d236a1fc07b597090c56b943a2}} 
+int {\bfseries depth\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a game player. 
+
+This class is used to represent a game player. It holds information about which game is being played and what the desired depth of the minimax tree is. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classminimax_1_1core_1_1_base_player_afdfb0b9db5ab84d62755a694beecf0f8}\label{classminimax_1_1core_1_1_base_player_afdfb0b9db5ab84d62755a694beecf0f8}} 
+\index{minimax::core::BasePlayer@{minimax::core::BasePlayer}!BasePlayer@{BasePlayer}}
+\index{BasePlayer@{BasePlayer}!minimax::core::BasePlayer@{minimax::core::BasePlayer}}
+\doxysubsubsection{\texorpdfstring{BasePlayer()}{BasePlayer()}}
+{\footnotesize\ttfamily minimax\+::core\+::\+Base\+Player\+::\+Base\+Player (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} $>$}]{game,  }\item[{int}]{depth }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor for the \mbox{\hyperlink{classminimax_1_1core_1_1_base_player}{Base\+Player}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em std\+::shared\+\_\+ptr$<$\+Game\+State$>$} & game \\
+\hline
+{\em int} & depth \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classminimax_1_1core_1_1_base_player_ac89c1b806d47bc1985554a9df0afda70}\label{classminimax_1_1core_1_1_base_player_ac89c1b806d47bc1985554a9df0afda70}} 
+\index{minimax::core::BasePlayer@{minimax::core::BasePlayer}!play@{play}}
+\index{play@{play}!minimax::core::BasePlayer@{minimax::core::BasePlayer}}
+\doxysubsubsection{\texorpdfstring{play()}{play()}}
+{\footnotesize\ttfamily void minimax\+::core\+::\+Base\+Player\+::play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Plays the game. 
+
+
+
+Reimplemented in \mbox{\hyperlink{classminimax_1_1core_1_1_automatic_player_a4e32d1a8a0e56109311ae464f7b49d25}{minimax\+::core\+::\+Automatic\+Player}}, and \mbox{\hyperlink{classminimax_1_1core_1_1_interactive_player_a32214c70f1ef9ec5f87064dfc41aa9e9}{minimax\+::core\+::\+Interactive\+Player}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/theodoremcnulty/\+Programming/generic-\/minimax/src/core/players/base\+\_\+player.\+h\item 
+/\+Users/theodoremcnulty/\+Programming/generic-\/minimax/src/core/players/base\+\_\+player.\+cc\end{DoxyCompactItemize}

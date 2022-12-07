@@ -7,6 +7,13 @@
 namespace minimax {
 namespace core {
 
+/**
+ * \brief Represents an interactive player.
+ * 
+ * This class is used to represent an interactive game player. The user is 
+ * prompted for input, and we process the input and then the AI responds
+ * and makes a move accordingly.
+ */
 class InteractivePlayer : public BasePlayer {
 public:
 

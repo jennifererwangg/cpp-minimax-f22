@@ -1,0 +1,62 @@
+\hypertarget{isolation_8h_source}{}\doxysection{isolation.\+h}
+\label{isolation_8h_source}\index{/Users/theodoremcnulty/Programming/generic-\/minimax/src/core/games/isolation.h@{/Users/theodoremcnulty/Programming/generic-\/minimax/src/core/games/isolation.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}game\_state.h"{}}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{namespace }minimax \{}
+\DoxyCodeLine{9 \textcolor{keyword}{namespace }core \{}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{enum} IBoardEntry \{ BLOCKED = \textcolor{charliteral}{'X'}, FREE = \textcolor{charliteral}{'-\/'}, P1 = \textcolor{charliteral}{'1'}, P2 = \textcolor{charliteral}{'2'} \};}
+\DoxyCodeLine{12 \textcolor{keyword}{enum} Direction \{NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST\};}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{classminimax_1_1core_1_1_isolation}{Isolation}} : \textcolor{keyword}{public} \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{GameState}} \{  }
+\DoxyCodeLine{15 \textcolor{keyword}{public}:}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17   \textcolor{keyword}{explicit} \mbox{\hyperlink{classminimax_1_1core_1_1_isolation}{Isolation}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} player  = 1);}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19   \textcolor{comment}{// GameState interface}}
+\DoxyCodeLine{20   \textcolor{keywordtype}{bool} \mbox{\hyperlink{classminimax_1_1core_1_1_isolation_acf7f65bfe8a981f2cda53ede23ca90ec}{isDone}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{21   \textcolor{keywordtype}{int} \mbox{\hyperlink{classminimax_1_1core_1_1_isolation_a1da382c75419ef2f5ee20bc9c05376ec}{evalHeuristics}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{22   \textcolor{keywordtype}{void} \mbox{\hyperlink{classminimax_1_1core_1_1_isolation_a52f20acee782a64534571f2df9636332}{printState}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{23   std::vector<std::shared\_ptr<GameState>> \mbox{\hyperlink{classminimax_1_1core_1_1_isolation_a854c505c8ffd4f7645f3b958c00bf7a7}{getNextState}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{24   \textcolor{keywordtype}{void} \mbox{\hyperlink{classminimax_1_1core_1_1_isolation_ab945b75bf1e48800d5c15033ab85884e}{printWinner}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{25   \textcolor{keywordtype}{void} \mbox{\hyperlink{classminimax_1_1core_1_1_isolation_a1922ea5b25667fe2c7379c8ae7b631d8}{processUserInput}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{26   \textcolor{keywordtype}{bool} \mbox{\hyperlink{classminimax_1_1core_1_1_isolation_ab277e7865a8175d931a645a4d6a46905}{makeMove}}(uint y, uint x);}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28   \textcolor{comment}{// getters \& setters}}
+\DoxyCodeLine{29   \textcolor{keyword}{inline} std::vector<std::vector<IBoardEntry>> getBoard() \{}
+\DoxyCodeLine{30     \textcolor{keywordflow}{return} board\_;}
+\DoxyCodeLine{31   \}}
+\DoxyCodeLine{32   \textcolor{keyword}{inline} \textcolor{keywordtype}{void} setBoard(\textcolor{keyword}{const} std::vector<std::vector<IBoardEntry>> \&board) \{}
+\DoxyCodeLine{33     board\_ = board;}
+\DoxyCodeLine{34   \}}
+\DoxyCodeLine{35   \textcolor{keyword}{inline} \textcolor{keywordtype}{void} setPlayer(\textcolor{keywordtype}{int} p) \{}
+\DoxyCodeLine{36     \textcolor{keywordflow}{if} (p== 1) \{}
+\DoxyCodeLine{37       player\_ = P1;}
+\DoxyCodeLine{38     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{39       player\_ = P2;}
+\DoxyCodeLine{40     \}}
+\DoxyCodeLine{41   \}}
+\DoxyCodeLine{42   }
+\DoxyCodeLine{43 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{44   }
+\DoxyCodeLine{45 \textcolor{keyword}{private}:}
+\DoxyCodeLine{46   std::vector<std::vector<IBoardEntry>> board\_;}
+\DoxyCodeLine{47   IBoardEntry player\_;}
+\DoxyCodeLine{48   \textcolor{keywordtype}{bool} hasAvailableMoves(uint row, uint col);}
+\DoxyCodeLine{49   std::vector<std::shared\_ptr<GameState>> moveInDirection(uint row, uint col, Direction dir);}
+\DoxyCodeLine{50   std::shared\_ptr<GameState> randomFirstMove();}
+\DoxyCodeLine{51   std::pair<uint, uint> getCurrPos(IBoardEntry p);}
+\DoxyCodeLine{52   \textcolor{keywordtype}{bool} isValidMove(uint row, uint col);}
+\DoxyCodeLine{53 \};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 \}  \textcolor{comment}{// namespace core}}
+\DoxyCodeLine{56 \}  \textcolor{comment}{// namespace minimax}}
+
+\end{DoxyCode}

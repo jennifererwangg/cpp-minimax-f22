@@ -1,0 +1,184 @@
+\hypertarget{classminimax_1_1core_1_1checkers_1_1_checkers}{}\doxysection{minimax\+::core\+::checkers\+::Checkers Class Reference}
+\label{classminimax_1_1core_1_1checkers_1_1_checkers}\index{minimax::core::checkers::Checkers@{minimax::core::checkers::Checkers}}
+
+
+The checkers game.  
+
+
+
+
+{\ttfamily \#include $<$checkers.\+h$>$}
+
+Inheritance diagram for minimax\+::core\+::checkers\+::Checkers\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classminimax_1_1core_1_1checkers_1_1_checkers}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classminimax_1_1core_1_1checkers_1_1_checkers_adb6276dc0ff11775197dab5332ce4ee4}{is\+Done}} () override
+\begin{DoxyCompactList}\small\item\em Checks that both colors have pieces left that can move. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classminimax_1_1core_1_1checkers_1_1_checkers_a81d4468afd9048c2ea02f4beffcbc069}{eval\+Heuristics}} () override
+\begin{DoxyCompactList}\small\item\em Finds utility of board. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classminimax_1_1core_1_1checkers_1_1_checkers_a171bdb30bf051583fc7be22483725777}{print\+State}} () override
+\begin{DoxyCompactList}\small\item\em Prints checkers board. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} $>$ $>$ \mbox{\hyperlink{classminimax_1_1core_1_1checkers_1_1_checkers_a2d8eb14e2e1f656692bad6f708e26089}{get\+Next\+State}} () override
+\begin{DoxyCompactList}\small\item\em Generate all possible checkers moves. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classminimax_1_1core_1_1checkers_1_1_checkers_a01f41c15f2b7b7311ba9707d73bf09f4}{print\+Winner}} () override
+\begin{DoxyCompactList}\small\item\em Determine winner of checkers game. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classminimax_1_1core_1_1checkers_1_1_checkers_aa41a0f2175c6926975fd98f954084361}{process\+User\+Input}} () override
+\begin{DoxyCompactList}\small\item\em Determine winner of checkers game. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1checkers_1_1_checkers_a44d886c1b98144f4baeb74447accbd49}\label{classminimax_1_1core_1_1checkers_1_1_checkers_a44d886c1b98144f4baeb74447accbd49}} 
+std\+::vector$<$ std\+::vector$<$ CBoard\+Entry $>$ $>$ {\bfseries get\+Board} ()
+\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1checkers_1_1_checkers_aa21df6468671671c590df07e3edb1dfc}\label{classminimax_1_1core_1_1checkers_1_1_checkers_aa21df6468671671c590df07e3edb1dfc}} 
+void {\bfseries set\+Board} (const std\+::vector$<$ std\+::vector$<$ CBoard\+Entry $>$ $>$ \&board\+\_\+)
+\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1checkers_1_1_checkers_ad6678a630042fe166425372f53f6e370}\label{classminimax_1_1core_1_1checkers_1_1_checkers_ad6678a630042fe166425372f53f6e370}} 
+void {\bfseries switch\+Turn} (bool is\+\_\+white\+\_\+turn)
+\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1checkers_1_1_checkers_a1ca64bb3f941b68e0f4e8974d2d90838}\label{classminimax_1_1core_1_1checkers_1_1_checkers_a1ca64bb3f941b68e0f4e8974d2d90838}} 
+bool {\bfseries make\+Move} (int y1, int x1, int y2, int x2)
+\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1checkers_1_1_checkers_afac240b0c681c900c83d62f7e2a51f1d}\label{classminimax_1_1core_1_1checkers_1_1_checkers_afac240b0c681c900c83d62f7e2a51f1d}} 
+bool {\bfseries is\+Valid\+Move} (std\+::vector$<$ int $>$ initial\+Place, std\+::vector$<$ int $>$ new\+Place, std\+::vector$<$ int $>$ jump)
+\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1checkers_1_1_checkers_aeb64234ff298d3323e9e6f8f6ed3ae55}\label{classminimax_1_1core_1_1checkers_1_1_checkers_aeb64234ff298d3323e9e6f8f6ed3ae55}} 
+std\+::vector$<$ int $>$ {\bfseries check\+If\+Jump} (std\+::vector$<$ int $>$ initial\+Place, std\+::vector$<$ int $>$ new\+Place)
+\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1checkers_1_1_checkers_a90c02ac3a5eab9444d23cb9d73b5ad9b}\label{classminimax_1_1core_1_1checkers_1_1_checkers_a90c02ac3a5eab9444d23cb9d73b5ad9b}} 
+std\+::tuple$<$ bool, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1checkers_1_1_checkers}{Checkers}} $>$ $>$ {\bfseries move\+Right\+And\+Up} (int i, int j, CBoard\+Entry piece1, CBoard\+Entry piece2)
+\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1checkers_1_1_checkers_a1670705c087eda0474c909b2844233eb}\label{classminimax_1_1core_1_1checkers_1_1_checkers_a1670705c087eda0474c909b2844233eb}} 
+std\+::tuple$<$ bool, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1checkers_1_1_checkers}{Checkers}} $>$ $>$ {\bfseries move\+Left\+And\+Up} (int i, int j, CBoard\+Entry piece1, CBoard\+Entry piece2)
+\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1checkers_1_1_checkers_a88351115b7288417d506c9b08828a6f1}\label{classminimax_1_1core_1_1checkers_1_1_checkers_a88351115b7288417d506c9b08828a6f1}} 
+std\+::tuple$<$ bool, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1checkers_1_1_checkers}{Checkers}} $>$ $>$ {\bfseries move\+Right\+And\+Down} (int i, int j, CBoard\+Entry piece1, CBoard\+Entry piece2)
+\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1checkers_1_1_checkers_a320ee3935fb8886880e053fafb356887}\label{classminimax_1_1core_1_1checkers_1_1_checkers_a320ee3935fb8886880e053fafb356887}} 
+std\+::tuple$<$ bool, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1checkers_1_1_checkers}{Checkers}} $>$ $>$ {\bfseries move\+Left\+And\+Down} (int i, int j, CBoard\+Entry piece1, CBoard\+Entry piece2)
+\item 
+std\+::vector$<$ std\+::vector$<$ CBoard\+Entry $>$ $>$ \mbox{\hyperlink{classminimax_1_1core_1_1checkers_1_1_checkers_a105ca64e7e48c7c7b9d1ad876200ec26}{move\+Piece}} (std\+::vector$<$ int $>$ initial\+Place, std\+::vector$<$ int $>$ new\+Place, std\+::vector$<$ int $>$ jump)
+\item 
+\mbox{\Hypertarget{classminimax_1_1core_1_1checkers_1_1_checkers_acae48934a57d3dac4945db3ca0a1a47d}\label{classminimax_1_1core_1_1checkers_1_1_checkers_acae48934a57d3dac4945db3ca0a1a47d}} 
+int {\bfseries count\+Pieces} (CBoard\+Entry color, CBoard\+Entry color\+\_\+king)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The checkers game. 
+
+This class implements a checkers game with an 8x8 board. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classminimax_1_1core_1_1checkers_1_1_checkers_a81d4468afd9048c2ea02f4beffcbc069}\label{classminimax_1_1core_1_1checkers_1_1_checkers_a81d4468afd9048c2ea02f4beffcbc069}} 
+\index{minimax::core::checkers::Checkers@{minimax::core::checkers::Checkers}!evalHeuristics@{evalHeuristics}}
+\index{evalHeuristics@{evalHeuristics}!minimax::core::checkers::Checkers@{minimax::core::checkers::Checkers}}
+\doxysubsubsection{\texorpdfstring{evalHeuristics()}{evalHeuristics()}}
+{\footnotesize\ttfamily int minimax\+::core\+::checkers\+::\+Checkers\+::eval\+Heuristics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Finds utility of board. 
+
+Calculates utility of board state by taking the difference in the number of pieces between the two colors.
+
+\begin{DoxyReturn}{Returns}
+the utility of the board for the current player. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classminimax_1_1core_1_1_game_state_a178b4ea2badf75bf260eedc9562f456c}{minimax\+::core\+::\+Game\+State}}.
+
+\mbox{\Hypertarget{classminimax_1_1core_1_1checkers_1_1_checkers_a2d8eb14e2e1f656692bad6f708e26089}\label{classminimax_1_1core_1_1checkers_1_1_checkers_a2d8eb14e2e1f656692bad6f708e26089}} 
+\index{minimax::core::checkers::Checkers@{minimax::core::checkers::Checkers}!getNextState@{getNextState}}
+\index{getNextState@{getNextState}!minimax::core::checkers::Checkers@{minimax::core::checkers::Checkers}}
+\doxysubsubsection{\texorpdfstring{getNextState()}{getNextState()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} $>$ $>$ minimax\+::core\+::checkers\+::\+Checkers\+::get\+Next\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Generate all possible checkers moves. 
+
+Attempts to move each piece in all possible directions. Also attempts to jump pieces when possible.
+
+\begin{DoxyReturn}{Returns}
+a list of all of the possible next states for the game. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classminimax_1_1core_1_1_game_state_af5111dc0caf8363b2d03dc92c38be983}{minimax\+::core\+::\+Game\+State}}.
+
+\mbox{\Hypertarget{classminimax_1_1core_1_1checkers_1_1_checkers_adb6276dc0ff11775197dab5332ce4ee4}\label{classminimax_1_1core_1_1checkers_1_1_checkers_adb6276dc0ff11775197dab5332ce4ee4}} 
+\index{minimax::core::checkers::Checkers@{minimax::core::checkers::Checkers}!isDone@{isDone}}
+\index{isDone@{isDone}!minimax::core::checkers::Checkers@{minimax::core::checkers::Checkers}}
+\doxysubsubsection{\texorpdfstring{isDone()}{isDone()}}
+{\footnotesize\ttfamily bool minimax\+::core\+::checkers\+::\+Checkers\+::is\+Done (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Checks that both colors have pieces left that can move. 
+
+\begin{DoxyReturn}{Returns}
+true if the game is over, false if not.
+\end{DoxyReturn}
+\mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{Game\+State}} interface 
+
+Reimplemented from \mbox{\hyperlink{classminimax_1_1core_1_1_game_state_ad3b1d57e1ac090e507508f9a912c7068}{minimax\+::core\+::\+Game\+State}}.
+
+\mbox{\Hypertarget{classminimax_1_1core_1_1checkers_1_1_checkers_a105ca64e7e48c7c7b9d1ad876200ec26}\label{classminimax_1_1core_1_1checkers_1_1_checkers_a105ca64e7e48c7c7b9d1ad876200ec26}} 
+\index{minimax::core::checkers::Checkers@{minimax::core::checkers::Checkers}!movePiece@{movePiece}}
+\index{movePiece@{movePiece}!minimax::core::checkers::Checkers@{minimax::core::checkers::Checkers}}
+\doxysubsubsection{\texorpdfstring{movePiece()}{movePiece()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ CBoard\+Entry $>$ $>$ minimax\+::core\+::checkers\+::\+Checkers\+::move\+Piece (\begin{DoxyParamCaption}\item[{std\+::vector$<$ int $>$}]{initial\+Place,  }\item[{std\+::vector$<$ int $>$}]{new\+Place,  }\item[{std\+::vector$<$ int $>$}]{jump }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classminimax_1_1core_1_1checkers_1_1_checkers}{Checkers}} game specific functions \mbox{\Hypertarget{classminimax_1_1core_1_1checkers_1_1_checkers_a171bdb30bf051583fc7be22483725777}\label{classminimax_1_1core_1_1checkers_1_1_checkers_a171bdb30bf051583fc7be22483725777}} 
+\index{minimax::core::checkers::Checkers@{minimax::core::checkers::Checkers}!printState@{printState}}
+\index{printState@{printState}!minimax::core::checkers::Checkers@{minimax::core::checkers::Checkers}}
+\doxysubsubsection{\texorpdfstring{printState()}{printState()}}
+{\footnotesize\ttfamily void minimax\+::core\+::checkers\+::\+Checkers\+::print\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Prints checkers board. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classminimax_1_1core_1_1_game_state_ad40857dd2fb1710df3af8a2b71463f92}{minimax\+::core\+::\+Game\+State}}.
+
+\mbox{\Hypertarget{classminimax_1_1core_1_1checkers_1_1_checkers_a01f41c15f2b7b7311ba9707d73bf09f4}\label{classminimax_1_1core_1_1checkers_1_1_checkers_a01f41c15f2b7b7311ba9707d73bf09f4}} 
+\index{minimax::core::checkers::Checkers@{minimax::core::checkers::Checkers}!printWinner@{printWinner}}
+\index{printWinner@{printWinner}!minimax::core::checkers::Checkers@{minimax::core::checkers::Checkers}}
+\doxysubsubsection{\texorpdfstring{printWinner()}{printWinner()}}
+{\footnotesize\ttfamily void minimax\+::core\+::checkers\+::\+Checkers\+::print\+Winner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Determine winner of checkers game. 
+
+Checks if either color has lost all their pieces, and then checks if any player has no moves left. 
+
+Reimplemented from \mbox{\hyperlink{classminimax_1_1core_1_1_game_state_ad490c3da8f58211c10330edc8d3f3ba3}{minimax\+::core\+::\+Game\+State}}.
+
+\mbox{\Hypertarget{classminimax_1_1core_1_1checkers_1_1_checkers_aa41a0f2175c6926975fd98f954084361}\label{classminimax_1_1core_1_1checkers_1_1_checkers_aa41a0f2175c6926975fd98f954084361}} 
+\index{minimax::core::checkers::Checkers@{minimax::core::checkers::Checkers}!processUserInput@{processUserInput}}
+\index{processUserInput@{processUserInput}!minimax::core::checkers::Checkers@{minimax::core::checkers::Checkers}}
+\doxysubsubsection{\texorpdfstring{processUserInput()}{processUserInput()}}
+{\footnotesize\ttfamily void minimax\+::core\+::checkers\+::\+Checkers\+::process\+User\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Determine winner of checkers game. 
+
+Checks if either color has lost all their pieces, and then checks if any player has no moves left. 
+
+Reimplemented from \mbox{\hyperlink{classminimax_1_1core_1_1_game_state_ae62f434ab6900c70890c6254aa68d8cd}{minimax\+::core\+::\+Game\+State}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/theodoremcnulty/\+Programming/generic-\/minimax/src/core/games/checkers.\+h\item 
+/\+Users/theodoremcnulty/\+Programming/generic-\/minimax/src/core/games/checkers.\+cc\end{DoxyCompactItemize}

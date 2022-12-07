@@ -1,0 +1,41 @@
+\hypertarget{game__state_8h_source}{}\doxysection{game\+\_\+state.\+h}
+\label{game__state_8h_source}\index{/Users/theodoremcnulty/Programming/generic-\/minimax/src/core/games/game\_state.h@{/Users/theodoremcnulty/Programming/generic-\/minimax/src/core/games/game\_state.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{namespace }minimax \{}
+\DoxyCodeLine{8 \textcolor{keyword}{namespace }core \{}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{using }uint = \textcolor{keywordtype}{unsigned} int;}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{23 \textcolor{keyword}{class }\mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{GameState}} \{}
+\DoxyCodeLine{24 \textcolor{keyword}{public}:}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26   \textcolor{keyword}{explicit} \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{GameState}}();}
+\DoxyCodeLine{27   \textcolor{keyword}{virtual} \mbox{\hyperlink{classminimax_1_1core_1_1_game_state}{\string~GameState}}() \{\}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{43   \textcolor{keyword}{virtual} std::vector<std::shared\_ptr<GameState>> \mbox{\hyperlink{classminimax_1_1core_1_1_game_state_af5111dc0caf8363b2d03dc92c38be983}{getNextState}}();}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{55   \textcolor{keyword}{virtual} \textcolor{keywordtype}{int} \mbox{\hyperlink{classminimax_1_1core_1_1_game_state_a178b4ea2badf75bf260eedc9562f456c}{evalHeuristics}}();}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{65   \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classminimax_1_1core_1_1_game_state_ad3b1d57e1ac090e507508f9a912c7068}{isDone}}();}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{76   \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classminimax_1_1core_1_1_game_state_ad40857dd2fb1710df3af8a2b71463f92}{printState}}();}
+\DoxyCodeLine{77   }
+\DoxyCodeLine{82   \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classminimax_1_1core_1_1_game_state_ad490c3da8f58211c10330edc8d3f3ba3}{printWinner}}();}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{89   \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classminimax_1_1core_1_1_game_state_ae62f434ab6900c70890c6254aa68d8cd}{processUserInput}}();}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{92 \textcolor{keyword}{private}:}
+\DoxyCodeLine{93 \};}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 \}  \textcolor{comment}{// namespace core}}
+\DoxyCodeLine{96 \}  \textcolor{comment}{// namespace minimax}}
+
+\end{DoxyCode}
