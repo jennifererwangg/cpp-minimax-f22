@@ -1,9 +1,3 @@
-- [1. Quick Links](#1-quick-links)
-- [2. How to run](#2-how-to-run)
-  - [2a. Build](#2a-build)
-  - [2b. Play games](#2b-play-games)
-  - [2c. Run Tests](#2c-run-tests)
-
 # 1. Quick Links
 - [Design Doc](Design.md)
 - [Tutorial]() -- TODO: insert link
