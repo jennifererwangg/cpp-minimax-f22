@@ -1,6 +1,6 @@
 # 1. Quick Links
 - [Design Doc](Design.md)
-- [Tutorial]() -- TODO: insert link
+- [Full Tutorial](https://docs.google.com/document/d/1xOSEW4J4jF1ODMN6chgXa8MjY5u1SJ4KZr2pthdEy44/edit?usp=sharing)
 - [Manual]() -- TODO: insert link
 
 # 2. How to run
