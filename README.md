@@ -6,6 +6,7 @@ A C++ Library for Building Intelligent Games
 - [Design Doc and Performance Test Results](Design.md)
 - [Full Tutorial](https://docs.google.com/document/d/1xOSEW4J4jF1ODMN6chgXa8MjY5u1SJ4KZr2pthdEy44/edit?usp=sharing)
 - [Manual]() -- TODO: insert link
+- [Presentation -- best viewed via Microsoft PowerPoint](presentation.pptx)
 
 ## 2. How to run
 
