@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['readme_0',['README',['../md___users_theodoremcnulty__programming_generic_minimax__r_e_a_d_m_e.html',1,'']]]
+  ['tictactoe_0',['Tictactoe',['../classminimax_1_1core_1_1_tictactoe.html',1,'minimax::core']]]
 ];

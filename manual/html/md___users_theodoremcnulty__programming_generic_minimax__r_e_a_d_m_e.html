@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.5"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Elementary: Generic Minimax Algorithm: README</title>
+<title>Elementary: Generic Minimax Algorithm: Elementary</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,116 +69,55 @@ $(function() {
 
 </div><!-- top -->
 <div><div class="header">
-  <div class="headertitle"><div class="title">README </div></div>
+  <div class="headertitle"><div class="title">Elementary </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><ul>
-<li>Minimax Library<ul>
-<li>How to run</li>
-<li>Design</li>
-<li>Pointer Management Tips</li>
-<li>Compilation Tips</li>
-<li>Current Directory Structure (inside `src`)</li>
-<li>TODO</li>
+<div class="textblock"><p >A C++ Library for Building Intelligent Games</p>
+<h1><a class="anchor" id="autotoc_md9"></a>
+1. Quick Links</h1>
+<ul>
+<li><a class="el" href="md___users_theodoremcnulty__programming_generic_minimax__design.html">Design Doc and Performance Test Results</a></li>
+<li><a href="https://docs.google.com/document/d/1xOSEW4J4jF1ODMN6chgXa8MjY5u1SJ4KZr2pthdEy44/edit?usp=sharing">Full Tutorial</a></li>
+<li>[Manual]() &ndash; TODO: insert link</li>
 </ul>
-</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md3"></a>
-Minimax Library</h1>
-<h2><a class="anchor" id="autotoc_md4"></a>
-How to run</h2>
+<h1><a class="anchor" id="autotoc_md10"></a>
+2. How to run</h1>
+<h2><a class="anchor" id="autotoc_md11"></a>
+2a. Build</h2>
 <ol type="1">
-<li>Make <div class="fragment"><div class="line">mkdir build</div>
+<li>Create <code>build</code> folder and run <code>make</code> <div class="fragment"><div class="line">mkdir build</div>
 <div class="line">cd build</div>
 <div class="line">cmake -DCMAKE_BUILD_TYPE=Release ..</div>
 <div class="line">make</div>
 </div><!-- fragment --></li>
-<li>Stay inside the build directory</li>
-<li>To run the main executable (play a game): <code>./src/minimax_exe/minimax_exe</code></li>
-<li>To run tests: <code>./src/tests/minimax_tests</code></li>
 </ol>
-<h2><a class="anchor" id="autotoc_md5"></a>
-Design</h2>
-<p >There are 2 main components to the MiniMax library.</p><ol type="1">
-<li>Everything related to the minimax algorithm is located in the <code>core/solver</code> folder</li>
-<li>Everything related to the game is located in the <code>core/games</code> folder.</li>
-</ol>
-<p ><b>Hierarchical design</b>: Game Inheritance example for tictactoe (node is there to help with pointer management) GameState -&gt; Tictactoe</p>
-<p >Minimax Algorithm strictly uses <code>GameState</code>. It does not know anything about <code>Tictactoe</code>.</p>
-<p >TODO: make a class/folder called "players" that contains all kinds of players. This will be used by <code>minimax_exe/main.cc</code>. For example:</p><ul>
-<li>base (automatic/interactive/concurrent) player</li>
-<li>tictactoe automatic player, tictactoe interactive player, tictactoe concurrent player</li>
-<li>2048 automatic player, ...</li>
-</ul>
-<p ><b>All documentation is located in the <code>.h</code> files</b></p>
-<h2><a class="anchor" id="autotoc_md6"></a>
-Pointer Management Tips</h2>
-<p >To create a shared pointer: </p><div class="fragment"><div class="line">std::shared_ptr&lt;ClassName&gt; pointer = std::make_shared&lt;ClassName&gt;();</div>
+<h2><a class="anchor" id="autotoc_md12"></a>
+2b. Play games</h2>
+<p >Make sure to stay inside the <code>build</code> directory.</p>
+<p ><b>Interactive Modes</b> </p><div class="fragment"><div class="line"># Play interactive tic-tac-toe</div>
+<div class="line">$ ./src/games_exe/tictactoe/tictactoe i</div>
 <div class="line"> </div>
-<div class="line"><span class="comment">// example:</span></div>
-<div class="line">std::shared_ptr&lt;Tictactoe&gt; tictactoe_ptr = std::make_shared&lt;TicTacToe&gt;();</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md7"></a>
-Compilation Tips</h2>
-<p >If you add a new file/directory, make sure to update the corresponding <code>CMakeList.txt</code> as well!</p>
-<h2><a class="anchor" id="autotoc_md8"></a>
-Current Directory Structure (inside &lt;tt&gt;src&lt;/tt&gt;)</h2>
-<div class="fragment"><div class="line">.</div>
-<div class="line">├── CMakeLists.txt</div>
-<div class="line">├── core</div>
-<div class="line">│   ├── CMakeLists.txt</div>
-<div class="line">│   ├── games</div>
-<div class="line">│   │   ├── checkers.cc</div>
-<div class="line">│   │   ├── checkers.h</div>
-<div class="line">│   │   ├── game_state.cc</div>
-<div class="line">│   │   ├── game_state.h</div>
-<div class="line">│   │   ├── isolation.cc</div>
-<div class="line">│   │   ├── isolation.h</div>
-<div class="line">│   │   ├── tictactoe.cc</div>
-<div class="line">│   │   └── tictactoe.h</div>
-<div class="line">│   ├── players</div>
-<div class="line">│   │   ├── automatic_player.cc</div>
-<div class="line">│   │   ├── automatic_player.h</div>
-<div class="line">│   │   ├── base_player.cc</div>
-<div class="line">│   │   ├── base_player.h</div>
-<div class="line">│   │   ├── checkers_player.cc</div>
-<div class="line">│   │   ├── checkers_player.h</div>
-<div class="line">│   │   ├── interactive_player.cc</div>
-<div class="line">│   │   └── interactive_player.h</div>
-<div class="line">│   └── solver</div>
-<div class="line">│       ├── minimax_solver.cc</div>
-<div class="line">│       └── minimax_solver.h</div>
-<div class="line">├── games_exe</div>
-<div class="line">│   ├── checkers</div>
-<div class="line">│   │   ├── CMakeLists.txt</div>
-<div class="line">│   │   └── main.cc</div>
-<div class="line">│   ├── isolation</div>
-<div class="line">│   │   ├── CMakeLists.txt</div>
-<div class="line">│   │   └── main.cc</div>
-<div class="line">│   └── tictactoe</div>
-<div class="line">│       ├── CMakeLists.txt</div>
-<div class="line">│       └── main.cc</div>
-<div class="line">└── tests</div>
-<div class="line">    ├── CMakeLists.txt</div>
-<div class="line">    ├── checkers_tests</div>
-<div class="line">    │   ├── checkers_test.cc</div>
-<div class="line">    │   └── checkers_test.h</div>
-<div class="line">    ├── isolation_tests</div>
-<div class="line">    │   ├── isolation_tests.cc</div>
-<div class="line">    │   └── isolation_tests.h</div>
-<div class="line">    ├── performance</div>
-<div class="line">    │   ├── performance_tests.cc</div>
-<div class="line">    │   └── performance_tests.h</div>
-<div class="line">    ├── tests.cc</div>
-<div class="line">    └── tictactoe_tests</div>
-<div class="line">        ├── tictactoe_tests.cc</div>
-<div class="line">        └── tictactoe_tests.h</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md9"></a>
-TODO</h2>
-<p >Tic tac toe</p><ul>
-<li>[ ] Implement a tic tac toe player (instead of the automated one in <code>minimax_exe/main.cc</code>) &ndash; see TODO in the design section for more details</li>
-</ul>
-<p >Others ... </p>
-</div></div><!-- contents -->
+<div class="line"># Play interactive isolation</div>
+<div class="line">./src/games_exe/isolation/isolation i</div>
+<div class="line"> </div>
+<div class="line"># Play interactive checkers</div>
+<div class="line">$ ./src/games_exe/checkers/checkers i</div>
+</div><!-- fragment --><p ><b>Automatic Modes</b> </p><div class="fragment"><div class="line"># Play interactive tic-tac-toe</div>
+<div class="line">$ ./src/games_exe/tictactoe/tictactoe a</div>
+<div class="line"> </div>
+<div class="line"># Play interactive isolation</div>
+<div class="line">./src/games_exe/isolation/isolation a</div>
+<div class="line"> </div>
+<div class="line"># Play interactive checkers</div>
+<div class="line">$ ./src/games_exe/checkers/checkers a</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md13"></a>
+2c. Run Tests</h2>
+<p >Make sure to stay inside the <code>build</code> directory. </p><div class="fragment"><div class="line"># Run performance tests</div>
+<div class="line">./src/tests/minimax_tests p</div>
+<div class="line"> </div>
+<div class="line"># Run unit tests</div>
+<div class="line">./src/tests/minimax_tests u</div>
+</div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

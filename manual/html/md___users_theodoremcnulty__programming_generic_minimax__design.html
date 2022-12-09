@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.5"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Elementary: Generic Minimax Algorithm: Design Choices</title>
+<title>Elementary: Generic Minimax Algorithm: Design</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,19 +69,42 @@ $(function() {
 
 </div><!-- top -->
 <div><div class="header">
-  <div class="headertitle"><div class="title">Design Choices </div></div>
+  <div class="headertitle"><div class="title">Design </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >The core of our Minimax library lays in the core folder. Here is an overview of the major components. <img src="data/design/core-design.png" alt="" class="inline"/></p>
-<p >At its top, we have the generic minimax solver. It has an <code>evaluate</code> that kicks off the minimax algorithm. When the algorithm queries for states specific to the game, uses four generic functions built in the <code>GameState</code> generic class: <code>getNextState()</code>, <code>evalHeuristics()</code>, and <code>isDone()</code>.</p>
-<p >Individual games, such as checkers, isolation, and tictactoe must implement the three functions above in order to utilize the minimax solver. Of course, these classes can contain many other functions to manipulate its own state.</p>
-<p >We also implemented a generic player library that facilitates the playing of the games. There are two main types of players: automatic player and interactive player. The automatic player, implemented via the <code>AutomaticPlayer</code> class, simulates the playing of two opponents via optimal strategies, while the interactive player, implemented via the <code>InteractivePlayer</code> class, allows users to directly play games on the terminal. Both types of players inherit from the base class <code>BasePlayer</code> and must implement the <code>play</code> function.</p>
-<p >Both <code>AutomaticPlayer</code> and <code>InteractivePlayer</code> invoke the four functions <code>printState()</code>, <code>makeMove()</code>, <code>getWinner()</code>, and <code>setPlayer</code> from the base GameState class. Similar to the minimax framework above, it is also the individual game's responsibility to implement these four generic functions.</p>
-<p >In summary, our library is very adaptable for supporting new games. In order to utilize the minimax solver, one will need to implement three functions specific to state management: <code>getNextState()</code>, <code>evalHeuristics()</code>, and <code>isDone()</code>. In order to support automatic and interactive player, one will need to implement another set of functions: <code>printState()</code>, <code>makeMove()</code>, <code>getWinner()</code>, and <code>setPlayer</code>.</p>
+<div class="textblock"><ul>
+<li>Introduction</li>
+</ul>
+<p >Design Choices</p><ul>
+<li>The Core: Minimax Algorithm, Games, and Players</li>
+<li>Unit Tests</li>
+<li>Performance</li>
+<li>Game Executables</li>
+</ul>
+<p >Looking ahead: C++ 20</p><ul>
+<li>Folder Structure</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md0"></a>
+Introduction</h1>
+<p ><em>Elementary</em> is a framework for developers to build their own games and play them against intelligent agents. It allows developers with zero background in AI to leverage an optimized version of the Minimax Algorithm. The framework utilizes multiple layers of abstraction. It is separated into three main components: 1) core components such as the minimax solver, games, and players; 2) unit tests and performance tests; and 3) separate executables for each user-implemented game.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
-Performance</h1>
-<p >We measured the performance of the tictactoe game at various search depths and found that as expected, greater search depths lead to longer runtime. As the board becomes less empty, the max search depth decreases, leading to faster runtime.</p>
-<p >The runtime is also impacted by alpha-beta pruning. We can drastically decrease runtime after utilizing alpha-beta pruning.</p>
+Design Choices</h1>
+<h2><a class="anchor" id="autotoc_md2"></a>
+The Core: Minimax Algorithm, Games, and Players</h2>
+<p >The core of our Minimax library lays in the <a href="/src/core/">core folder</a>. Here is an overview of the major components. <img src="data/design/core-design.png" alt="" class="inline"/></p>
+<p >At its top, we have the generic minimax solver. It has an <code>evaluate</code> that kicks off the minimax algorithm. When the algorithm queries for states specific to the game, it uses four generic functions built in the <code>GameState</code> generic class: <code>getNextState()</code>, <code>evalHeuristics()</code>, and <code>isDone()</code>. However, it should be emphasized that there is no need for the game implementers themselves to thoroughly understand the inner-workings of the minimax algorithm. The only knowledge needed is a good understanding of the games themselves. Game implementers are encouraged to think about the different states of their games during the playing process. <code>getNextState()</code> generates all possible next states of the game given the current state, <code>evalHeuristic()</code> return the utility of the current state in an integer format, and <code>isDone()</code> checks to see if a game has reached its final state. <br  />
+</p>
+<p >Individual games, such as checkers, isolation, and tic-tac-toe, must implement these three functions in order to utilize the minimax algorithm. Of course, these classes can contain many other functions to manipulate its own state.</p>
+<p >To facilitate the playing of the games, we implemented a generic player library. There are two main types of players: automatic player and interactive player. The automatic player, implemented via the <code>AutomaticPlayer</code> class, simulates the playing of two opponents via optimal strategies, while the interactive player, implemented via the <code>InteractivePlayer</code> class, allows users to directly play games on the terminal. Both types of players inherit from the base class <code>BasePlayer</code> and must implement the <code>play()</code> function.</p>
+<p >Both <code>AutomaticPlayer</code> and <code>InteractivePlayer</code> invoke the four functions <code>printState()</code>, <code>processUserInput()</code>, and <code>printWinner()</code> from the base GameState class. Similar to the minimax framework above, it is also the individual game's responsibility to implement these four generic functions. <code>printState()</code> outputs the game's current state onto the terminal, <code>processUserInput()</code> prompts users to make a move in the game and changes the internal state of the game. Finally, <code>printWinner()</code> outputs the game's winner onto the terminal.</p>
+<p >In summary, our library is very adaptable for supporting new games. In order to utilize the minimax solver, one will need to implement three functions specific to state management: <code>getNextState()</code>, <code>evalHeuristics()</code>, and <code>isDone()</code>. In order to support automatic and interactive player, one will need to implement another set of functions: <code>printState()</code>, <code>processUserInput()</code>, and <code>printWinner()</code>. The inner-workings of the minimax algorithm and the playing interface are abstracted away from the game implementer's perspective.</p>
+<h2><a class="anchor" id="autotoc_md3"></a>
+Unit Tests</h2>
+<p >Tests are an integral part of any code development process. While developing indivdiual games such as tic-tac-toe, isolation, and checkers, we also wrote unit tests to ensure the proper functionalities of each game's core member functions as discussed above, as well as their helper member functions. All unit tests can be found in the <a href="/src/tests/">tests folder</a>, which is further separated into three individual folders for the three individual games that we have implemented: <code>checkers_test</code>, <code>isolation_tests</code>, and <code>tictactoe_tests</code>.</p>
+<h2><a class="anchor" id="autotoc_md4"></a>
+Performance</h2>
+<p >We measured the performance of the tic-tac-toe game at various search depths. We found that as expected, greater search depths lead to longer runtime. As the board becomes less empty, the max search depth decreases, leading to a smaller tree and therefore a faster runtime.</p>
+<p >The runtime is also significantly impacted by alpha-beta pruning. We can drastically decrease runtime by utilizing alpha-beta pruning.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Tictactoe Runtime Performance With Alpha-beta Pruning   </th><th class="markdownTableHeadNone">Tictactoe Runtime Performance Without Alpha-beta Pruning    </th></tr>
@@ -90,13 +113,69 @@ Performance</h1>
 </table>
 <p >A comparison between pruning vs. no pruning is made for an initially empty tic-tac-toe board. We can see that especially when the max search depth is very large, alpha-beta pruning reduces the search time by more than 1/2.</p>
 <p ><img src="data/pics/tictactoe-comparison.png" alt="" class="inline"/></p>
-<h1><a class="anchor" id="autotoc_md2"></a>
+<p >All performance code can be found in the <a href="/src/tests/performance/">tests/performance folder</a>. The code can be easily adaptable to measure and generate data for checkers, isolation, or any other game (only a 1-line change in <a href="src/tests/performance/performance_tests.cc">performance_tests.cc</a>!). We only measured the performance of tic-tac-toe for the sake of simplicity.</p>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Game Executables</h2>
+<p >All game executables are located in the <a href="src/games_exe/">games_exe folder</a>. Currently, it has three <code>main</code> functions for to kick off the three games that we have implemented. This is the place where everything discussed above come together. Memory is managed according to the **"resource acquisition is initialization" (RAII)** principle. Smart shared pointers are used to "pass around" game states.</p>
+<h1><a class="anchor" id="autotoc_md6"></a>
 Looking ahead: C++ 20</h1>
-<p >Currently, clang does not fully support C++ 20. However, in the future, if this changes, we hope to incorporate the following into our library:</p><ul>
+<p >Currently, clang and CMake do not fully support C++ 20. If these conditions changes, we hope to incorporate the following into our library:</p><ul>
 <li>Modules: export the minimax solver as modules</li>
-<li>Parallelism: support parallel evaluation of the minimax algorithm for better performance </li>
+<li>Parallelism: support parallel evaluation of the minimax algorithm for even better performance</li>
 </ul>
-</div></div><!-- contents -->
+<h1><a class="anchor" id="autotoc_md7"></a>
+Folder Structure</h1>
+<p >Lastly, here is the folder structure of our entire codebase for reference. </p><div class="fragment"><div class="line">.</div>
+<div class="line">├── CMakeLists.txt</div>
+<div class="line">├── core</div>
+<div class="line">│   ├── CMakeLists.txt</div>
+<div class="line">│   ├── games</div>
+<div class="line">│   │   ├── checkers.cc</div>
+<div class="line">│   │   ├── checkers.h</div>
+<div class="line">│   │   ├── game_state.cc</div>
+<div class="line">│   │   ├── game_state.h</div>
+<div class="line">│   │   ├── isolation.cc</div>
+<div class="line">│   │   ├── isolation.h</div>
+<div class="line">│   │   ├── tictactoe.cc</div>
+<div class="line">│   │   └── tictactoe.h</div>
+<div class="line">│   ├── players</div>
+<div class="line">│   │   ├── automatic_player.cc</div>
+<div class="line">│   │   ├── automatic_player.h</div>
+<div class="line">│   │   ├── base_player.cc</div>
+<div class="line">│   │   ├── base_player.h</div>
+<div class="line">│   │   ├── interactive_player.cc</div>
+<div class="line">│   │   └── interactive_player.h</div>
+<div class="line">│   └── solver</div>
+<div class="line">│       ├── minimax_solver.cc</div>
+<div class="line">│       └── minimax_solver.h</div>
+<div class="line">├── games_exe</div>
+<div class="line">│   ├── checkers</div>
+<div class="line">│   │   ├── CMakeLists.txt</div>
+<div class="line">│   │   └── main.cc</div>
+<div class="line">│   ├── isolation</div>
+<div class="line">│   │   ├── CMakeLists.txt</div>
+<div class="line">│   │   └── main.cc</div>
+<div class="line">│   └── tictactoe</div>
+<div class="line">│       ├── CMakeLists.txt</div>
+<div class="line">│       └── main.cc</div>
+<div class="line">└── tests</div>
+<div class="line">    ├── CMakeLists.txt</div>
+<div class="line">    ├── checkers_tests</div>
+<div class="line">    │   ├── checkers_test.cc</div>
+<div class="line">    │   └── checkers_test.h</div>
+<div class="line">    ├── isolation_tests</div>
+<div class="line">    │   ├── isolation_tests.cc</div>
+<div class="line">    │   └── isolation_tests.h</div>
+<div class="line">    ├── performance</div>
+<div class="line">    │   ├── performance_tests.cc</div>
+<div class="line">    │   └── performance_tests.h</div>
+<div class="line">    ├── tests.cc</div>
+<div class="line">    └── tictactoe_tests</div>
+<div class="line">        ├── tictactoe_tests.cc</div>
+<div class="line">        └── tictactoe_tests.h</div>
+<div class="line"> </div>
+<div class="line">13 directories, 34 files</div>
+</div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
