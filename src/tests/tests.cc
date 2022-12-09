@@ -6,8 +6,22 @@
 
 using namespace std;
 
-int main() {
+int main(int argc, char **argv) {
+  if (argc != 2) {
+    cout << "Incorrect usage. Please run: ./minimax_tests <u/p>\n";
+    return 0;
+  }
+
+  string option = argv[1];
+  if (option != "u" && option != "p") {
+    cout << "Incorrect usage. Please run: ./minimax_tests <u/p>\n";
+    return 0;
+  }
+
   bool unit = false;
+  if (option == "u")
+    unit = true;
+
   if (!unit) { // run performance tests
     std::cout << "Running performance tests...\n";
     depthTest(7);
