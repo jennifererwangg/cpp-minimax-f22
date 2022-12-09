@@ -1,11 +1,15 @@
-# 1. Quick Links
+# Elementary
+
+A C++ Library for Building Intelligent Games
+
+## 1. Quick Links
 - [Design Doc](Design.md)
 - [Full Tutorial](https://docs.google.com/document/d/1xOSEW4J4jF1ODMN6chgXa8MjY5u1SJ4KZr2pthdEy44/edit?usp=sharing)
 - [Manual]() -- TODO: insert link
 
-# 2. How to run
+## 2. How to run
 
-## 2a. Build
+### 2a. Build
 1. Create `build` folder and run `make`
 ```bash
 mkdir build
@@ -14,7 +18,7 @@ cmake -DCMAKE_BUILD_TYPE=Release ..
 make
 ```
 
-## 2b. Play games
+### 2b. Play games
 Make sure to stay inside the `build` directory.
 
 **Interactive Modes**
@@ -41,7 +45,7 @@ $ ./src/games_exe/tictactoe/tictactoe a
 $ ./src/games_exe/checkers/checkers a
 ```
 
-## 2c. Run Tests
+### 2c. Run Tests
 Make sure to stay inside the `build` directory.
 ```bash
 # Run performance tests
