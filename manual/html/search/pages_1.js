@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['manual_0',['Manual',['../md___users_theodoremcnulty__programming_generic_minimax__manual.html',1,'']]]
+  ['readme_0',['README',['../md___users_theodoremcnulty__programming_generic_minimax__r_e_a_d_m_e.html',1,'']]]
 ];

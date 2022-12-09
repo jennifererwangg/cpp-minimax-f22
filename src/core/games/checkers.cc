@@ -368,10 +368,10 @@ void Checkers::processUserInput() {
   int x_start_int = 10, y_start_int = 10, x_end_int = 10, y_end_int = 10;
   while (true) {
     // initial place
-    std::cout << "Enter x (0 to 7): ";
+    std::cout << "Enter column number of the piece you want to move (0 to 7): ";
     std::cin >> x_start;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::cout << "Enter y (0 to 7): ";
+    std::cout << "Enter row number of the piece you want to move  (0 to 7): ";
     std::cin >> y_start;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     // if x and y are not integers, continue
@@ -385,10 +385,10 @@ void Checkers::processUserInput() {
     y_start_int = std::stoi(y_start);
     
     // new place
-    std::cout << "Enter x (0 to 7): ";
+    std::cout << "Enter the column number of where you want to move the piece to (0 to 7): ";
     std::cin >> x_end;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::cout << "Enter y (0 to 7): ";
+    std::cout << "Enter the row number of where you want to move the piece to (0 to 7): ";
     std::cin >> y_end;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     // if x and y are not integers, continue
